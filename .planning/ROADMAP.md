@@ -54,7 +54,7 @@ Plans:
 - [x] 02-02-PLAN.md — Static landing pages with generateStaticParams, lead capture form component
 - [x] 02-03-PLAN.md — Lead submit API route with Supabase insert, GHL contact creation, SMS workflow, Resend email
 - [x] 02-04-PLAN.md — FastAPI GHL webhook endpoint with Ed25519 signature verification
-- [ ] 02-05-PLAN.md — Integration verification: TypeScript/Python builds, env docs, visual checkpoint
+- [x] 02-05-PLAN.md — Integration verification: TypeScript/Python builds, env docs, visual checkpoint
 
 ### Phase 3: Client Dashboard
 **Goal**: An authenticated HVAC owner can log in and see all their leads in a pipeline, update statuses, read call recordings, and manage their notification settings — from a phone between jobs
