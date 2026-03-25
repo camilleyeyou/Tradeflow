@@ -46,8 +46,15 @@ Plans:
   3. A GHL-triggered SMS sequence fires immediately after lead creation, with a 15-minute and 24-hour follow-up; the sequence stops when the homeowner replies
   4. GHL inbound SMS replies are logged to lead notes via the FastAPI webhook, verified with `X-GHL-Signature` (Ed25519)
   5. Submitting the same form twice does not create two GHL contacts or two email notifications (idempotency enforced)
-**Plans**: TBD
+**Plans**: 5 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 02-01-PLAN.md — DB migration (slug column), Zod validation schema, GHL API client, npm installs
+- [ ] 02-02-PLAN.md — Static landing pages with generateStaticParams, lead capture form component
+- [ ] 02-03-PLAN.md — Lead submit API route with Supabase insert, GHL contact creation, SMS workflow, Resend email
+- [ ] 02-04-PLAN.md — FastAPI GHL webhook endpoint with Ed25519 signature verification
+- [ ] 02-05-PLAN.md — Integration verification: TypeScript/Python builds, env docs, visual checkpoint
 
 ### Phase 3: Client Dashboard
 **Goal**: An authenticated HVAC owner can log in and see all their leads in a pipeline, update statuses, read call recordings, and manage their notification settings — from a phone between jobs
@@ -82,7 +89,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In Progress|  |
-| 2. Lead Pipeline | 0/TBD | Not started | - |
+| 1. Foundation | 3/3 | Complete |  |
+| 2. Lead Pipeline | 0/5 | Planning complete | - |
 | 3. Client Dashboard | 0/TBD | Not started | - |
 | 4. Operations | 0/TBD | Not started | - |
