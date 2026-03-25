@@ -12,18 +12,17 @@ Every inbound lead — whether from an ad click, landing page form, or missed ca
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Supabase Auth: email/password for HVAC owners, magic link for admin, RLS enforcing multi-tenancy — Validated in Phase 1: Foundation
+- [x] HVAC client landing pages: statically generated, mobile-first, sub-2s load, one CTA, lead form — Validated in Phase 2: Lead Pipeline
+- [x] Lead capture API: form submission → Supabase insert → GHL contact creation → owner email via Resend — Validated in Phase 2: Lead Pipeline
+- [x] GoHighLevel integration: sub-account per client, contact sync, SMS workflow triggers, inbound message logging — Validated in Phase 2: Lead Pipeline
+- [x] Client dashboard: auth-protected, lead list with status pipeline, call log, settings, mobile-responsive — Validated in Phase 3: Client Dashboard
 
 ### Active
 
-- [ ] HVAC client landing pages: statically generated, mobile-first, sub-2s load, one CTA, lead form (name, phone, service, zip)
-- [ ] Lead capture API: form submission → Supabase insert → GHL contact creation → owner email notification via Resend
-- [ ] Missed-call text-back: CallRail webhook → lead creation → GHL text-back workflow trigger
-- [ ] Client dashboard: auth-protected, lead list with status pipeline (new → contacted → booked → completed → lost), call log, inline notes
+- [ ] Missed-call text-back: CallRail webhook → lead creation → GHL text-back workflow trigger (deferred to v2)
 - [ ] Admin panel: list all clients, onboard new clients (+ GHL sub-account), view any client's leads and calls
-- [ ] Supabase Auth: email/password for HVAC owners, magic link for admin, RLS enforcing multi-tenancy
 - [ ] Stripe billing: subscription lifecycle webhooks, invoice tracking, payment failure alerts
-- [ ] GoHighLevel integration: sub-account per client, contact sync, SMS workflow triggers, inbound message logging
 - [ ] CallRail integration: call tracking per campaign, call recording/transcript storage, missed call detection
 
 ### Out of Scope
@@ -89,4 +88,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-25 after initialization*
+*Last updated: 2026-03-25 after Phase 3 completion*
