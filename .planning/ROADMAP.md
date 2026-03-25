@@ -66,8 +66,14 @@ Plans:
   3. An inline notes field is editable on each lead record and persists on refresh
   4. The call log page lists all inbound calls with recording links sourced from CallRail data
   5. The dashboard layout is fully usable on a 375px-wide mobile screen with no horizontal scroll
-**Plans**: TBD
+**Plans**: 4 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 03-01-PLAN.md — shadcn/ui init, migration 003, shared types/utils/actions, responsive dashboard layout
+- [ ] 03-02-PLAN.md — Overview page (count cards + recent leads) and leads page (status dropdown + notes editor)
+- [ ] 03-03-PLAN.md — Call log page (recording links) and settings page (business info + notifications toggle)
+- [ ] 03-04-PLAN.md — Build verification and visual checkpoint for mobile responsiveness
 
 ### Phase 4: Operations
 **Goal**: The admin can onboard a new HVAC client (creating their Supabase record and GHL sub-account in one flow), and Stripe subscription lifecycle events automatically activate, deactivate, and track billing without any manual database changes
@@ -91,5 +97,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete |  |
 | 2. Lead Pipeline | 4/5 | In Progress|  |
-| 3. Client Dashboard | 0/TBD | Not started | - |
+| 3. Client Dashboard | 0/4 | Not started | - |
 | 4. Operations | 0/TBD | Not started | - |
