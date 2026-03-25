@@ -2,16 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-25T12:46:39.612Z"
-last_activity: 2026-03-25 — Roadmap created; all 39 v1 requirements mapped across 4 phases
+status: Ready to execute
+stopped_at: Completed 01-foundation-01-PLAN.md
+last_updated: "2026-03-25T13:13:13.647Z"
 progress:
   total_phases: 4
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_plans: 3
+  completed_plans: 1
 ---
 
 # Project State
@@ -21,16 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-25)
 
 **Core value:** Every inbound lead is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 01 — foundation
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-25 — Roadmap created; all 39 v1 requirements mapped across 4 phases
-
-Progress: [░░░░░░░░░░] 0%
+Phase: 01 (foundation) — EXECUTING
+Plan: 2 of 3
 
 ## Performance Metrics
 
@@ -52,6 +46,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-foundation P01 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -64,6 +59,8 @@ Recent decisions affecting current work:
 - Webhooks route to FastAPI on Railway only — never to Next.js (Vercel Deployment Protection blocks them)
 - GHL sub-account per client — never shared; created programmatically during admin onboarding
 - GHL webhook: verify both `X-WH-Signature` (RSA) and `X-GHL-Signature` (Ed25519); X-WH-Signature deprecated July 1, 2026
+- [Phase 01-foundation]: Added sms_sequences RLS policy missing from CLAUDE (1).md — deny-all default would silently break dashboard; policy uses 2-hop join: lead_id → leads.client_id → client_users
+- [Phase 01-foundation]: client_users table has no RLS enabled by design — it is the identity source used by all other RLS policies; enabling RLS on it would create circular dependency
 
 ### Pending Todos
 
@@ -76,6 +73,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T12:46:39.598Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation/01-CONTEXT.md
+Last session: 2026-03-25T13:13:13.641Z
+Stopped at: Completed 01-foundation-01-PLAN.md
+Resume file: None
