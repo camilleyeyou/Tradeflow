@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 03-03-PLAN.md
-last_updated: "2026-03-25T20:23:09.508Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-25T20:24:14.566Z"
 progress:
   total_phases: 4
   completed_phases: 2
@@ -56,6 +56,7 @@ Plan: 4 of 4
 | Phase 02-lead-pipeline P05 | 6 | 2 tasks | 2 files |
 | Phase 03-client-dashboard P01 | 21 | 2 tasks | 22 files |
 | Phase 03-client-dashboard P03 | 7 | 2 tasks | 4 files |
+| Phase 03-client-dashboard P02 | 4 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,9 @@ Recent decisions affecting current work:
 - [Phase 03-client-dashboard]: Server Actions use @ts-expect-error on .update() calls due to Database types stub — auto-resolves when supabase gen types runs post-deployment
 - [Phase 03-client-dashboard]: base-ui Switch onCheckedChange receives (checked, eventDetails) — Controller render extracts boolean before passing to react-hook-form field
 - [Phase 03-client-dashboard]: settings page uses supabase as any cast for stub database types — auto-resolves when supabase gen types runs post-deployment
+- [Phase 03-client-dashboard]: LeadsTable is a Client Component because it renders StatusSelect and NotesEditor — cleaner boundary than Server Component with deeply nested client children
+- [Phase 03-client-dashboard]: StatusSelect wraps setOptimisticStatus inside startTransition — required for correct optimistic update in React 19 concurrent mode; calling outside startTransition resets immediately
+- [Phase 03-client-dashboard]: base-ui Select onValueChange signature is (value, eventDetails) — adapted StatusSelect handler to match base-ui API
 
 ### Pending Todos
 
@@ -99,6 +103,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T20:22:50.997Z
-Stopped at: Completed 03-03-PLAN.md
+Last session: 2026-03-25T20:24:14.562Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
