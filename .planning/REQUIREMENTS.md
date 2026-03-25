@@ -24,11 +24,11 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **LAND-04**: Click-to-call link (`tel:` format) for one-tap mobile calling with client's phone number
 - [ ] **LAND-05**: Trust signals displayed: review stars, license badge, service area neighborhoods
 - [ ] **LAND-06**: No navigation menu — single page, single CTA above the fold
-- [ ] **LAND-07**: URL structure follows `/[clientSlug]/[service]` pattern (e.g., `/oak-park-hvac/ac-repair`)
+- [x] **LAND-07**: URL structure follows `/[clientSlug]/[service]` pattern (e.g., `/oak-park-hvac/ac-repair`)
 
 ### Lead Capture
 
-- [ ] **LEAD-01**: Form submission POSTs to `/api/leads/submit`, validates with Zod, inserts into Supabase `leads` table
+- [x] **LEAD-01**: Form submission POSTs to `/api/leads/submit`, validates with Zod, inserts into Supabase `leads` table
 - [ ] **LEAD-02**: New lead creates a contact in the client's GoHighLevel sub-account via GHL API
 - [ ] **LEAD-03**: HVAC owner receives email notification via Resend within 60 seconds of new lead
 - [ ] **LEAD-04**: Form shows success state: "We'll call you within 5 minutes" after submission
@@ -67,7 +67,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **GHL-01**: Each HVAC client gets their own GHL sub-account (never shared)
 - [ ] **GHL-02**: Sub-account created programmatically via GHL Agency API during client onboarding
-- [ ] **GHL-03**: `ghl_sub_account_id` and `ghl_contact_id` stored on client and lead records
+- [x] **GHL-03**: `ghl_sub_account_id` and `ghl_contact_id` stored on client and lead records
 - [ ] **GHL-04**: Inbound GHL webhook logs SMS replies from homeowners and updates lead notes
 - [ ] **GHL-05**: GHL webhook verifies `X-GHL-Signature` (Ed25519, not deprecated `X-WH-Signature`)
 
@@ -132,8 +132,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LAND-04 | Phase 2 | Pending |
 | LAND-05 | Phase 2 | Pending |
 | LAND-06 | Phase 2 | Pending |
-| LAND-07 | Phase 2 | Pending |
-| LEAD-01 | Phase 2 | Pending |
+| LAND-07 | Phase 2 | Complete |
+| LEAD-01 | Phase 2 | Complete |
 | LEAD-02 | Phase 2 | Pending |
 | LEAD-03 | Phase 2 | Pending |
 | LEAD-04 | Phase 2 | Pending |
@@ -141,7 +141,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LEAD-06 | Phase 2 | Pending |
 | GHL-01 | Phase 2 | Pending |
 | GHL-02 | Phase 4 | Pending |
-| GHL-03 | Phase 2 | Pending |
+| GHL-03 | Phase 2 | Complete |
 | GHL-04 | Phase 2 | Pending |
 | GHL-05 | Phase 2 | Pending |
 | DASH-01 | Phase 3 | Pending |

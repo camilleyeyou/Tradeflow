@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Phase complete — ready for verification
-stopped_at: Completed 01-foundation-02-PLAN.md
-last_updated: "2026-03-25T13:26:43.653Z"
+status: Ready to execute
+stopped_at: Completed 02-lead-pipeline-01-PLAN.md
+last_updated: "2026-03-25T18:25:19.198Z"
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 8
+  completed_plans: 4
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-25)
 
 **Core value:** Every inbound lead is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
-**Current focus:** Phase 01 — foundation
+**Current focus:** Phase 02 — lead-pipeline
 
 ## Current Position
 
-Phase: 01 (foundation) — EXECUTING
-Plan: 3 of 3
+Phase: 02 (lead-pipeline) — EXECUTING
+Plan: 2 of 5
 
 ## Performance Metrics
 
@@ -49,6 +49,7 @@ Plan: 3 of 3
 | Phase 01-foundation P01 | 2 | 2 tasks | 2 files |
 | Phase 01-foundation P03 | 12 | 2 tasks | 12 files |
 | Phase 01-foundation P02 | 15 | 2 tasks | 16 files |
+| Phase 02-lead-pipeline P01 | 155 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,7 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: create-next-app@15 creates src/ directory regardless of --src-dir no flag; all files live under apps/web/src/ with @/* alias pointing to ./src/*
 - [Phase 01-foundation]: types.ts is a placeholder stub until supabase gen types typescript is run after Phase 1 Supabase deployment verification
 - [Phase 01-foundation]: middleware.ts lives at apps/web/ root (not src/) — Next.js requires middleware at the app root directory
+- [Phase 02-lead-pipeline]: GHL client uses per-request token (not module-level singleton) to support per-client sub-account tokens
 
 ### Pending Todos
 
@@ -80,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T13:26:43.644Z
-Stopped at: Completed 01-foundation-02-PLAN.md
+Last session: 2026-03-25T18:25:19.193Z
+Stopped at: Completed 02-lead-pipeline-01-PLAN.md
 Resume file: None
