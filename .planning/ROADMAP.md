@@ -29,7 +29,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The Next.js app boots at localhost with the three route groups scaffolded (`(landing)`, `(dashboard)`, `(admin)`) and TypeScript strict mode passes
   4. The FastAPI app responds 200 on `/health` from Railway with the Supabase service role client initialized
   5. Running `SELECT tablename, rowsecurity FROM pg_tables WHERE schemaname = 'public'` shows `rowsecurity = true` for every table
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Supabase schema migration (6 tables, RLS, indexes) + seed data + cross-tenant RLS verification
+- [ ] 01-02-PLAN.md — Next.js 15 scaffold: route groups, Supabase clients, middleware auth guard, login page
+- [ ] 01-03-PLAN.md — FastAPI scaffold: /health endpoint, Supabase service role client, env vars
 
 ### Phase 2: Lead Pipeline
 **Goal**: A homeowner can find a client's landing page, submit a lead form or call and miss, and within 60 seconds the HVAC owner receives an email notification and an SMS follow-up sequence has started — with no manual intervention
@@ -77,7 +82,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/3 | Not started | - |
 | 2. Lead Pipeline | 0/TBD | Not started | - |
 | 3. Client Dashboard | 0/TBD | Not started | - |
 | 4. Operations | 0/TBD | Not started | - |
