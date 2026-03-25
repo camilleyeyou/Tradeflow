@@ -13,8 +13,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **FOUN-02**: Row Level Security enabled on all tables with policies enforcing per-client data isolation
 - [ ] **FOUN-03**: Supabase Auth configured with email/password for HVAC owners and magic link for admin
 - [ ] **FOUN-04**: Next.js 15 App Router project scaffolded with TypeScript strict mode and Tailwind v4
-- [ ] **FOUN-05**: FastAPI backend scaffolded with Pydantic v2, async handlers, and Supabase service role client
-- [ ] **FOUN-06**: Environment variables configured for Supabase, Stripe, GHL, Resend across both apps
+- [x] **FOUN-05**: FastAPI backend scaffolded with Pydantic v2, async handlers, and Supabase service role client
+- [x] **FOUN-06**: Environment variables configured for Supabase, Stripe, GHL, Resend across both apps
 
 ### Landing Pages
 
@@ -124,8 +124,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUN-02 | Phase 1 | Complete |
 | FOUN-03 | Phase 1 | Pending |
 | FOUN-04 | Phase 1 | Pending |
-| FOUN-05 | Phase 1 | Pending |
-| FOUN-06 | Phase 1 | Pending |
+| FOUN-05 | Phase 1 | Complete |
+| FOUN-06 | Phase 1 | Complete |
 | LAND-01 | Phase 2 | Pending |
 | LAND-02 | Phase 2 | Pending |
 | LAND-03 | Phase 2 | Pending |
