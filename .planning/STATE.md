@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 01-foundation-03-PLAN.md
-last_updated: "2026-03-25T13:23:51.009Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 01-foundation-02-PLAN.md
+last_updated: "2026-03-25T13:26:43.653Z"
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 3
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -48,6 +48,7 @@ Plan: 3 of 3
 *Updated after each plan completion*
 | Phase 01-foundation P01 | 2 | 2 tasks | 2 files |
 | Phase 01-foundation P03 | 12 | 2 tasks | 12 files |
+| Phase 01-foundation P02 | 15 | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -64,6 +65,9 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: client_users table has no RLS enabled by design — it is the identity source used by all other RLS policies; enabling RLS on it would create circular dependency
 - [Phase 01-foundation]: FastAPI Procfile uses api.main:app dotted module path — uvicorn runs from repo root where api/ package lives
 - [Phase 01-foundation]: Supabase service role client uses global singleton initialized in lifespan hook — safe to reuse, not per-request
+- [Phase 01-foundation]: create-next-app@15 creates src/ directory regardless of --src-dir no flag; all files live under apps/web/src/ with @/* alias pointing to ./src/*
+- [Phase 01-foundation]: types.ts is a placeholder stub until supabase gen types typescript is run after Phase 1 Supabase deployment verification
+- [Phase 01-foundation]: middleware.ts lives at apps/web/ root (not src/) — Next.js requires middleware at the app root directory
 
 ### Pending Todos
 
@@ -76,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T13:23:51.004Z
-Stopped at: Completed 01-foundation-03-PLAN.md
+Last session: 2026-03-25T13:26:43.644Z
+Stopped at: Completed 01-foundation-02-PLAN.md
 Resume file: None

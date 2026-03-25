@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Supabase schema migration (6 tables, RLS, indexes) + seed data + cross-tenant RLS verification
-- [ ] 01-02-PLAN.md — Next.js 15 scaffold: route groups, Supabase clients, middleware auth guard, login page
+- [x] 01-02-PLAN.md — Next.js 15 scaffold: route groups, Supabase clients, middleware auth guard, login page
 - [x] 01-03-PLAN.md — FastAPI scaffold: /health endpoint, Supabase service role client, env vars
 
 ### Phase 2: Lead Pipeline
