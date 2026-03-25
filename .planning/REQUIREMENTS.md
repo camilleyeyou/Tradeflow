@@ -68,8 +68,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **GHL-01**: Each HVAC client gets their own GHL sub-account (never shared)
 - [ ] **GHL-02**: Sub-account created programmatically via GHL Agency API during client onboarding
 - [x] **GHL-03**: `ghl_sub_account_id` and `ghl_contact_id` stored on client and lead records
-- [ ] **GHL-04**: Inbound GHL webhook logs SMS replies from homeowners and updates lead notes
-- [ ] **GHL-05**: GHL webhook verifies `X-GHL-Signature` (Ed25519, not deprecated `X-WH-Signature`)
+- [x] **GHL-04**: Inbound GHL webhook logs SMS replies from homeowners and updates lead notes
+- [x] **GHL-05**: GHL webhook verifies `X-GHL-Signature` (Ed25519, not deprecated `X-WH-Signature`)
 
 ## v2 Requirements
 
@@ -142,8 +142,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GHL-01 | Phase 2 | Complete |
 | GHL-02 | Phase 4 | Pending |
 | GHL-03 | Phase 2 | Complete |
-| GHL-04 | Phase 2 | Pending |
-| GHL-05 | Phase 2 | Pending |
+| GHL-04 | Phase 2 | Complete |
+| GHL-05 | Phase 2 | Complete |
 | DASH-01 | Phase 3 | Pending |
 | DASH-02 | Phase 3 | Pending |
 | DASH-03 | Phase 3 | Pending |

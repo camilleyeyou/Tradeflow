@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 02-lead-pipeline-02-PLAN.md
-last_updated: "2026-03-25T18:30:55.844Z"
+stopped_at: Completed 02-lead-pipeline-04-PLAN.md
+last_updated: "2026-03-25T18:32:01.739Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 02 (lead-pipeline) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Plan: 4 of 5
 | Phase 02-lead-pipeline P01 | 155 | 2 tasks | 3 files |
 | Phase 02-lead-pipeline P03 | 4 | 1 tasks | 2 files |
 | Phase 02-lead-pipeline P02 | 2 | 2 tasks | 3 files |
+| Phase 02-lead-pipeline P04 | 4 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase 02-lead-pipeline]: GHL and Resend calls run in next/server after() — 200 returned to homeowner before any external API calls
 - [Phase 02-lead-pipeline]: Used createClient from @supabase/supabase-js (not createServerClient) in generateStaticParams to avoid dynamic rendering — no cookies needed at build time
 - [Phase 02-lead-pipeline]: service_area_zips handled as both string[] and string to be safe until Database types are generated post-Phase-1-deployment
+- [Phase 02-lead-pipeline]: GHL legacy RSA signature (X-WH-Signature) accepted permissively during transition — hard removal deadline July 1, 2026 documented in code
+- [Phase 02-lead-pipeline]: GHL webhook: single POST /api/webhooks/ghl endpoint routes all events by event_type field
 
 ### Pending Todos
 
@@ -88,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T18:30:55.838Z
-Stopped at: Completed 02-lead-pipeline-02-PLAN.md
+Last session: 2026-03-25T18:32:01.735Z
+Stopped at: Completed 02-lead-pipeline-04-PLAN.md
 Resume file: None
