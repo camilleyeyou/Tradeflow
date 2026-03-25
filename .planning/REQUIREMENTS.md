@@ -42,8 +42,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **DASH-03**: Lead list with 5-stage status pipeline (new → contacted → booked → completed → lost)
 - [ ] **DASH-04**: Lead status updatable via dropdown on each lead row
 - [ ] **DASH-05**: Inline notes field editable on each lead record
-- [ ] **DASH-06**: Call log page showing all inbound calls with recording links from CallRail
-- [ ] **DASH-07**: Settings page for business info and notification preferences
+- [x] **DASH-06**: Call log page showing all inbound calls with recording links from CallRail
+- [x] **DASH-07**: Settings page for business info and notification preferences
 - [x] **DASH-08**: Mobile-responsive layout (usable between jobs on phone)
 
 ### Admin Panel
@@ -149,8 +149,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DASH-03 | Phase 3 | Pending |
 | DASH-04 | Phase 3 | Pending |
 | DASH-05 | Phase 3 | Pending |
-| DASH-06 | Phase 3 | Pending |
-| DASH-07 | Phase 3 | Pending |
+| DASH-06 | Phase 3 | Complete |
+| DASH-07 | Phase 3 | Complete |
 | DASH-08 | Phase 3 | Complete |
 | ADMN-01 | Phase 4 | Pending |
 | ADMN-02 | Phase 4 | Pending |
