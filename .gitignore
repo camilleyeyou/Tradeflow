@@ -1,0 +1,25 @@
+# Python
+api/.venv/
+api/__pycache__/
+api/**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment variables — never commit
+api/.env
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+.next/
+
+# IDE
+.vscode/
+.idea/
