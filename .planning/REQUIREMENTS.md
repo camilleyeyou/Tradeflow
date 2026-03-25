@@ -18,22 +18,22 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Landing Pages
 
-- [ ] **LAND-01**: Static landing page generated per client via `generateStaticParams` from clients table
-- [ ] **LAND-02**: Landing page loads under 2 seconds on mobile (Lighthouse verified)
-- [ ] **LAND-03**: Lead capture form with 4 fields: name, phone, service type (dropdown), zip code
-- [ ] **LAND-04**: Click-to-call link (`tel:` format) for one-tap mobile calling with client's phone number
-- [ ] **LAND-05**: Trust signals displayed: review stars, license badge, service area neighborhoods
-- [ ] **LAND-06**: No navigation menu — single page, single CTA above the fold
+- [x] **LAND-01**: Static landing page generated per client via `generateStaticParams` from clients table
+- [x] **LAND-02**: Landing page loads under 2 seconds on mobile (Lighthouse verified)
+- [x] **LAND-03**: Lead capture form with 4 fields: name, phone, service type (dropdown), zip code
+- [x] **LAND-04**: Click-to-call link (`tel:` format) for one-tap mobile calling with client's phone number
+- [x] **LAND-05**: Trust signals displayed: review stars, license badge, service area neighborhoods
+- [x] **LAND-06**: No navigation menu — single page, single CTA above the fold
 - [x] **LAND-07**: URL structure follows `/[clientSlug]/[service]` pattern (e.g., `/oak-park-hvac/ac-repair`)
 
 ### Lead Capture
 
 - [x] **LEAD-01**: Form submission POSTs to `/api/leads/submit`, validates with Zod, inserts into Supabase `leads` table
-- [ ] **LEAD-02**: New lead creates a contact in the client's GoHighLevel sub-account via GHL API
-- [ ] **LEAD-03**: HVAC owner receives email notification via Resend within 60 seconds of new lead
-- [ ] **LEAD-04**: Form shows success state: "We'll call you within 5 minutes" after submission
-- [ ] **LEAD-05**: Multi-step SMS follow-up sequence triggered via GHL workflow (immediate + 15min + 24hr)
-- [ ] **LEAD-06**: SMS sequence stops when lead replies
+- [x] **LEAD-02**: New lead creates a contact in the client's GoHighLevel sub-account via GHL API
+- [x] **LEAD-03**: HVAC owner receives email notification via Resend within 60 seconds of new lead
+- [x] **LEAD-04**: Form shows success state: "We'll call you within 5 minutes" after submission
+- [x] **LEAD-05**: Multi-step SMS follow-up sequence triggered via GHL workflow (immediate + 15min + 24hr)
+- [x] **LEAD-06**: SMS sequence stops when lead replies
 
 ### Dashboard
 
@@ -65,7 +65,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### GoHighLevel Integration
 
-- [ ] **GHL-01**: Each HVAC client gets their own GHL sub-account (never shared)
+- [x] **GHL-01**: Each HVAC client gets their own GHL sub-account (never shared)
 - [ ] **GHL-02**: Sub-account created programmatically via GHL Agency API during client onboarding
 - [x] **GHL-03**: `ghl_sub_account_id` and `ghl_contact_id` stored on client and lead records
 - [ ] **GHL-04**: Inbound GHL webhook logs SMS replies from homeowners and updates lead notes
@@ -126,20 +126,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUN-04 | Phase 1 | Complete |
 | FOUN-05 | Phase 1 | Complete |
 | FOUN-06 | Phase 1 | Complete |
-| LAND-01 | Phase 2 | Pending |
-| LAND-02 | Phase 2 | Pending |
-| LAND-03 | Phase 2 | Pending |
-| LAND-04 | Phase 2 | Pending |
-| LAND-05 | Phase 2 | Pending |
-| LAND-06 | Phase 2 | Pending |
+| LAND-01 | Phase 2 | Complete |
+| LAND-02 | Phase 2 | Complete |
+| LAND-03 | Phase 2 | Complete |
+| LAND-04 | Phase 2 | Complete |
+| LAND-05 | Phase 2 | Complete |
+| LAND-06 | Phase 2 | Complete |
 | LAND-07 | Phase 2 | Complete |
 | LEAD-01 | Phase 2 | Complete |
-| LEAD-02 | Phase 2 | Pending |
-| LEAD-03 | Phase 2 | Pending |
-| LEAD-04 | Phase 2 | Pending |
-| LEAD-05 | Phase 2 | Pending |
-| LEAD-06 | Phase 2 | Pending |
-| GHL-01 | Phase 2 | Pending |
+| LEAD-02 | Phase 2 | Complete |
+| LEAD-03 | Phase 2 | Complete |
+| LEAD-04 | Phase 2 | Complete |
+| LEAD-05 | Phase 2 | Complete |
+| LEAD-06 | Phase 2 | Complete |
+| GHL-01 | Phase 2 | Complete |
 | GHL-02 | Phase 4 | Pending |
 | GHL-03 | Phase 2 | Complete |
 | GHL-04 | Phase 2 | Pending |
