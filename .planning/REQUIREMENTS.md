@@ -140,7 +140,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LEAD-05 | Phase 2 | Pending |
 | LEAD-06 | Phase 2 | Pending |
 | GHL-01 | Phase 2 | Pending |
-| GHL-02 | Phase 2 | Pending |
+| GHL-02 | Phase 4 | Pending |
 | GHL-03 | Phase 2 | Pending |
 | GHL-04 | Phase 2 | Pending |
 | GHL-05 | Phase 2 | Pending |

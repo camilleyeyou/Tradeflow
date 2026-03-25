@@ -39,7 +39,7 @@ Plans:
 ### Phase 2: Lead Pipeline
 **Goal**: A homeowner can find a client's landing page, submit a lead form or call and miss, and within 60 seconds the HVAC owner receives an email notification and an SMS follow-up sequence has started — with no manual intervention
 **Depends on**: Phase 1
-**Requirements**: LAND-01, LAND-02, LAND-03, LAND-04, LAND-05, LAND-06, LAND-07, LEAD-01, LEAD-02, LEAD-03, LEAD-04, LEAD-05, LEAD-06, GHL-01, GHL-02, GHL-03, GHL-04, GHL-05
+**Requirements**: LAND-01, LAND-02, LAND-03, LAND-04, LAND-05, LAND-06, LAND-07, LEAD-01, LEAD-02, LEAD-03, LEAD-04, LEAD-05, LEAD-06, GHL-01, GHL-03, GHL-04, GHL-05
 **Success Criteria** (what must be TRUE):
   1. A static landing page is served at `/[clientSlug]/[service]`, passes Lighthouse mobile load under 2 seconds, has no navigation menu, and shows one CTA above the fold with click-to-call and trust signals
   2. Submitting the lead form inserts a record in the Supabase `leads` table, creates a GHL contact in the client's sub-account, and sends the HVAC owner a Resend email — all within 60 seconds; the form shows a success message after submission
@@ -72,7 +72,7 @@ Plans:
 ### Phase 4: Operations
 **Goal**: The admin can onboard a new HVAC client (creating their Supabase record and GHL sub-account in one flow), and Stripe subscription lifecycle events automatically activate, deactivate, and track billing without any manual database changes
 **Depends on**: Phase 3
-**Requirements**: ADMN-01, ADMN-02, ADMN-03, ADMN-04, ADMN-05, BILL-01, BILL-02, BILL-03, BILL-04, BILL-05, BILL-06
+**Requirements**: ADMN-01, ADMN-02, ADMN-03, ADMN-04, ADMN-05, BILL-01, BILL-02, BILL-03, BILL-04, BILL-05, BILL-06, GHL-02
 **Success Criteria** (what must be TRUE):
   1. The admin (magic link only) can view all clients with their status and drill into any client's leads and calls without that data being accessible to HVAC owner accounts
   2. Completing the client onboarding form creates a Supabase client record and provisions a GHL sub-account; submitting the form twice does not create two GHL sub-accounts
