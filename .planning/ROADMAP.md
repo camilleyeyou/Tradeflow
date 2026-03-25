@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Foundation** - Supabase schema, RLS policies, auth, and both app scaffolds
 - [ ] **Phase 2: Lead Pipeline** - Landing pages, lead capture API, GHL contact sync, SMS follow-up, and email notification
-- [ ] **Phase 3: Client Dashboard** - Auth-protected lead list, 5-stage status pipeline, call log, and settings
+- [x] **Phase 3: Client Dashboard** - Auth-protected lead list, 5-stage status pipeline, call log, and settings (completed 2026-03-25)
 - [ ] **Phase 4: Operations** - Admin panel with GHL onboarding and Stripe billing webhooks
 
 ## Phase Details
@@ -73,7 +73,7 @@ Plans:
 - [x] 03-01-PLAN.md — shadcn/ui init, migration 003, shared types/utils/actions, responsive dashboard layout
 - [x] 03-02-PLAN.md — Overview page (count cards + recent leads) and leads page (status dropdown + notes editor)
 - [x] 03-03-PLAN.md — Call log page (recording links) and settings page (business info + notifications toggle)
-- [ ] 03-04-PLAN.md — Build verification and visual checkpoint for mobile responsiveness
+- [x] 03-04-PLAN.md — Build verification and visual checkpoint for mobile responsiveness
 
 ### Phase 4: Operations
 **Goal**: The admin can onboard a new HVAC client (creating their Supabase record and GHL sub-account in one flow), and Stripe subscription lifecycle events automatically activate, deactivate, and track billing without any manual database changes
@@ -97,5 +97,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete |  |
 | 2. Lead Pipeline | 4/5 | In Progress|  |
-| 3. Client Dashboard | 3/4 | In Progress|  |
+| 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
 | 4. Operations | 0/TBD | Not started | - |

@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 03-02-PLAN.md
-last_updated: "2026-03-25T20:24:14.566Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 03-04-PLAN.md
+last_updated: "2026-03-25T20:38:48.897Z"
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 12
-  completed_plans: 11
+  completed_plans: 12
 ---
 
 # Project State
@@ -57,6 +57,7 @@ Plan: 4 of 4
 | Phase 03-client-dashboard P01 | 21 | 2 tasks | 22 files |
 | Phase 03-client-dashboard P03 | 7 | 2 tasks | 4 files |
 | Phase 03-client-dashboard P02 | 4 | 2 tasks | 7 files |
+| Phase 03-client-dashboard P04 | 8 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -91,6 +92,9 @@ Recent decisions affecting current work:
 - [Phase 03-client-dashboard]: LeadsTable is a Client Component because it renders StatusSelect and NotesEditor — cleaner boundary than Server Component with deeply nested client children
 - [Phase 03-client-dashboard]: StatusSelect wraps setOptimisticStatus inside startTransition — required for correct optimistic update in React 19 concurrent mode; calling outside startTransition resets immediately
 - [Phase 03-client-dashboard]: base-ui Select onValueChange signature is (value, eventDetails) — adapted StatusSelect handler to match base-ui API
+- [Phase 03-client-dashboard]: Dashboard pages relocated under (dashboard)/dashboard/ to resolve route group URL collision between (dashboard) and (marketing)
+- [Phase 03-client-dashboard]: generateStaticParams returns empty array when Supabase URL is a placeholder — prevents build crash in local/CI without real credentials
+- [Phase 03-client-dashboard]: Login page createClient() moved into submit handler body to prevent SSR prerender from calling createBrowserClient with malformed URL
 
 ### Pending Todos
 
@@ -103,6 +107,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T20:24:14.562Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-03-25T20:38:48.892Z
+Stopped at: Completed 03-04-PLAN.md
 Resume file: None
