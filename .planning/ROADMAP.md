@@ -70,7 +70,7 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 03-01-PLAN.md — shadcn/ui init, migration 003, shared types/utils/actions, responsive dashboard layout
+- [x] 03-01-PLAN.md — shadcn/ui init, migration 003, shared types/utils/actions, responsive dashboard layout
 - [ ] 03-02-PLAN.md — Overview page (count cards + recent leads) and leads page (status dropdown + notes editor)
 - [ ] 03-03-PLAN.md — Call log page (recording links) and settings page (business info + notifications toggle)
 - [ ] 03-04-PLAN.md — Build verification and visual checkpoint for mobile responsiveness
@@ -97,5 +97,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete |  |
 | 2. Lead Pipeline | 4/5 | In Progress|  |
-| 3. Client Dashboard | 0/4 | Not started | - |
+| 3. Client Dashboard | 1/4 | In Progress|  |
 | 4. Operations | 0/TBD | Not started | - |
