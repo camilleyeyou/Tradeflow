@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 02-lead-pipeline-01-PLAN.md
-last_updated: "2026-03-25T18:25:19.198Z"
+stopped_at: Completed 02-lead-pipeline-02-PLAN.md
+last_updated: "2026-03-25T18:30:55.844Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 8
-  completed_plans: 4
+  completed_plans: 6
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 02 (lead-pipeline) — EXECUTING
-Plan: 2 of 5
+Plan: 4 of 5
 
 ## Performance Metrics
 
@@ -50,6 +50,8 @@ Plan: 2 of 5
 | Phase 01-foundation P03 | 12 | 2 tasks | 12 files |
 | Phase 01-foundation P02 | 15 | 2 tasks | 16 files |
 | Phase 02-lead-pipeline P01 | 155 | 2 tasks | 3 files |
+| Phase 02-lead-pipeline P03 | 4 | 1 tasks | 2 files |
+| Phase 02-lead-pipeline P02 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -70,6 +72,10 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: types.ts is a placeholder stub until supabase gen types typescript is run after Phase 1 Supabase deployment verification
 - [Phase 01-foundation]: middleware.ts lives at apps/web/ root (not src/) — Next.js requires middleware at the app root directory
 - [Phase 02-lead-pipeline]: GHL client uses per-request token (not module-level singleton) to support per-client sub-account tokens
+- [Phase 02-lead-pipeline]: Lead submit handler uses inline createClient (not createAdminClient) — admin.ts is restricted to (admin)/ route group per code comment
+- [Phase 02-lead-pipeline]: GHL and Resend calls run in next/server after() — 200 returned to homeowner before any external API calls
+- [Phase 02-lead-pipeline]: Used createClient from @supabase/supabase-js (not createServerClient) in generateStaticParams to avoid dynamic rendering — no cookies needed at build time
+- [Phase 02-lead-pipeline]: service_area_zips handled as both string[] and string to be safe until Database types are generated post-Phase-1-deployment
 
 ### Pending Todos
 
@@ -82,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T18:25:19.193Z
-Stopped at: Completed 02-lead-pipeline-01-PLAN.md
+Last session: 2026-03-25T18:30:55.838Z
+Stopped at: Completed 02-lead-pipeline-02-PLAN.md
 Resume file: None

@@ -51,8 +51,8 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — DB migration (slug column), Zod validation schema, GHL API client, npm installs
-- [ ] 02-02-PLAN.md — Static landing pages with generateStaticParams, lead capture form component
-- [ ] 02-03-PLAN.md — Lead submit API route with Supabase insert, GHL contact creation, SMS workflow, Resend email
+- [x] 02-02-PLAN.md — Static landing pages with generateStaticParams, lead capture form component
+- [x] 02-03-PLAN.md — Lead submit API route with Supabase insert, GHL contact creation, SMS workflow, Resend email
 - [ ] 02-04-PLAN.md — FastAPI GHL webhook endpoint with Ed25519 signature verification
 - [ ] 02-05-PLAN.md — Integration verification: TypeScript/Python builds, env docs, visual checkpoint
 
@@ -90,6 +90,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete |  |
-| 2. Lead Pipeline | 1/5 | In Progress|  |
+| 2. Lead Pipeline | 3/5 | In Progress|  |
 | 3. Client Dashboard | 0/TBD | Not started | - |
 | 4. Operations | 0/TBD | Not started | - |
