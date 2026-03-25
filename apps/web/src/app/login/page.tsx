@@ -10,11 +10,13 @@ export default function LoginPage() {
   const [mode, setMode] = useState<'password' | 'magic-link'>('password')
   const [message, setMessage] = useState('')
   const router = useRouter()
-  const supabase = createClient()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setMessage('')
+
+    // Client created inside handler — avoids URL validation during SSR prerender
+    const supabase = createClient()
 
     if (mode === 'password') {
       const { error } = await supabase.auth.signInWithPassword({ email, password })

@@ -55,10 +55,15 @@ function ShieldCheckIcon() {
 }
 
 export async function generateStaticParams() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  // Guard: skip static generation if Supabase is not configured (local dev / CI)
+  if (!url || !key || url.includes('<') || url.includes('>')) {
+    return []
+  }
+
+  const supabase = createClient(url, key)
 
   const { data: clients } = await supabase
     .from('clients')
