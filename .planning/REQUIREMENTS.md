@@ -48,11 +48,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Admin Panel
 
-- [ ] **ADMN-01**: Admin panel accessible only to users matching `ADMIN_EMAIL` env var
-- [ ] **ADMN-02**: Client list page showing all clients with active/trial/inactive status
+- [x] **ADMN-01**: Admin panel accessible only to users matching `ADMIN_EMAIL` env var
+- [x] **ADMN-02**: Client list page showing all clients with active/trial/inactive status
 - [ ] **ADMN-03**: Client onboarding form that creates client record + provisions GHL sub-account
 - [ ] **ADMN-04**: Single client detail page showing their leads, calls, and GHL sub-account link
-- [ ] **ADMN-05**: Admin Supabase client uses service role key (bypasses RLS) — never exposed to browser
+- [x] **ADMN-05**: Admin Supabase client uses service role key (bypasses RLS) — never exposed to browser
 
 ### Billing
 
@@ -152,11 +152,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DASH-06 | Phase 3 | Complete |
 | DASH-07 | Phase 3 | Complete |
 | DASH-08 | Phase 3 | Complete |
-| ADMN-01 | Phase 4 | Pending |
-| ADMN-02 | Phase 4 | Pending |
+| ADMN-01 | Phase 4 | Complete |
+| ADMN-02 | Phase 4 | Complete |
 | ADMN-03 | Phase 4 | Pending |
 | ADMN-04 | Phase 4 | Pending |
-| ADMN-05 | Phase 4 | Pending |
+| ADMN-05 | Phase 4 | Complete |
 | BILL-01 | Phase 4 | Complete |
 | BILL-02 | Phase 4 | Complete |
 | BILL-03 | Phase 4 | Complete |
