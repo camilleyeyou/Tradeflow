@@ -6,7 +6,7 @@ export const onboardingSchema = z.object({
   email: z.string().email('Invalid email address'),
   phone: z.string().min(10, 'Phone number must be at least 10 digits'),
   city: z.string().min(2, 'City must be at least 2 characters').max(100),
-  state: z.string().default('IL'),
+  state: z.string().min(1, 'State is required'),
   service_area_zips: z.string().min(1, 'At least one ZIP code required'),
   plan: z.enum(['starter', 'growth', 'premium']),
 })

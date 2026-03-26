@@ -23,8 +23,9 @@ export async function onboardClient(formData: {
   const supabase = createAdminClient()
 
   // Step 1: Insert client record (D-54 step 1)
-  // @ts-expect-error -- types.ts is a stub until supabase gen types runs post-deployment
-  const { data: client, error } = await supabase
+  // Cast insert payload to any — types.ts stub maps Insert to Record<string,unknown> which
+  // the Postgres builder treats as never for write operations; auto-resolves post-deployment
+  const { data: client, error } = await (supabase as any)
     .from('clients')
     .insert({
       business_name: parsed.data.business_name,
@@ -65,8 +66,7 @@ export async function onboardClient(formData: {
 
     if (locationId) {
       // Step 3: Store ghl_sub_account_id on client record (D-54 step 3)
-      // @ts-expect-error -- types.ts is a stub until supabase gen types runs post-deployment
-      await supabase
+      await (supabase as any)
         .from('clients')
         .update({ ghl_sub_account_id: locationId })
         .eq('id', typedClient.id)
