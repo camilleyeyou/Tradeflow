@@ -91,7 +91,7 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — Admin layout with top-nav header and client list page with status badges
 - [x] 04-02-PLAN.md — Stripe webhook handler on FastAPI with signature verification and four event processors
-- [ ] 04-03-PLAN.md — Client onboarding form with GHL sub-account provisioning and client detail page
+- [x] 04-03-PLAN.md — Client onboarding form with GHL sub-account provisioning and client detail page
 - [ ] 04-04-PLAN.md — Build verification and visual checkpoint for admin panel
 
 ## Progress
@@ -104,4 +104,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 3/3 | Complete |  |
 | 2. Lead Pipeline | 4/5 | In Progress|  |
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
-| 4. Operations | 2/4 | In Progress|  |
+| 4. Operations | 3/4 | In Progress|  |

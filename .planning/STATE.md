@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 04-operations-01-PLAN.md
-last_updated: "2026-03-26T22:42:00.855Z"
+stopped_at: Completed 04-operations-03-PLAN.md
+last_updated: "2026-03-26T23:11:00.395Z"
 progress:
   total_phases: 4
   completed_phases: 3
   total_plans: 16
-  completed_plans: 14
+  completed_plans: 15
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 04 (operations) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Plan: 3 of 4
 | Phase 03-client-dashboard P04 | 8 | 2 tasks | 6 files |
 | Phase 04-operations P02 | 5 | 2 tasks | 5 files |
 | Phase 04-operations P01 | 516 | 2 tasks | 3 files |
+| Phase 04-operations P03 | 20 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,8 @@ Recent decisions affecting current work:
 - [Phase 04-operations]: resend[async] extra required for send_async() in FastAPI async background tasks — bare resend lacks anyio
 - [Phase 04-operations]: base-ui Button has no asChild support — use buttonVariants() className on Link directly
 - [Phase 04-operations]: @ts-expect-error not needed on admin createAdminClient query — types.ts stub types query as any, directive causes compile error
+- [Phase 04-operations]: supabase as any cast required for insert/update in admin actions — types.ts stub maps Record<string,unknown> Insert to never in write paths; reads work without cast
+- [Phase 04-operations]: state field in onboardingSchema uses z.string().min(1) without .default() — .default() makes input type optional, breaking react-hook-form Resolver type; IL default set in form defaultValues instead
 
 ### Pending Todos
 
@@ -114,6 +117,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T22:42:00.849Z
-Stopped at: Completed 04-operations-01-PLAN.md
+Last session: 2026-03-26T23:11:00.390Z
+Stopped at: Completed 04-operations-03-PLAN.md
 Resume file: None
