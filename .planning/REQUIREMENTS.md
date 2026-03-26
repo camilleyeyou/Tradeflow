@@ -50,8 +50,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **ADMN-01**: Admin panel accessible only to users matching `ADMIN_EMAIL` env var
 - [x] **ADMN-02**: Client list page showing all clients with active/trial/inactive status
-- [ ] **ADMN-03**: Client onboarding form that creates client record + provisions GHL sub-account
-- [ ] **ADMN-04**: Single client detail page showing their leads, calls, and GHL sub-account link
+- [x] **ADMN-03**: Client onboarding form that creates client record + provisions GHL sub-account
+- [x] **ADMN-04**: Single client detail page showing their leads, calls, and GHL sub-account link
 - [x] **ADMN-05**: Admin Supabase client uses service role key (bypasses RLS) — never exposed to browser
 
 ### Billing
@@ -66,7 +66,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### GoHighLevel Integration
 
 - [x] **GHL-01**: Each HVAC client gets their own GHL sub-account (never shared)
-- [ ] **GHL-02**: Sub-account created programmatically via GHL Agency API during client onboarding
+- [x] **GHL-02**: Sub-account created programmatically via GHL Agency API during client onboarding
 - [x] **GHL-03**: `ghl_sub_account_id` and `ghl_contact_id` stored on client and lead records
 - [x] **GHL-04**: Inbound GHL webhook logs SMS replies from homeowners and updates lead notes
 - [x] **GHL-05**: GHL webhook verifies `X-GHL-Signature` (Ed25519, not deprecated `X-WH-Signature`)
@@ -140,7 +140,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LEAD-05 | Phase 2 | Complete |
 | LEAD-06 | Phase 2 | Complete |
 | GHL-01 | Phase 2 | Complete |
-| GHL-02 | Phase 4 | Pending |
+| GHL-02 | Phase 4 | Complete |
 | GHL-03 | Phase 2 | Complete |
 | GHL-04 | Phase 2 | Complete |
 | GHL-05 | Phase 2 | Complete |
@@ -154,8 +154,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DASH-08 | Phase 3 | Complete |
 | ADMN-01 | Phase 4 | Complete |
 | ADMN-02 | Phase 4 | Complete |
-| ADMN-03 | Phase 4 | Pending |
-| ADMN-04 | Phase 4 | Pending |
+| ADMN-03 | Phase 4 | Complete |
+| ADMN-04 | Phase 4 | Complete |
 | ADMN-05 | Phase 4 | Complete |
 | BILL-01 | Phase 4 | Complete |
 | BILL-02 | Phase 4 | Complete |

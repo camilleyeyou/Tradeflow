@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 1: Foundation** - Supabase schema, RLS policies, auth, and both app scaffolds
 - [ ] **Phase 2: Lead Pipeline** - Landing pages, lead capture API, GHL contact sync, SMS follow-up, and email notification
 - [x] **Phase 3: Client Dashboard** - Auth-protected lead list, 5-stage status pipeline, call log, and settings (completed 2026-03-25)
-- [ ] **Phase 4: Operations** - Admin panel with GHL onboarding and Stripe billing webhooks
+- [x] **Phase 4: Operations** - Admin panel with GHL onboarding and Stripe billing webhooks (completed 2026-03-26)
 
 ## Phase Details
 
@@ -92,7 +92,7 @@ Plans:
 - [x] 04-01-PLAN.md — Admin layout with top-nav header and client list page with status badges
 - [x] 04-02-PLAN.md — Stripe webhook handler on FastAPI with signature verification and four event processors
 - [x] 04-03-PLAN.md — Client onboarding form with GHL sub-account provisioning and client detail page
-- [ ] 04-04-PLAN.md — Build verification and visual checkpoint for admin panel
+- [x] 04-04-PLAN.md — Build verification and visual checkpoint for admin panel
 
 ## Progress
 
@@ -104,4 +104,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 3/3 | Complete |  |
 | 2. Lead Pipeline | 4/5 | In Progress|  |
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
-| 4. Operations | 3/4 | In Progress|  |
+| 4. Operations | 4/4 | Complete   | 2026-03-26 |
