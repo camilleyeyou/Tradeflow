@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Phase 4 context gathered
-last_updated: "2026-03-26T10:53:26.243Z"
+status: Ready to execute
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-26T21:53:52.586Z"
 progress:
   total_phases: 4
   completed_phases: 3
-  total_plans: 12
-  completed_plans: 12
+  total_plans: 16
+  completed_plans: 13
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-25)
 
 **Core value:** Every inbound lead is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
-**Current focus:** Phase 03 — client-dashboard
+**Current focus:** Phase 04 — operations
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
+Phase: 04 (operations) — EXECUTING
+Plan: 2 of 4
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Plan: Not started
 | Phase 03-client-dashboard P03 | 7 | 2 tasks | 4 files |
 | Phase 03-client-dashboard P02 | 4 | 2 tasks | 7 files |
 | Phase 03-client-dashboard P04 | 8 | 2 tasks | 6 files |
+| Phase 04-operations P02 | 5 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,9 @@ Recent decisions affecting current work:
 - [Phase 03-client-dashboard]: Dashboard pages relocated under (dashboard)/dashboard/ to resolve route group URL collision between (dashboard) and (marketing)
 - [Phase 03-client-dashboard]: generateStaticParams returns empty array when Supabase URL is a placeholder — prevents build crash in local/CI without real credentials
 - [Phase 03-client-dashboard]: Login page createClient() moved into submit handler body to prevent SSR prerender from calling createBrowserClient with malformed URL
+- [Phase 04-operations]: stripe.errors.SignatureVerificationError used (v14.x namespace) — not stripe.error which is v13.x and below
+- [Phase 04-operations]: stripe-signature header alias is lowercase — FastAPI normalizes all HTTP headers to lowercase
+- [Phase 04-operations]: resend[async] extra required for send_async() in FastAPI async background tasks — bare resend lacks anyio
 
 ### Pending Todos
 
@@ -107,6 +111,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T10:53:26.225Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-operations/04-CONTEXT.md
+Last session: 2026-03-26T21:53:52.580Z
+Stopped at: Completed 04-02-PLAN.md
+Resume file: None

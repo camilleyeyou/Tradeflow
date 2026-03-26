@@ -56,12 +56,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Billing
 
-- [ ] **BILL-01**: Stripe webhook handles `customer.subscription.created` → activates client
-- [ ] **BILL-02**: Stripe webhook handles `customer.subscription.deleted` → deactivates client
-- [ ] **BILL-03**: Stripe webhook handles `invoice.payment_succeeded` → inserts billing record
-- [ ] **BILL-04**: Stripe webhook handles `invoice.payment_failed` → sends alert email via Resend
-- [ ] **BILL-05**: All Stripe webhooks verify signature before processing
-- [ ] **BILL-06**: Idempotency enforced — duplicate webhook events do not create duplicate records
+- [x] **BILL-01**: Stripe webhook handles `customer.subscription.created` → activates client
+- [x] **BILL-02**: Stripe webhook handles `customer.subscription.deleted` → deactivates client
+- [x] **BILL-03**: Stripe webhook handles `invoice.payment_succeeded` → inserts billing record
+- [x] **BILL-04**: Stripe webhook handles `invoice.payment_failed` → sends alert email via Resend
+- [x] **BILL-05**: All Stripe webhooks verify signature before processing
+- [x] **BILL-06**: Idempotency enforced — duplicate webhook events do not create duplicate records
 
 ### GoHighLevel Integration
 
@@ -157,12 +157,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ADMN-03 | Phase 4 | Pending |
 | ADMN-04 | Phase 4 | Pending |
 | ADMN-05 | Phase 4 | Pending |
-| BILL-01 | Phase 4 | Pending |
-| BILL-02 | Phase 4 | Pending |
-| BILL-03 | Phase 4 | Pending |
-| BILL-04 | Phase 4 | Pending |
-| BILL-05 | Phase 4 | Pending |
-| BILL-06 | Phase 4 | Pending |
+| BILL-01 | Phase 4 | Complete |
+| BILL-02 | Phase 4 | Complete |
+| BILL-03 | Phase 4 | Complete |
+| BILL-04 | Phase 4 | Complete |
+| BILL-05 | Phase 4 | Complete |
+| BILL-06 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 39 total
