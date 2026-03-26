@@ -85,8 +85,14 @@ Plans:
   3. A Stripe `customer.subscription.created` webhook activates the client; `customer.subscription.deleted` deactivates them; the same Stripe event ID processed twice produces no duplicate records
   4. A failed invoice triggers a Resend alert email to the admin; a successful payment inserts a billing record
   5. All Stripe webhooks reject requests without a valid signature before processing any logic
-**Plans**: TBD
+**Plans**: 4 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 04-01-PLAN.md — Admin layout with top-nav header and client list page with status badges
+- [ ] 04-02-PLAN.md — Stripe webhook handler on FastAPI with signature verification and four event processors
+- [ ] 04-03-PLAN.md — Client onboarding form with GHL sub-account provisioning and client detail page
+- [ ] 04-04-PLAN.md — Build verification and visual checkpoint for admin panel
 
 ## Progress
 
@@ -98,4 +104,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 3/3 | Complete |  |
 | 2. Lead Pipeline | 4/5 | In Progress|  |
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
-| 4. Operations | 0/TBD | Not started | - |
+| 4. Operations | 0/4 | Not started | - |
