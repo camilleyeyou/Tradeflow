@@ -89,3 +89,49 @@ export async function addContactToWorkflow(
     return false
   }
 }
+
+interface CreateSubAccountInput {
+  name: string
+  phone: string
+  email: string
+  city: string
+  state: string
+}
+
+export async function createSubAccount(
+  input: CreateSubAccountInput
+): Promise<string | null> {
+  const agencyToken = process.env.GHL_AGENCY_API_KEY
+  if (!agencyToken) {
+    console.error('[ghl] GHL_AGENCY_API_KEY not set — cannot create sub-account')
+    return null
+  }
+
+  try {
+    const response = await ghlFetch('/locations/', agencyToken, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: input.name,
+        phone: input.phone,
+        email: input.email,
+        city: input.city,
+        state: input.state,
+        country: 'US',
+        timezone: 'America/Chicago',
+      }),
+    })
+
+    const data = await response.json() as { id?: string; location?: { id?: string } }
+    // GHL API v2 may return id at top level or nested — handle both (Pitfall 2 from RESEARCH.md)
+    const locationId = data.id ?? data.location?.id ?? null
+    if (locationId) {
+      console.log('[ghl] Sub-account created: locationId=%s', locationId)
+    } else {
+      console.error('[ghl] Sub-account created but no ID in response:', JSON.stringify(data))
+    }
+    return locationId
+  } catch (err) {
+    console.error('[ghl] createSubAccount error:', err)
+    return null
+  }
+}
