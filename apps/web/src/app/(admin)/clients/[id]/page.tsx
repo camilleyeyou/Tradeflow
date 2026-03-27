@@ -53,6 +53,15 @@ export default async function ClientDetailPage({
     ? `https://app.gohighlevel.com/location/${typedClient.ghl_sub_account_id}`
     : null
 
+  // Check if client has a linked auth user via client_users
+  const { data: clientUsers } = await supabase
+    .from('client_users')
+    .select('user_id')
+    .eq('client_id', id)
+    .limit(1)
+
+  const hasAuthUser = (clientUsers ?? []).length > 0
+
   return (
     <div>
       <div className="mb-6 flex items-center gap-3">
@@ -60,6 +69,16 @@ export default async function ClientDetailPage({
           &larr; All Clients
         </Link>
       </div>
+
+      {!hasAuthUser && (
+        <div className="mb-6 rounded-md border border-amber-200 bg-amber-50 p-4">
+          <p className="text-sm font-medium text-amber-800">
+            Next step: Create a Supabase Auth user for {typedClient.owner_name} ({typedClient.email}),
+            then add a row to the <code className="rounded bg-amber-100 px-1">client_users</code> table
+            linking their user ID to this client.
+          </p>
+        </div>
+      )}
 
       {/* Client Info Card */}
       <Card className="mb-6">
