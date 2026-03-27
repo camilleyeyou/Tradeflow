@@ -17,12 +17,12 @@ Every inbound lead — whether from an ad click, landing page form, or missed ca
 - [x] Lead capture API: form submission → Supabase insert → GHL contact creation → owner email via Resend — Validated in Phase 2: Lead Pipeline
 - [x] GoHighLevel integration: sub-account per client, contact sync, SMS workflow triggers, inbound message logging — Validated in Phase 2: Lead Pipeline
 - [x] Client dashboard: auth-protected, lead list with status pipeline, call log, settings, mobile-responsive — Validated in Phase 3: Client Dashboard
+- [x] Admin panel: list all clients, onboard new clients (+ GHL sub-account), view any client's leads and calls — Validated in Phase 4: Operations
+- [x] Stripe billing: subscription lifecycle webhooks, invoice tracking, payment failure alerts — Validated in Phase 4: Operations
 
 ### Active
 
 - [ ] Missed-call text-back: CallRail webhook → lead creation → GHL text-back workflow trigger (deferred to v2)
-- [ ] Admin panel: list all clients, onboard new clients (+ GHL sub-account), view any client's leads and calls
-- [ ] Stripe billing: subscription lifecycle webhooks, invoice tracking, payment failure alerts
 - [ ] CallRail integration: call tracking per campaign, call recording/transcript storage, missed call detection
 
 ### Out of Scope
@@ -88,4 +88,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-25 after Phase 3 completion*
+*Last updated: 2026-03-26 after Phase 4 completion (all v1 phases complete)*
