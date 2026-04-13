@@ -1,5 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
 import { notFound } from 'next/navigation'
+
+// Landing pages are public but fetch client data server-side using the service
+// role key so RLS doesn't block reads. The key never reaches the browser.
+function createServerClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { persistSession: false } }
+  )
+}
 import { SERVICE_TYPES } from '@/lib/validations/lead'
 import LeadForm from '@/components/lead-form'
 
@@ -56,14 +66,14 @@ function ShieldCheckIcon() {
 
 export async function generateStaticParams() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
 
   // Guard: skip static generation if Supabase is not configured (local dev / CI)
   if (!url || !key || url.includes('<') || url.includes('>')) {
     return []
   }
 
-  const supabase = createClient(url, key)
+  const supabase = createClient(url, key, { auth: { persistSession: false } })
 
   const { data: clients } = await supabase
     .from('clients')
@@ -93,10 +103,7 @@ export default async function LandingPage({ params }: Props) {
     notFound()
   }
 
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  const supabase = createServerClient()
 
   const { data: client } = await supabase
     .from('clients')

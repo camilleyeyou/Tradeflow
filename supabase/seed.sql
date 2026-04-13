@@ -13,8 +13,10 @@ INSERT INTO public.clients (
   city,
   state,
   service_area_zips,
+  slug,
   plan,
-  is_active
+  is_active,
+  notifications_enabled
 ) VALUES (
   'a0000000-0000-0000-0000-000000000001',
   'Oak Park HVAC',
@@ -24,7 +26,9 @@ INSERT INTO public.clients (
   'Oak Park',
   'IL',
   ARRAY['60301','60302','60303'],
+  'oak-park-hvac',
   'starter',
+  true,
   true
 );
 
