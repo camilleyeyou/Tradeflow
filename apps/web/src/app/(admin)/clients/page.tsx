@@ -26,7 +26,7 @@ export default async function AdminClientsPage() {
         </Link>
       </div>
 
-      <div className="rounded-md border bg-white">
+      <div className="rounded-xl border border-white/8 bg-white/3">
         <Table>
           <TableHeader>
             <TableRow>
@@ -47,7 +47,7 @@ export default async function AdminClientsPage() {
                     <div className="flex items-center gap-2">
                       <Link
                         href={`/admin/clients/${client.id}`}
-                        className="font-medium text-blue-600 hover:underline"
+                        className="font-medium text-[#0ccaff] hover:underline"
                       >
                         {client.business_name}
                       </Link>
@@ -72,7 +72,7 @@ export default async function AdminClientsPage() {
                       <Badge variant="secondary">Not linked</Badge>
                     )}
                   </TableCell>
-                  <TableCell className="text-sm text-gray-500">
+                  <TableCell className="text-sm text-white/40">
                     {new Date(client.created_at).toLocaleDateString()}
                   </TableCell>
                 </TableRow>
@@ -80,7 +80,7 @@ export default async function AdminClientsPage() {
             })}
             {clientList.length === 0 && (
               <TableRow>
-                <TableCell colSpan={6} className="py-8 text-center text-gray-500">
+                <TableCell colSpan={6} className="py-8 text-center text-white/40">
                   No clients yet. Add your first client to get started.
                 </TableCell>
               </TableRow>

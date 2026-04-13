@@ -15,17 +15,18 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="border-b bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-          <Link href="/admin/clients" className="text-lg font-semibold">
-            Tradeflow Admin
+    <div className="min-h-screen bg-[#03101c]">
+      <header className="border-b border-white/8 bg-[#03101c]/95 backdrop-blur-sm sticky top-0 z-40">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5">
+          <Link href="/admin/clients" className="text-base font-bold tracking-tight text-white">
+            Trade<span className="text-[#0ccaff]">flow</span>
+            <span className="ml-2 text-xs font-medium text-white/30 uppercase tracking-widest">Admin</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/admin/clients" className="text-sm text-gray-600 hover:text-gray-900">
+          <div className="flex items-center gap-5">
+            <Link href="/admin/clients" className="text-sm font-medium text-white/60 hover:text-white transition-colors">
               Clients
             </Link>
-            <Link href="/" className="text-sm text-gray-400 hover:text-gray-600">
+            <Link href="/" className="text-sm text-white/30 hover:text-white/60 transition-colors">
               Back to site
             </Link>
           </div>

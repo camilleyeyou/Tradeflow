@@ -66,7 +66,7 @@ export default async function ClientDetailPage({
   return (
     <div>
       <div className="mb-6 flex items-center gap-3">
-        <Link href="/admin/clients" className="text-sm text-gray-500 hover:text-gray-700">
+        <Link href="/admin/clients" className="text-sm text-white/40 hover:text-gray-700">
           &larr; All Clients
         </Link>
       </div>
@@ -92,34 +92,34 @@ export default async function ClientDetailPage({
         <CardContent>
           <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <dt className="text-sm font-medium text-gray-500">Owner</dt>
+              <dt className="text-sm font-medium text-white/40">Owner</dt>
               <dd>{typedClient.owner_name}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Email</dt>
+              <dt className="text-sm font-medium text-white/40">Email</dt>
               <dd>{typedClient.email}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Phone</dt>
+              <dt className="text-sm font-medium text-white/40">Phone</dt>
               <dd>{typedClient.phone}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">City</dt>
+              <dt className="text-sm font-medium text-white/40">City</dt>
               <dd>{typedClient.city}, {typedClient.state}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Plan</dt>
+              <dt className="text-sm font-medium text-white/40">Plan</dt>
               <dd className="capitalize">{typedClient.plan}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Service Area ZIPs</dt>
+              <dt className="text-sm font-medium text-white/40">Service Area ZIPs</dt>
               <dd>{Array.isArray(typedClient.service_area_zips) ? typedClient.service_area_zips.join(', ') : typedClient.service_area_zips}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">GHL Sub-Account</dt>
+              <dt className="text-sm font-medium text-white/40">GHL Sub-Account</dt>
               <dd>
                 {ghlLink ? (
-                  <a href={ghlLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  <a href={ghlLink} target="_blank" rel="noopener noreferrer" className="text-[#0ccaff] hover:underline">
                     Open in GHL &rarr;
                   </a>
                 ) : (
@@ -128,15 +128,15 @@ export default async function ClientDetailPage({
               </dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Stripe Customer</dt>
-              <dd>{typedClient.stripe_customer_id ?? <span className="text-gray-400">Not linked</span>}</dd>
+              <dt className="text-sm font-medium text-white/40">Stripe Customer</dt>
+              <dd>{typedClient.stripe_customer_id ?? <span className="text-white/30">Not linked</span>}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Client ID</dt>
-              <dd className="font-mono text-xs text-gray-500">{typedClient.id}</dd>
+              <dt className="text-sm font-medium text-white/40">Client ID</dt>
+              <dd className="font-mono text-xs text-white/40">{typedClient.id}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Created</dt>
+              <dt className="text-sm font-medium text-white/40">Created</dt>
               <dd>{new Date(typedClient.created_at).toLocaleDateString()}</dd>
             </div>
           </dl>
@@ -150,7 +150,7 @@ export default async function ClientDetailPage({
         </CardHeader>
         <CardContent>
           {leadsList.length === 0 ? (
-            <p className="py-4 text-center text-sm text-gray-500">No leads yet</p>
+            <p className="py-4 text-center text-sm text-white/40">No leads yet</p>
           ) : (
             <Table>
               <TableHeader>
@@ -171,7 +171,7 @@ export default async function ClientDetailPage({
                     <TableCell>
                       <Badge variant="outline">{lead.status}</Badge>
                     </TableCell>
-                    <TableCell className="text-sm text-gray-500">
+                    <TableCell className="text-sm text-white/40">
                       {new Date(lead.created_at).toLocaleDateString()}
                     </TableCell>
                   </TableRow>
@@ -189,7 +189,7 @@ export default async function ClientDetailPage({
         </CardHeader>
         <CardContent>
           {callsList.length === 0 ? (
-            <p className="py-4 text-center text-sm text-gray-500">No calls yet</p>
+            <p className="py-4 text-center text-sm text-white/40">No calls yet</p>
           ) : (
             <Table>
               <TableHeader>
@@ -209,12 +209,12 @@ export default async function ClientDetailPage({
                     <TableCell>{call.outcome ?? '—'}</TableCell>
                     <TableCell>
                       {call.recording_url ? (
-                        <a href={call.recording_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                        <a href={call.recording_url} target="_blank" rel="noopener noreferrer" className="text-[#0ccaff] hover:underline">
                           Listen
                         </a>
                       ) : '—'}
                     </TableCell>
-                    <TableCell className="text-sm text-gray-500">
+                    <TableCell className="text-sm text-white/40">
                       {new Date(call.called_at).toLocaleDateString()}
                     </TableCell>
                   </TableRow>
