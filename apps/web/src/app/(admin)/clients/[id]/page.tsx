@@ -4,6 +4,7 @@ import type { Client, Lead, Call } from '@/lib/types/dashboard'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
+import CreateLoginButton from './create-login-button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
@@ -71,12 +72,12 @@ export default async function ClientDetailPage({
       </div>
 
       {!hasAuthUser && (
-        <div className="mb-6 rounded-md border border-amber-200 bg-amber-50 p-4">
-          <p className="text-sm font-medium text-amber-800">
-            Next step: Create a Supabase Auth user for {typedClient.owner_name} ({typedClient.email}),
-            then add a row to the <code className="rounded bg-amber-100 px-1">client_users</code> table
-            linking their user ID to this client.
-          </p>
+        <div className="mb-6">
+          <CreateLoginButton
+            clientId={typedClient.id}
+            email={typedClient.email as string}
+            ownerName={typedClient.owner_name as string}
+          />
         </div>
       )}
 
