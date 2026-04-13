@@ -42,9 +42,10 @@ export async function createClientLogin(
   }
 
   // Link user to client
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error: linkError } = await supabase
     .from('client_users')
-    .insert({ user_id: authData.user.id, client_id: clientId, role: 'owner' })
+    .insert({ user_id: authData.user.id, client_id: clientId, role: 'owner' } as any)
 
   if (linkError) {
     // Clean up the orphaned auth user
