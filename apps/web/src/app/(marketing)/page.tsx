@@ -2,61 +2,97 @@ import Link from 'next/link'
 
 export default function MarketingHomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#03101c] text-white font-sans">
+
       {/* NAV */}
-      <nav className="border-b border-gray-100 px-6 py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#03101c]/80 backdrop-blur-md px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <span className="text-xl font-bold text-gray-900">Tradeflow</span>
+          <span className="text-xl font-bold tracking-tight">
+            Trade<span className="text-[#0ccaff]">flow</span>
+          </span>
           <Link
             href="/login"
-            className="text-sm font-medium text-gray-600 hover:text-gray-900"
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
           >
-            Sign in
+            Sign in →
           </Link>
         </div>
       </nav>
 
       {/* HERO */}
-      <section className="bg-blue-900 text-white px-6 py-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block bg-blue-800 text-blue-200 text-sm font-medium px-3 py-1 rounded-full mb-6">
+      <section className="relative pt-32 pb-28 px-6 overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#0ccaff]/10 rounded-full blur-3xl" />
+        </div>
+
+        <div className="relative max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-[#0ccaff]/10 border border-[#0ccaff]/20 text-[#0ccaff] text-sm font-medium px-4 py-1.5 rounded-full mb-8">
+            <span className="w-1.5 h-1.5 bg-[#0ccaff] rounded-full animate-pulse" />
             Built for Chicagoland HVAC Contractors
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-            Stop losing leads.<br />Start closing jobs.
+
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6">
+            Stop losing leads.
+            <br />
+            <span className="text-[#0ccaff]">Start closing jobs.</span>
           </h1>
-          <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-10">
+
+          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
             Tradeflow captures every call, form, and missed contact — then follows
             up automatically so your phone keeps ringing while you focus on the work.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="mailto:hello@tradeflow.io"
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors"
+              className="relative group inline-flex items-center justify-center gap-2 bg-[#0ccaff] hover:bg-[#1fb9e6] text-[#03101c] font-bold py-4 px-8 rounded-lg text-base transition-all shadow-[0_0_30px_rgba(12,202,255,0.35)] hover:shadow-[0_0_40px_rgba(12,202,255,0.55)]"
             >
               Get started — free trial
+              <span className="group-hover:translate-x-0.5 transition-transform">→</span>
             </a>
             <a
               href="#how-it-works"
-              className="bg-blue-800 hover:bg-blue-700 text-white font-medium py-4 px-8 rounded-lg text-lg transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-4 px-8 rounded-lg text-base transition-all"
             >
               See how it works
             </a>
           </div>
-          <p className="mt-6 text-blue-300 text-sm">2-week free trial · $200 in ad spend on us · No contracts</p>
+
+          <p className="mt-6 text-white/30 text-sm">
+            2-week free trial · $200 in ad spend on us · No contracts
+          </p>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <section className="px-6 py-10 border-y border-white/5">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { value: '< 60s', label: 'Lead response time' },
+            { value: '40–60%', label: 'Leads lost without follow-up' },
+            { value: '$25–$55', label: 'Avg. LSA cost per lead' },
+            { value: '100%', label: 'Exclusive leads — not shared' },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <div className="text-2xl md:text-3xl font-bold text-[#0ccaff]">{stat.value}</div>
+              <div className="text-sm text-white/40 mt-1">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* PAIN POINTS */}
-      <section className="px-6 py-20 bg-gray-50">
+      <section className="px-6 py-24">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-4">
-            Sound familiar?
-          </h2>
-          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">
-            Most HVAC companies lose 40–60% of inbound leads before they ever get called back.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Sound familiar?</h2>
+            <p className="text-white/50 max-w-xl mx-auto">
+              Most HVAC companies lose 40–60% of inbound leads before they ever get called back.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
                 icon: '📞',
@@ -74,10 +110,13 @@ export default function MarketingHomePage() {
                 body: 'You spend money on ads but have no idea which campaigns are driving calls, leads, or actual booked jobs.',
               },
             ].map((item) => (
-              <div key={item.title} className="bg-white rounded-xl border border-gray-200 p-6">
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{item.body}</p>
+              <div
+                key={item.title}
+                className="bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 rounded-2xl p-6 backdrop-blur-sm transition-colors"
+              >
+                <div className="text-3xl mb-4">{item.icon}</div>
+                <h3 className="font-semibold text-white mb-2">{item.title}</h3>
+                <p className="text-white/50 text-sm leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -85,14 +124,15 @@ export default function MarketingHomePage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section id="how-it-works" className="px-6 py-20 bg-white">
+      <section id="how-it-works" className="px-6 py-24 bg-[#021221]">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-4">
-            How Tradeflow works
-          </h2>
-          <p className="text-center text-gray-500 mb-16 max-w-xl mx-auto">
-            We handle everything from ad click to booked job — you just show up to the work.
-          </p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">How Tradeflow works</h2>
+            <p className="text-white/50 max-w-xl mx-auto">
+              We handle everything from ad click to booked job — you just show up to the work.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
@@ -110,11 +150,18 @@ export default function MarketingHomePage() {
                 title: 'Automatic follow-up goes out',
                 body: 'A text goes out within 60 seconds of a missed call or new form. Your lead hears from you before they call the next guy.',
               },
-            ].map((item) => (
+            ].map((item, i) => (
               <div key={item.step} className="relative">
-                <div className="text-5xl font-bold text-blue-100 mb-4 select-none">{item.step}</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{item.body}</p>
+                {i < 2 && (
+                  <div className="hidden md:block absolute top-6 left-full w-full h-px bg-gradient-to-r from-[#0ccaff]/30 to-transparent -translate-y-px z-0" />
+                )}
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-xl bg-[#0ccaff]/10 border border-[#0ccaff]/20 flex items-center justify-center text-[#0ccaff] font-bold text-sm mb-5">
+                    {item.step}
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{item.body}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -122,24 +169,31 @@ export default function MarketingHomePage() {
       </section>
 
       {/* FEATURES */}
-      <section className="px-6 py-20 bg-gray-50">
+      <section className="px-6 py-24">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12">
-            Everything in one place
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Everything in one place</h2>
+            <p className="text-white/50 max-w-xl mx-auto">
+              One platform that replaces 5 different tools most HVAC companies are paying for separately.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {[
               { icon: '🎯', title: 'Google LSA Management', body: 'Verified ads that show at the very top of Google — above organic results.' },
               { icon: '📋', title: 'Lead Dashboard', body: 'Every lead with name, phone, service type, and status — updated in real time.' },
-              { icon: '💬', title: 'Missed-Call Text-Back', body: 'Automatic SMS within 60 seconds of a missed call. Never lose a hot lead again.' },
-              { icon: '🔁', title: 'SMS Follow-Up Sequences', body: 'Multi-step text sequences that nurture leads who didn\'t book on the first contact.' },
-              { icon: '📞', title: 'Call Tracking', body: 'Know exactly which campaign drove which call. Track duration, outcomes, and recordings.' },
-              { icon: '📄', title: 'Landing Pages', body: 'High-converting pages built for each service — AC repair, furnace, installation, maintenance.' },
+              { icon: '💬', title: 'Missed-Call Text-Back', body: 'Automatic SMS within 60 seconds of a missed call.' },
+              { icon: '🔁', title: 'SMS Follow-Up Sequences', body: 'Multi-step texts that nurture leads who didn\'t book on first contact.' },
+              { icon: '📞', title: 'Call Tracking', body: 'Know which campaign drove which call. Duration, outcomes, recordings.' },
+              { icon: '📄', title: 'Landing Pages', body: 'High-converting pages built for AC repair, furnace, installation, maintenance.' },
             ].map((item) => (
-              <div key={item.title} className="bg-white rounded-xl border border-gray-200 p-5">
+              <div
+                key={item.title}
+                className="group bg-white/[0.03] hover:bg-[#0ccaff]/5 border border-white/10 hover:border-[#0ccaff]/20 rounded-2xl p-6 transition-all"
+              >
                 <div className="text-2xl mb-3">{item.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-1 text-sm">{item.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{item.body}</p>
+                <h3 className="font-semibold text-white mb-1.5 text-sm">{item.title}</h3>
+                <p className="text-white/40 text-sm leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -147,26 +201,27 @@ export default function MarketingHomePage() {
       </section>
 
       {/* PRICING */}
-      <section className="px-6 py-20 bg-white">
+      <section className="px-6 py-24 bg-[#021221]">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-4">
-            Simple, flat-rate pricing
-          </h2>
-          <p className="text-center text-gray-500 mb-12 max-w-xl mx-auto">
-            No percentage cuts. No per-lead fees. A flat retainer so you know exactly what you're paying.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, flat-rate pricing</h2>
+            <p className="text-white/50 max-w-xl mx-auto">
+              No percentage cuts. No per-lead fees. A flat retainer so you know exactly what you're paying.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {[
               {
                 name: 'Starter',
                 price: '$500',
-                description: 'Perfect for getting started with LSA and automated follow-up.',
+                description: 'Get started with LSA ads and automated lead follow-up.',
                 features: [
                   'Google LSA setup & management',
                   '1 service landing page',
                   'Lead capture dashboard',
                   'Missed-call text-back',
-                  'Email notifications',
+                  'Email lead notifications',
                 ],
                 cta: 'Start free trial',
                 highlight: false,
@@ -174,7 +229,7 @@ export default function MarketingHomePage() {
               {
                 name: 'Growth',
                 price: '$1,500',
-                description: 'For contractors ready to scale with full automation and call tracking.',
+                description: 'Full automation and call tracking for contractors ready to scale.',
                 features: [
                   'Everything in Starter',
                   'Up to 4 service landing pages',
@@ -188,36 +243,39 @@ export default function MarketingHomePage() {
             ].map((plan) => (
               <div
                 key={plan.name}
-                className={`rounded-xl border p-8 ${
+                className={`rounded-2xl p-8 border ${
                   plan.highlight
-                    ? 'border-blue-600 bg-blue-900 text-white'
-                    : 'border-gray-200 bg-white'
+                    ? 'bg-[#0ccaff]/5 border-[#0ccaff]/30 shadow-[0_0_40px_rgba(12,202,255,0.08)]'
+                    : 'bg-white/[0.03] border-white/10'
                 }`}
               >
-                <div className="mb-1 text-sm font-semibold uppercase tracking-wide opacity-70">
+                {plan.highlight && (
+                  <div className="inline-block bg-[#0ccaff]/10 text-[#0ccaff] text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                    Most Popular
+                  </div>
+                )}
+                <div className="text-sm font-semibold text-white/50 uppercase tracking-widest mb-1">
                   {plan.name}
                 </div>
-                <div className="text-4xl font-bold mb-1">
+                <div className="text-5xl font-extrabold text-white mb-1">
                   {plan.price}
-                  <span className="text-lg font-normal opacity-60">/mo</span>
+                  <span className="text-xl font-normal text-white/40">/mo</span>
                 </div>
-                <p className={`text-sm mb-6 ${plan.highlight ? 'text-blue-200' : 'text-gray-500'}`}>
-                  {plan.description}
-                </p>
-                <ul className="space-y-2 mb-8">
+                <p className="text-white/40 text-sm mb-6">{plan.description}</p>
+                <ul className="space-y-2.5 mb-8">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
-                      <span className="text-green-400 font-bold mt-0.5">✓</span>
-                      <span className={plan.highlight ? 'text-blue-100' : 'text-gray-600'}>{f}</span>
+                    <li key={f} className="flex items-start gap-2.5 text-sm">
+                      <span className="text-[#0ccaff] font-bold mt-0.5 shrink-0">✓</span>
+                      <span className="text-white/60">{f}</span>
                     </li>
                   ))}
                 </ul>
                 <a
                   href="mailto:hello@tradeflow.io"
-                  className={`block text-center font-semibold py-3 px-6 rounded-lg transition-colors ${
+                  className={`block text-center font-semibold py-3 px-6 rounded-lg transition-all ${
                     plan.highlight
-                      ? 'bg-green-500 hover:bg-green-600 text-white'
-                      : 'bg-blue-900 hover:bg-blue-800 text-white'
+                      ? 'bg-[#0ccaff] hover:bg-[#1fb9e6] text-[#03101c] shadow-[0_0_20px_rgba(12,202,255,0.3)]'
+                      : 'bg-white/10 hover:bg-white/15 text-white'
                   }`}
                 >
                   {plan.cta}
@@ -229,35 +287,41 @@ export default function MarketingHomePage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="px-6 py-20 bg-blue-900 text-white text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      <section className="px-6 py-28 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#0ccaff]/8 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-2xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
             Ready to fill your schedule?
           </h2>
-          <p className="text-blue-100 mb-8 text-lg">
-            We're onboarding a small number of HVAC contractors in Chicagoland right now.
+          <p className="text-white/50 mb-10 text-lg">
+            We&apos;re onboarding a small number of HVAC contractors in Chicagoland right now.
             Get started with a 2-week free trial and $200 in ad spend on us.
           </p>
           <a
             href="mailto:hello@tradeflow.io"
-            className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-lg text-lg transition-colors"
+            className="inline-flex items-center gap-2 bg-[#0ccaff] hover:bg-[#1fb9e6] text-[#03101c] font-bold py-4 px-10 rounded-lg text-lg transition-all shadow-[0_0_40px_rgba(12,202,255,0.4)] hover:shadow-[0_0_55px_rgba(12,202,255,0.55)]"
           >
-            Claim your free trial
+            Claim your free trial →
           </a>
-          <p className="mt-4 text-blue-300 text-sm">No credit card required to start</p>
+          <p className="mt-5 text-white/25 text-sm">No credit card required to start</p>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-gray-100 px-6 py-8">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-          <span className="font-semibold text-gray-600">Tradeflow</span>
+      <footer className="border-t border-white/5 px-6 py-8">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/30">
+          <span className="font-bold text-white/60 tracking-tight">
+            Trade<span className="text-[#0ccaff]">flow</span>
+          </span>
           <span>AI-powered lead generation for HVAC contractors in Chicagoland</span>
-          <Link href="/login" className="hover:text-gray-600">
+          <Link href="/login" className="hover:text-white/60 transition-colors">
             Contractor login
           </Link>
         </div>
       </footer>
+
     </div>
   )
 }
