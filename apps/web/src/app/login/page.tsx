@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault()
     setMessage('')
     setLoading(true)
@@ -30,7 +30,7 @@ export default function LoginPage() {
     } else {
       const { error } = await supabase.auth.signInWithOtp({
         email,
-        options: { emailRedirectTo: `${window.location.origin}/admin` },
+        options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=/admin` },
       })
       if (error) {
         setMessage(error.message)
