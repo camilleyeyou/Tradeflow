@@ -349,18 +349,19 @@ export default function MarketingHomePage() {
           <div className="text-center mb-14">
             <GoldBadge>Pricing</GoldBadge>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-6" style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}>
-              Simple, flat-rate pricing
+              Choose how you want to grow
             </h2>
             <p className="text-white/35 max-w-md mx-auto text-[15px]">
-              No percentage cuts. No per-lead fees. One flat retainer covers everything.
+              Flat monthly retainers or pay per lead &mdash; pick the model that fits your business.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
             {[
               {
                 name: 'Starter',
                 price: '$500',
+                priceLabel: '/mo',
                 desc: 'Get started with LSA ads and automated lead follow-up.',
                 features: ['Google LSA setup & management', '1 service landing page', 'Lead capture dashboard', 'Missed-call text-back', 'Email lead notifications'],
                 highlight: false,
@@ -368,14 +369,23 @@ export default function MarketingHomePage() {
               {
                 name: 'Growth',
                 price: '$1,500',
+                priceLabel: '/mo',
                 desc: 'Full automation and call tracking for contractors ready to scale.',
                 features: ['Everything in Starter', 'Up to 4 service landing pages', 'CallRail call tracking', 'SMS follow-up sequences', 'Monthly performance report'],
                 highlight: true,
               },
+              {
+                name: 'Pay Per Lead',
+                price: '$25\u2013$55',
+                priceLabel: '/lead',
+                desc: 'No monthly commitment. Pay only when we deliver a qualified lead.',
+                features: ['No retainer or setup fee', 'Exclusive leads \u2014 never shared', 'Only pay for verified contacts', 'Pause or cancel anytime', 'Dashboard access included'],
+                highlight: false,
+              },
             ].map((plan) => (
               <div
                 key={plan.name}
-                className="rounded-2xl p-8"
+                className="rounded-2xl p-7"
                 style={{
                   background: plan.highlight ? 'rgba(212,175,55,0.04)' : 'rgba(255,255,255,0.02)',
                   border: `1px solid ${plan.highlight ? 'rgba(212,175,55,0.25)' : 'rgba(255,255,255,0.06)'}`,
@@ -392,7 +402,7 @@ export default function MarketingHomePage() {
                 )}
                 <div className="text-[11px] text-white/30 uppercase tracking-[0.15em] mb-2">{plan.name}</div>
                 <div className="text-5xl font-bold text-white mb-1">
-                  {plan.price}<span className="text-lg font-normal text-white/25">/mo</span>
+                  {plan.price}<span className="text-lg font-normal text-white/25">{plan.priceLabel}</span>
                 </div>
                 <p className="text-white/35 text-[13px] mt-2 mb-6">{plan.desc}</p>
                 <ul className="space-y-2.5 mb-8">
