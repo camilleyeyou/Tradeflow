@@ -9,59 +9,57 @@
   <rect width="560" height="400" rx="12" fill="url(#sbg)"/>
   <g clip-path="url(#sround)">
     <!-- Header -->
-    <text x="30" y="34" fill="white" font-family="sans-serif" font-size="14" font-weight="600" opacity="0.8">SMS Follow-up Sequence</text>
-    <text x="30" y="52" fill="white" font-family="sans-serif" font-size="11" opacity="0.3">Automated nurture for: AC Repair leads</text>
+    <text x="30" y="30" fill="white" font-family="sans-serif" font-size="14" font-weight="600" opacity="0.8">SMS Follow-up Sequence</text>
+    <text x="30" y="48" fill="white" font-family="sans-serif" font-size="11" opacity="0.3">Automated nurture for: AC Repair leads</text>
+    <text x="530" y="30" fill="white" font-family="sans-serif" font-size="8" opacity="0.2" text-anchor="end">open rate</text>
 
     <!-- Timeline line -->
-    <line x1="60" y1="80" x2="60" y2="370" stroke="rgba(212,175,55,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+    <line x1="46" y1="74" x2="46" y2="340" stroke="rgba(212,175,55,0.12)" stroke-width="2" stroke-dasharray="4 4"/>
 
     <!-- Day 0 — Immediate -->
-    <circle cx="60" cy="94" r="8" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1.5"/>
-    <text x="56" y="98" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">⚡</text>
-    <rect x="84" y="76" width="440" height="50" rx="8" fill="rgba(212,175,55,0.04)" stroke="rgba(212,175,55,0.1)" stroke-width="1"/>
-    <text x="98" y="94" fill="#D4AF37" font-family="sans-serif" font-size="9" font-weight="600" letter-spacing="1">IMMEDIATE</text>
-    <text x="190" y="94" fill="white" font-family="sans-serif" font-size="11" opacity="0.7">"Hi! Sorry we missed your call. We'll call back within the hour."</text>
-    <text x="98" y="114" fill="white" font-family="sans-serif" font-size="10" opacity="0.3">Sent &lt;60s after missed call</text>
-    <rect x="464" y="82" width="48" height="18" rx="9" fill="rgba(34,197,94,0.12)"/>
-    <text x="476" y="95" fill="#22c55e" font-family="sans-serif" font-size="9" font-weight="600">98%</text>
+    <circle cx="46" cy="90" r="7" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1.5"/>
+    <text x="46" y="93" fill="#D4AF37" font-family="sans-serif" font-size="7" font-weight="700" text-anchor="middle">!</text>
+    <rect x="68" y="72" width="462" height="52" rx="8" fill="rgba(212,175,55,0.04)" stroke="rgba(212,175,55,0.1)" stroke-width="1"/>
+    <text x="82" y="88" fill="#D4AF37" font-family="sans-serif" font-size="9" font-weight="600" letter-spacing="1">IMMEDIATE</text>
+    <text x="82" y="104" fill="white" font-family="sans-serif" font-size="11" opacity="0.6">"Sorry we missed your call. We'll call back within the hour."</text>
+    <text x="82" y="118" fill="white" font-family="sans-serif" font-size="9" opacity="0.25">Sent under 60s after missed call</text>
+    <rect x="478" y="80" width="42" height="18" rx="9" fill="rgba(34,197,94,0.12)"/>
+    <text x="499" y="93" fill="#22c55e" font-family="sans-serif" font-size="9" font-weight="600" text-anchor="middle">98%</text>
 
     <!-- Day 1 -->
-    <circle cx="60" cy="164" r="8" fill="rgba(212,175,55,0.15)" stroke="rgba(212,175,55,0.4)" stroke-width="1.5"/>
-    <text x="60" y="168" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">1</text>
-    <rect x="84" y="146" width="440" height="50" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-    <text x="98" y="164" fill="white" font-family="sans-serif" font-size="9" font-weight="600" opacity="0.4" letter-spacing="1">DAY 1</text>
-    <text x="150" y="164" fill="white" font-family="sans-serif" font-size="11" opacity="0.6">"Just checking in — still need help with your AC? We have openings today."</text>
-    <text x="98" y="184" fill="white" font-family="sans-serif" font-size="10" opacity="0.25">Sent at 10:00 AM</text>
-    <rect x="464" y="152" width="48" height="18" rx="9" fill="rgba(59,130,246,0.12)"/>
-    <text x="476" y="165" fill="#60a5fa" font-family="sans-serif" font-size="9" font-weight="600">62%</text>
+    <circle cx="46" cy="158" r="7" fill="rgba(212,175,55,0.15)" stroke="rgba(212,175,55,0.4)" stroke-width="1.5"/>
+    <text x="46" y="161" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">1</text>
+    <rect x="68" y="140" width="462" height="52" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <text x="82" y="156" fill="white" font-family="sans-serif" font-size="9" font-weight="600" opacity="0.4" letter-spacing="1">DAY 1</text>
+    <text x="82" y="172" fill="white" font-family="sans-serif" font-size="11" opacity="0.6">"Checking in - still need help with your AC? We have openings."</text>
+    <text x="82" y="186" fill="white" font-family="sans-serif" font-size="9" opacity="0.25">Sent at 10:00 AM</text>
+    <rect x="478" y="148" width="42" height="18" rx="9" fill="rgba(59,130,246,0.12)"/>
+    <text x="499" y="161" fill="#60a5fa" font-family="sans-serif" font-size="9" font-weight="600" text-anchor="middle">62%</text>
 
     <!-- Day 3 -->
-    <circle cx="60" cy="234" r="8" fill="rgba(212,175,55,0.12)" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
-    <text x="60" y="238" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">3</text>
-    <rect x="84" y="216" width="440" height="50" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-    <text x="98" y="234" fill="white" font-family="sans-serif" font-size="9" font-weight="600" opacity="0.4" letter-spacing="1">DAY 3</text>
-    <text x="150" y="234" fill="white" font-family="sans-serif" font-size="11" opacity="0.6">"Quick tip: running your AC above 78° in summer can save 10% on your bill."</text>
-    <text x="98" y="254" fill="white" font-family="sans-serif" font-size="10" opacity="0.25">Value-add content message</text>
-    <rect x="464" y="222" width="48" height="18" rx="9" fill="rgba(59,130,246,0.12)"/>
-    <text x="476" y="235" fill="#60a5fa" font-family="sans-serif" font-size="9" font-weight="600">45%</text>
+    <circle cx="46" cy="226" r="7" fill="rgba(212,175,55,0.12)" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
+    <text x="46" y="229" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">3</text>
+    <rect x="68" y="208" width="462" height="52" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <text x="82" y="224" fill="white" font-family="sans-serif" font-size="9" font-weight="600" opacity="0.4" letter-spacing="1">DAY 3</text>
+    <text x="82" y="240" fill="white" font-family="sans-serif" font-size="11" opacity="0.6">"Quick tip: keep AC at 78 in summer to save 10% on your bill."</text>
+    <text x="82" y="254" fill="white" font-family="sans-serif" font-size="9" opacity="0.25">Value-add content message</text>
+    <rect x="478" y="216" width="42" height="18" rx="9" fill="rgba(59,130,246,0.12)"/>
+    <text x="499" y="229" fill="#60a5fa" font-family="sans-serif" font-size="9" font-weight="600" text-anchor="middle">45%</text>
 
     <!-- Day 7 -->
-    <circle cx="60" cy="304" r="8" fill="rgba(212,175,55,0.1)" stroke="rgba(212,175,55,0.25)" stroke-width="1.5"/>
-    <text x="60" y="308" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">7</text>
-    <rect x="84" y="286" width="440" height="50" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-    <text x="98" y="304" fill="white" font-family="sans-serif" font-size="9" font-weight="600" opacity="0.4" letter-spacing="1">DAY 7</text>
-    <text x="150" y="304" fill="white" font-family="sans-serif" font-size="11" opacity="0.6">"Last chance: 10% off AC repair this week. Reply BOOK to schedule."</text>
-    <text x="98" y="324" fill="white" font-family="sans-serif" font-size="10" opacity="0.25">Final offer with urgency</text>
-    <rect x="464" y="292" width="48" height="18" rx="9" fill="rgba(34,197,94,0.12)"/>
-    <text x="476" y="305" fill="#22c55e" font-family="sans-serif" font-size="9" font-weight="600">38%</text>
+    <circle cx="46" cy="294" r="7" fill="rgba(212,175,55,0.1)" stroke="rgba(212,175,55,0.25)" stroke-width="1.5"/>
+    <text x="46" y="297" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">7</text>
+    <rect x="68" y="276" width="462" height="52" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <text x="82" y="292" fill="white" font-family="sans-serif" font-size="9" font-weight="600" opacity="0.4" letter-spacing="1">DAY 7</text>
+    <text x="82" y="308" fill="white" font-family="sans-serif" font-size="11" opacity="0.6">"Last chance: 10% off AC repair this week. Reply BOOK."</text>
+    <text x="82" y="322" fill="white" font-family="sans-serif" font-size="9" opacity="0.25">Final offer with urgency</text>
+    <rect x="478" y="284" width="42" height="18" rx="9" fill="rgba(34,197,94,0.12)"/>
+    <text x="499" y="297" fill="#22c55e" font-family="sans-serif" font-size="9" font-weight="600" text-anchor="middle">38%</text>
 
     <!-- Result bar -->
-    <rect x="30" y="356" width="500" height="32" rx="8" fill="rgba(34,197,94,0.04)" stroke="rgba(34,197,94,0.1)" stroke-width="1"/>
-    <text x="46" y="376" fill="#22c55e" font-family="sans-serif" font-size="11" font-weight="600">✓ Sequence converts 25-35% of cold leads into booked jobs</text>
-    <text x="480" y="376" fill="white" font-family="sans-serif" font-size="10" opacity="0.3">Auto-stops on reply</text>
-
-    <!-- Legend -->
-    <text x="520" y="95" fill="white" font-family="sans-serif" font-size="8" opacity="0.2" text-anchor="end">open rate</text>
+    <rect x="30" y="350" width="500" height="32" rx="8" fill="rgba(34,197,94,0.04)" stroke="rgba(34,197,94,0.1)" stroke-width="1"/>
+    <text x="46" y="370" fill="#22c55e" font-family="sans-serif" font-size="11" font-weight="600">Sequence converts 25-35% of cold leads into booked jobs</text>
+    <text x="520" y="370" fill="white" font-family="sans-serif" font-size="9" opacity="0.3" text-anchor="end">Auto-stops on reply</text>
 
     <rect x="0" y="0" width="560" height="400" rx="12" fill="none" stroke="rgba(212,175,55,0.08)" stroke-width="1"/>
   </g>
