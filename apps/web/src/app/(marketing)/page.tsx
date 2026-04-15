@@ -110,7 +110,7 @@ export default function MarketingHomePage() {
           {[
             { value: '< 60s', label: 'Lead response time' },
             { value: '40\u201360%', label: 'Leads lost without follow-up' },
-            { value: '$25\u2013$55', label: 'Avg. LSA cost per lead' },
+            { value: '$75', label: 'Per qualified lead' },
             { value: '100%', label: 'Exclusive leads \u2014 not shared' },
           ].map((stat) => (
             <div key={stat.label}>
@@ -376,7 +376,7 @@ export default function MarketingHomePage() {
               },
               {
                 name: 'Pay Per Lead',
-                price: '$25\u2013$55',
+                price: '$75',
                 priceLabel: '/lead',
                 desc: 'No monthly commitment. Pay only when we deliver a qualified lead.',
                 features: ['No retainer or setup fee', 'Exclusive leads \u2014 never shared', 'Only pay for verified contacts', 'Pause or cancel anytime', 'Dashboard access included'],
