@@ -30,7 +30,7 @@ const FRAMES: FrameData[] = [
       'Target specific zip codes across Chicagoland',
     ],
     side: 'left',
-    zOffset: -200,
+    zOffset: -900,
   },
   {
     id: 'textback',
@@ -45,7 +45,7 @@ const FRAMES: FrameData[] = [
       'Converts missed calls into booked appointments',
     ],
     side: 'right',
-    zOffset: -200,
+    zOffset: -900,
   },
   {
     id: 'dashboard',
@@ -60,7 +60,7 @@ const FRAMES: FrameData[] = [
       'Export data anytime — you own your leads',
     ],
     side: 'left',
-    zOffset: -900,
+    zOffset: -1700,
   },
   {
     id: 'sms',
@@ -75,7 +75,7 @@ const FRAMES: FrameData[] = [
       'Stop sequence automatically when lead converts',
     ],
     side: 'right',
-    zOffset: -900,
+    zOffset: -1700,
   },
   {
     id: 'tracking',
@@ -90,7 +90,7 @@ const FRAMES: FrameData[] = [
       'Geographic performance by zip code',
     ],
     side: 'left',
-    zOffset: -1600,
+    zOffset: -2500,
   },
   {
     id: 'landing',
@@ -105,7 +105,7 @@ const FRAMES: FrameData[] = [
       'A/B tested for maximum conversion',
     ],
     side: 'right',
-    zOffset: -1600,
+    zOffset: -2500,
   },
 ]
 
@@ -145,16 +145,32 @@ function Particles() {
   )
 }
 
-// Art Frame component
+// Art Frame with proximity-based visibility
 function ArtFrame({
   frame,
+  cameraZ,
   onClick,
 }: {
   frame: FrameData
+  cameraZ: number
   onClick: () => void
 }) {
   const rotateY = frame.side === 'left' ? 35 : -35
-  const xPos = frame.side === 'left' ? 'calc(50% - 280px)' : 'calc(50% + 20px)'
+  const xPos = frame.side === 'left' ? 'calc(50% - 300px)' : 'calc(50% + 40px)'
+
+  // Calculate distance from camera to frame — frame becomes visible as camera approaches
+  const distance = Math.abs(frame.zOffset + cameraZ)
+  const maxVisible = 1400 // start fading in when this close
+  const fullyVisible = 400 // fully opaque at this distance
+  const frameOpacity =
+    distance > maxVisible
+      ? 0
+      : distance < fullyVisible
+        ? 1
+        : 1 - (distance - fullyVisible) / (maxVisible - fullyVisible)
+
+  // Scale up slightly as camera gets closer
+  const proximityScale = distance < 800 ? 1 + (1 - distance / 800) * 0.05 : 1
 
   return (
     <div
@@ -164,17 +180,19 @@ function ArtFrame({
         height: 380,
         top: '27%',
         left: xPos,
-        transform: `translateZ(${frame.zOffset}px) rotateY(${rotateY}deg)`,
+        transform: `translateZ(${frame.zOffset}px) rotateY(${rotateY}deg) scale(${proximityScale})`,
         border: '1px solid rgba(255,255,255,0.04)',
         borderRadius: 4,
         overflow: 'hidden',
         transition: 'filter 0.4s ease, box-shadow 0.4s ease',
         boxShadow: '0 4px 60px rgba(0,0,0,0.9)',
+        opacity: frameOpacity,
+        pointerEvents: frameOpacity > 0.1 ? 'auto' : 'none',
       }}
       onClick={onClick}
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
       role="button"
-      tabIndex={0}
+      tabIndex={frameOpacity > 0.1 ? 0 : -1}
       aria-label={`View details: ${frame.title}`}
     >
       {/* Frame image */}
@@ -188,7 +206,8 @@ function ArtFrame({
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
         style={{
-          boxShadow: 'inset 0 0 40px rgba(212,175,55,0.08)',
+          boxShadow: 'inset 0 0 40px rgba(212,175,55,0.12)',
+          background: 'linear-gradient(to top, rgba(212,175,55,0.06), transparent)',
         }}
       />
     </div>
@@ -210,8 +229,12 @@ function DetailModal({
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
+    document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', handleEsc)
-    return () => window.removeEventListener('keydown', handleEsc)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleEsc)
+    }
   }, [onClose])
 
   return (
@@ -301,7 +324,7 @@ function DetailModal({
                       border: '1px solid rgba(212,175,55,0.2)',
                     }}
                   >
-                    ✓
+                    &#10003;
                   </span>
                   <span className="text-white/50 text-[14px] leading-relaxed">
                     {detail}
@@ -320,10 +343,13 @@ export default function MarketingHomePage() {
   const [scrollY, setScrollY] = useState(0)
   const [activeFrame, setActiveFrame] = useState<FrameData | null>(null)
   const [windowHeight, setWindowHeight] = useState(1000)
+  const [mounted, setMounted] = useState(false)
   const rafRef = useRef<number>(0)
 
   useEffect(() => {
     setWindowHeight(window.innerHeight)
+    // Trigger entrance animation after a brief delay
+    const timer = setTimeout(() => setMounted(true), 100)
 
     const onScroll = () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
@@ -337,14 +363,15 @@ export default function MarketingHomePage() {
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize, { passive: true })
     return () => {
+      clearTimeout(timer)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
   }, [])
 
-  // Hallway occupies the first 400vh of scroll
-  const hallwayScrollHeight = windowHeight * 4
+  // Hallway occupies the first 500vh of scroll (more room for deeper frames)
+  const hallwayScrollHeight = windowHeight * 5
   const hallwayProgress = Math.min(scrollY / hallwayScrollHeight, 1)
   const translateZ = hallwayProgress * 3500
 
@@ -353,16 +380,23 @@ export default function MarketingHomePage() {
     ? Math.max(0, 1 - (hallwayProgress - 0.85) / 0.15)
     : 1
 
-  // Hero text fades out as you start scrolling
-  const heroOpacity = Math.max(0, 1 - hallwayProgress * 4)
-  const heroTranslateY = hallwayProgress * -120
+  // Hero text fades and lifts as you start scrolling
+  const heroOpacity = Math.max(0, 1 - hallwayProgress * 5)
+  const heroTranslateY = hallwayProgress * -150
+
+  // Scroll progress (gold bar)
+  const totalScrollHeight =
+    typeof document !== 'undefined'
+      ? document.documentElement.scrollHeight - windowHeight
+      : 1
+  const scrollPercent = totalScrollHeight > 0 ? Math.min(scrollY / totalScrollHeight, 1) : 0
 
   return (
     <div
       className="min-h-screen bg-black text-white"
       style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
     >
-      {/* Particle animation keyframes */}
+      {/* Animation keyframes */}
       <style>{`
         @keyframes float-particle {
           0%, 100% { transform: translateY(0) translateX(0); }
@@ -370,7 +404,22 @@ export default function MarketingHomePage() {
           50% { transform: translateY(-10px) translateX(-5px); }
           75% { transform: translateY(-30px) translateX(8px); }
         }
+        @keyframes bounce-scroll {
+          0%, 100% { transform: translateY(0); opacity: 0.5; }
+          50% { transform: translateY(8px); opacity: 1; }
+        }
       `}</style>
+
+      {/* ─── SCROLL PROGRESS BAR ─── */}
+      <div
+        className="fixed top-0 left-0 h-[2px] z-[60]"
+        style={{
+          width: `${scrollPercent * 100}%`,
+          background: `linear-gradient(to right, ${GOLD}, rgba(212,175,55,0.4))`,
+          boxShadow: `0 0 10px rgba(212,175,55,0.3)`,
+          transition: 'width 0.1s linear',
+        }}
+      />
 
       {/* ─── NAV ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.04] bg-black/70 backdrop-blur-xl">
@@ -382,6 +431,12 @@ export default function MarketingHomePage() {
             Trade<span style={{ color: GOLD }}>flow</span>
           </span>
           <div className="flex items-center gap-6">
+            <a
+              href="#features"
+              className="hidden sm:inline text-[13px] text-white/40 hover:text-white/70 transition-colors"
+            >
+              Features
+            </a>
             <a
               href="#pricing"
               className="hidden sm:inline text-[13px] text-white/40 hover:text-white/70 transition-colors"
@@ -421,14 +476,14 @@ export default function MarketingHomePage() {
         <div
           className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none"
           style={{
-            background: 'linear-gradient(to top, rgba(212,175,55,0.02), transparent)',
+            background: 'linear-gradient(to top, rgba(212,175,55,0.025), transparent)',
           }}
         />
 
         {/* Ambient particles */}
         <Particles />
 
-        {/* Hero overlay text */}
+        {/* ─── HERO OVERLAY ─── */}
         <div
           className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
           style={{
@@ -437,7 +492,22 @@ export default function MarketingHomePage() {
             willChange: 'opacity, transform',
           }}
         >
-          <div className="text-center px-6 max-w-3xl pointer-events-auto">
+          {/* Dark vignette behind hero text — prevents frame bleed-through */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(ellipse 60% 55% at 50% 48%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 80%)',
+            }}
+          />
+
+          <div
+            className="relative text-center px-6 max-w-3xl pointer-events-auto"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
             <div
               className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] px-4 py-1.5 rounded-full mb-8"
               style={{
@@ -470,13 +540,40 @@ export default function MarketingHomePage() {
               follows up automatically so no lead is ever lost.
             </p>
 
-            <p className="text-white/25 text-[13px] tracking-wide">
-              &darr; Scroll to explore
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+              <a
+                href="mailto:hello@tradeflow.io"
+                className="inline-flex items-center gap-2 font-bold text-[15px] py-[14px] px-8 rounded-xl transition-all hover:scale-[1.02]"
+                style={{
+                  background: GOLD,
+                  color: '#000',
+                  boxShadow: '0 0 40px rgba(212,175,55,0.3)',
+                }}
+              >
+                Get started &mdash; free trial &rarr;
+              </a>
+            </div>
+
+            <p className="text-white/20 text-[12px] tracking-wide mb-12">
+              2-week free trial &middot; $200 in ad spend on us &middot; No contracts
             </p>
+
+            {/* Animated scroll indicator */}
+            <div
+              className="flex flex-col items-center gap-2"
+              style={{ animation: 'bounce-scroll 2s ease-in-out infinite' }}
+            >
+              <span className="text-white/30 text-[11px] uppercase tracking-[0.2em]">
+                Scroll to explore
+              </span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 7l6 6 6-6" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+              </svg>
+            </div>
           </div>
         </div>
 
-        {/* Hallway Track */}
+        {/* ─── HALLWAY TRACK ─── */}
         <div
           className="absolute inset-0"
           style={{
@@ -489,22 +586,34 @@ export default function MarketingHomePage() {
             <ArtFrame
               key={frame.id}
               frame={frame}
+              cameraZ={translateZ}
               onClick={() => setActiveFrame(frame)}
             />
           ))}
         </div>
 
-        {/* Center guide line (subtle) */}
+        {/* Center guide line */}
         <div
           className="absolute left-1/2 top-0 bottom-0 w-px pointer-events-none"
           style={{
-            background: 'linear-gradient(to bottom, transparent, rgba(212,175,55,0.04) 30%, rgba(212,175,55,0.04) 70%, transparent)',
+            background: 'linear-gradient(to bottom, transparent 20%, rgba(212,175,55,0.04) 40%, rgba(212,175,55,0.04) 60%, transparent 80%)',
+          }}
+        />
+
+        {/* Side vanishing-point lines */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(100deg, rgba(212,175,55,0.015) 0%, transparent 15%),
+              linear-gradient(-100deg, rgba(212,175,55,0.015) 0%, transparent 15%)
+            `,
           }}
         />
       </div>
 
       {/* ─── SCROLL SPACER for hallway ─── */}
-      <div style={{ height: '420vh' }} />
+      <div style={{ height: '520vh' }} />
 
       {/* ─── CONTENT AFTER HALLWAY ─── */}
       <div className="relative z-10 bg-black">
@@ -533,7 +642,7 @@ export default function MarketingHomePage() {
         </section>
 
         {/* Pain Points */}
-        <section className="px-6 py-24">
+        <section id="features" className="px-6 py-24">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
               <h2
@@ -811,7 +920,7 @@ export default function MarketingHomePage() {
         {/* Final CTA */}
         <section className="relative px-6 py-28 text-center overflow-hidden">
           <div
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] pointer-events-none"
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-125 h-75 pointer-events-none"
             style={{
               background:
                 'radial-gradient(ellipse at 50% 100%, rgba(212,175,55,0.05), transparent)',
@@ -834,7 +943,7 @@ export default function MarketingHomePage() {
             </p>
             <a
               href="mailto:hello@tradeflow.io"
-              className="inline-flex items-center gap-2 font-bold text-[15px] py-[15px] px-10 rounded-xl transition-all"
+              className="inline-flex items-center gap-2 font-bold text-[15px] py-3.75 px-10 rounded-xl transition-all hover:scale-[1.02]"
               style={{
                 background: GOLD,
                 color: '#000',
@@ -850,7 +959,7 @@ export default function MarketingHomePage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-white/[0.04] px-6 py-8">
+        <footer className="border-t border-white/4 px-6 py-8">
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/20">
             <span
               className="font-semibold text-white/40"
