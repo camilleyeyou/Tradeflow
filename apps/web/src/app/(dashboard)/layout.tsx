@@ -27,7 +27,7 @@ export default async function DashboardLayout({
     (clientUser as { clients: { business_name: string } | null } | null)?.clients?.business_name ?? 'Dashboard'
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-black text-white">
       <SidebarNav businessName={businessName} />
       <main className="flex-1 pb-16 md:pb-0 p-4 md:p-6">
         {children}
