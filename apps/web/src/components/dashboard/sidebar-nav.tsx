@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Users, Phone, Settings } from 'lucide-react'
+import { LayoutDashboard, Users, Phone, Settings, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const GOLD = '#D4AF37'
 
 interface SidebarNavProps {
   businessName: string
+  showAdmin?: boolean
 }
 
 const navItems = [
@@ -18,8 +19,12 @@ const navItems = [
   { href: '/dashboard/settings', label: 'Settings', icon: Settings },
 ]
 
-export function SidebarNav({ businessName }: SidebarNavProps) {
+export function SidebarNav({ businessName, showAdmin }: SidebarNavProps) {
   const pathname = usePathname()
+
+  const items = showAdmin
+    ? [...navItems, { href: '/admin/clients', label: 'Admin', icon: Shield }]
+    : navItems
 
   return (
     <>
@@ -34,7 +39,7 @@ export function SidebarNav({ businessName }: SidebarNavProps) {
         </div>
 
         <nav className="flex flex-col gap-1 px-3 py-4 flex-1">
-          {navItems.map(({ href, label, icon: Icon }) => {
+          {items.map(({ href, label, icon: Icon }) => {
             const isActive =
               href === '/dashboard' ? pathname === '/dashboard' : pathname.startsWith(href)
             return (
@@ -67,7 +72,7 @@ export function SidebarNav({ businessName }: SidebarNavProps) {
       {/* Mobile bottom tab bar */}
       <nav className="fixed bottom-0 inset-x-0 md:hidden z-50" style={{ background: '#050505', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="flex">
-          {navItems.map(({ href, label, icon: Icon }) => {
+          {items.map(({ href, label, icon: Icon }) => {
             const isActive =
               href === '/dashboard' ? pathname === '/dashboard' : pathname.startsWith(href)
             return (

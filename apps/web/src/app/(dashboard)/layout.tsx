@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { isAdmin } from '@/lib/admin'
 import { SidebarNav } from '@/components/dashboard/sidebar-nav'
 
 export const dynamic = 'force-dynamic'
@@ -28,7 +29,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex min-h-screen bg-black text-white">
-      <SidebarNav businessName={businessName} />
+      <SidebarNav businessName={businessName} showAdmin={isAdmin(user.email)} />
       <main className="flex-1 pb-16 md:pb-0 p-4 md:p-6">
         {children}
       </main>
