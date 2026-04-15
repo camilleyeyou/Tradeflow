@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" fill="none">
+  <defs>
+    <linearGradient id="gbg" x1="0" y1="0" x2="560" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#111113"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </linearGradient>
+    <clipPath id="ground"><rect width="560" height="400" rx="12"/></clipPath>
+  </defs>
+  <rect width="560" height="400" rx="12" fill="url(#gbg)"/>
+  <g clip-path="url(#ground)">
+    <!-- Browser bar -->
+    <rect x="0" y="0" width="560" height="40" fill="#0f0f11"/>
+    <line x1="0" y1="40" x2="560" y2="40" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <circle cx="18" cy="20" r="5" fill="#ef4444" fill-opacity="0.5"/>
+    <circle cx="34" cy="20" r="5" fill="#eab308" fill-opacity="0.5"/>
+    <circle cx="50" cy="20" r="5" fill="#22c55e" fill-opacity="0.5"/>
+    <!-- URL bar -->
+    <rect x="80" y="10" width="400" height="20" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <text x="96" y="24" fill="white" font-family="sans-serif" font-size="10" opacity="0.35">google.com/search?q=hvac+repair+near+me+chicago</text>
+
+    <!-- Search bar mockup -->
+    <rect x="40" y="56" width="400" height="36" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="66" y="79" fill="white" font-family="sans-serif" font-size="13" opacity="0.7">hvac repair near me chicago</text>
+    <!-- Search icon -->
+    <circle cx="54" cy="74" r="6" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+    <line x1="58.5" y1="78.5" x2="62" y2="82" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- LSA Section header -->
+    <text x="40" y="114" fill="white" font-family="sans-serif" font-size="10" opacity="0.3" letter-spacing="0.5">Local Services Ads</text>
+    <!-- Google Guaranteed badge -->
+    <rect x="160" y="104" width="120" height="16" rx="8" fill="rgba(34,197,94,0.12)"/>
+    <text x="170" y="116" fill="#22c55e" font-family="sans-serif" font-size="9" font-weight="600">✓ Google Guaranteed</text>
+
+    <!-- YOUR COMPANY — highlighted card -->
+    <rect x="40" y="126" width="480" height="100" rx="8" fill="rgba(212,175,55,0.04)" stroke="rgba(212,175,55,0.15)" stroke-width="1.5"/>
+    <!-- Company avatar -->
+    <rect x="56" y="140" width="52" height="52" rx="8" fill="rgba(212,175,55,0.1)"/>
+    <text x="70" y="162" fill="#D4AF37" font-family="sans-serif" font-size="11" font-weight="700">YOUR</text>
+    <text x="68" y="176" fill="#D4AF37" font-family="sans-serif" font-size="11" font-weight="700">HVAC</text>
+    <!-- Company info -->
+    <text x="122" y="156" fill="white" font-family="sans-serif" font-size="15" font-weight="600" opacity="0.9">Your HVAC Company</text>
+    <!-- Stars -->
+    <text x="122" y="172" fill="#eab308" font-family="sans-serif" font-size="12">★★★★★</text>
+    <text x="192" y="172" fill="white" font-family="sans-serif" font-size="11" opacity="0.4">4.9 (127 reviews)</text>
+    <!-- Details -->
+    <text x="122" y="190" fill="white" font-family="sans-serif" font-size="11" opacity="0.4">HVAC · Chicago, IL · Open now</text>
+    <text x="122" y="208" fill="white" font-family="sans-serif" font-size="11" opacity="0.3">Serves Chicago and surrounding suburbs</text>
+    <!-- CTA button -->
+    <rect x="420" y="150" width="82" height="30" rx="6" fill="rgba(212,175,55,0.2)" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
+    <text x="438" y="170" fill="#D4AF37" font-family="sans-serif" font-size="11" font-weight="600">Call now</text>
+    <!-- "Your company" arrow -->
+    <text x="430" y="142" fill="#D4AF37" font-family="sans-serif" font-size="9" font-weight="600" opacity="0.7">← You, here</text>
+
+    <!-- Competitor 1 (dimmed) -->
+    <rect x="40" y="236" width="480" height="66" rx="6" fill="rgba(255,255,255,0.015)" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    <rect x="56" y="248" width="40" height="40" rx="6" fill="rgba(255,255,255,0.04)"/>
+    <text x="110" y="264" fill="white" font-family="sans-serif" font-size="13" font-weight="500" opacity="0.4">Competitor HVAC Co.</text>
+    <text x="110" y="280" fill="#eab308" font-family="sans-serif" font-size="11" opacity="0.3">★★★★☆</text>
+    <text x="170" y="280" fill="white" font-family="sans-serif" font-size="10" opacity="0.2">4.2 (43 reviews)</text>
+    <text x="110" y="294" fill="white" font-family="sans-serif" font-size="10" opacity="0.2">HVAC · Naperville, IL</text>
+
+    <!-- Competitor 2 (more dimmed) -->
+    <rect x="40" y="310" width="480" height="66" rx="6" fill="rgba(255,255,255,0.01)" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <rect x="56" y="322" width="40" height="40" rx="6" fill="rgba(255,255,255,0.03)"/>
+    <text x="110" y="338" fill="white" font-family="sans-serif" font-size="13" font-weight="500" opacity="0.3">Another HVAC Service</text>
+    <text x="110" y="354" fill="#eab308" font-family="sans-serif" font-size="11" opacity="0.2">★★★★☆</text>
+    <text x="170" y="354" fill="white" font-family="sans-serif" font-size="10" opacity="0.15">3.8 (18 reviews)</text>
+    <text x="110" y="368" fill="white" font-family="sans-serif" font-size="10" opacity="0.15">HVAC · Evanston, IL</text>
+
+    <!-- Border -->
+    <rect x="0" y="0" width="560" height="400" rx="12" fill="none" stroke="rgba(212,175,55,0.08)" stroke-width="1"/>
+  </g>
+</svg>
