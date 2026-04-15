@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 380" fill="none">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="260" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="glow4" cx="130" cy="145" r="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="260" height="380" fill="url(#bg4)"/>
+  <rect width="260" height="380" fill="url(#glow4)"/>
+  <!-- Message sequence - staggered bubbles -->
+  <!-- Day 1 -->
+  <rect x="50" y="70" width="120" height="36" rx="10" fill="#D4AF37" fill-opacity="0.08" stroke="#D4AF37" stroke-width="0.8" stroke-opacity="0.25"/>
+  <line x1="64" y1="84" x2="140" y2="84" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.3" stroke-linecap="round"/>
+  <line x1="64" y1="94" x2="120" y2="94" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.15" stroke-linecap="round"/>
+  <text x="44" y="92" text-anchor="end" fill="#D4AF37" font-family="sans-serif" font-size="7" opacity="0.3">Day 1</text>
+  <!-- Day 3 -->
+  <rect x="80" y="120" width="130" height="36" rx="10" fill="#D4AF37" fill-opacity="0.12" stroke="#D4AF37" stroke-width="0.8" stroke-opacity="0.3"/>
+  <line x1="94" y1="134" x2="190" y2="134" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.35" stroke-linecap="round"/>
+  <line x1="94" y1="144" x2="170" y2="144" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.2" stroke-linecap="round"/>
+  <text x="74" y="142" text-anchor="end" fill="#D4AF37" font-family="sans-serif" font-size="7" opacity="0.3">Day 3</text>
+  <!-- Day 7 -->
+  <rect x="60" y="170" width="110" height="36" rx="10" fill="#D4AF37" fill-opacity="0.16" stroke="#D4AF37" stroke-width="0.8" stroke-opacity="0.35"/>
+  <line x1="74" y1="184" x2="150" y2="184" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.4" stroke-linecap="round"/>
+  <line x1="74" y1="194" x2="130" y2="194" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.25" stroke-linecap="round"/>
+  <text x="54" y="192" text-anchor="end" fill="#D4AF37" font-family="sans-serif" font-size="7" opacity="0.3">Day 7</text>
+  <!-- Connecting flow lines -->
+  <path d="M110 106 Q 110 113 130 120" stroke="#D4AF37" stroke-width="0.5" fill="none" stroke-opacity="0.15" stroke-dasharray="3 3"/>
+  <path d="M145 156 Q 130 163 115 170" stroke="#D4AF37" stroke-width="0.5" fill="none" stroke-opacity="0.15" stroke-dasharray="3 3"/>
+  <!-- Conversion indicator -->
+  <circle cx="130" cy="230" r="16" stroke="#D4AF37" stroke-width="1" fill="#D4AF37" fill-opacity="0.06" stroke-opacity="0.3"/>
+  <polyline points="122,230 128,236 138,224" stroke="#D4AF37" stroke-width="1.5" fill="none" stroke-opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Label area -->
+  <text x="130" y="280" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="11" font-weight="600" letter-spacing="3" opacity="0.5">FOLLOW-UP</text>
+  <text x="130" y="305" text-anchor="middle" fill="white" font-family="serif" font-size="20" font-weight="600" opacity="0.7">SMS Sequences</text>
+  <text x="130" y="330" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11" opacity="0.25">Multi-step nurture flows</text>
+</svg>

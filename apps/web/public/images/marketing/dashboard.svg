@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 380" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="260" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx="130" cy="140" r="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="260" height="380" fill="url(#bg3)"/>
+  <rect width="260" height="380" fill="url(#glow3)"/>
+  <!-- Dashboard frame -->
+  <rect x="40" y="60" width="180" height="130" rx="6" stroke="#D4AF37" stroke-width="1" fill="none" stroke-opacity="0.2"/>
+  <!-- Title bar -->
+  <line x1="40" y1="78" x2="220" y2="78" stroke="#D4AF37" stroke-width="0.5" stroke-opacity="0.15"/>
+  <circle cx="54" cy="69" r="3" fill="#D4AF37" fill-opacity="0.3"/>
+  <circle cx="64" cy="69" r="3" fill="#D4AF37" fill-opacity="0.15"/>
+  <circle cx="74" cy="69" r="3" fill="#D4AF37" fill-opacity="0.1"/>
+  <!-- Chart bars -->
+  <rect x="60" y="145" width="16" height="35" rx="2" fill="#D4AF37" fill-opacity="0.15"/>
+  <rect x="84" y="130" width="16" height="50" rx="2" fill="#D4AF37" fill-opacity="0.25"/>
+  <rect x="108" y="120" width="16" height="60" rx="2" fill="#D4AF37" fill-opacity="0.35"/>
+  <rect x="132" y="105" width="16" height="75" rx="2" fill="#D4AF37" fill-opacity="0.45"/>
+  <rect x="156" y="95" width="16" height="85" rx="2" fill="#D4AF37" fill-opacity="0.55"/>
+  <rect x="180" y="100" width="16" height="80" rx="2" fill="#D4AF37" fill-opacity="0.4"/>
+  <!-- Trend line -->
+  <polyline points="68,142 92,128 116,118 140,103 164,93 188,98" stroke="#D4AF37" stroke-width="1.5" fill="none" stroke-opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Data dots -->
+  <circle cx="68" cy="142" r="2.5" fill="#D4AF37" fill-opacity="0.8"/>
+  <circle cx="92" cy="128" r="2.5" fill="#D4AF37" fill-opacity="0.8"/>
+  <circle cx="116" cy="118" r="2.5" fill="#D4AF37" fill-opacity="0.8"/>
+  <circle cx="140" cy="103" r="2.5" fill="#D4AF37" fill-opacity="0.8"/>
+  <circle cx="164" cy="93" r="2.5" fill="#D4AF37" fill-opacity="0.8"/>
+  <circle cx="188" cy="98" r="2.5" fill="#D4AF37" fill-opacity="0.8"/>
+  <!-- Stat cards below -->
+  <rect x="40" y="210" width="54" height="30" rx="4" stroke="#D4AF37" stroke-width="0.5" fill="#D4AF37" fill-opacity="0.03" stroke-opacity="0.15"/>
+  <rect x="103" y="210" width="54" height="30" rx="4" stroke="#D4AF37" stroke-width="0.5" fill="#D4AF37" fill-opacity="0.03" stroke-opacity="0.15"/>
+  <rect x="166" y="210" width="54" height="30" rx="4" stroke="#D4AF37" stroke-width="0.5" fill="#D4AF37" fill-opacity="0.03" stroke-opacity="0.15"/>
+  <!-- Label area -->
+  <text x="130" y="290" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="11" font-weight="600" letter-spacing="3" opacity="0.5">DASHBOARD</text>
+  <text x="130" y="315" text-anchor="middle" fill="white" font-family="serif" font-size="20" font-weight="600" opacity="0.7">Live Lead Feed</text>
+  <text x="130" y="340" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11" opacity="0.25">Real-time performance</text>
+</svg>

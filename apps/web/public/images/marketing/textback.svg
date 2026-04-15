@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 380" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="260" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="glow2" cx="130" cy="150" r="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="260" height="380" fill="url(#bg2)"/>
+  <rect width="260" height="380" fill="url(#glow2)"/>
+  <!-- Phone outline -->
+  <rect x="90" y="70" width="80" height="140" rx="12" stroke="#D4AF37" stroke-width="1.2" fill="none" stroke-opacity="0.4"/>
+  <rect x="120" y="76" width="20" height="3" rx="1.5" fill="#D4AF37" fill-opacity="0.2"/>
+  <!-- Screen content - missed call indicator -->
+  <circle cx="130" cy="120" r="16" stroke="#D4AF37" stroke-width="1" fill="#D4AF37" fill-opacity="0.06"/>
+  <path d="M121 118l6-4v8z" fill="#D4AF37" fill-opacity="0.5"/>
+  <line x1="130" y1="115" x2="130" y2="125" stroke="#D4AF37" stroke-width="1.2" stroke-opacity="0.4" stroke-linecap="round"/>
+  <!-- Message bubble flying out -->
+  <rect x="148" y="88" width="60" height="32" rx="8" fill="#D4AF37" fill-opacity="0.1" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.3"/>
+  <path d="M148 105l-5 8 12-4" fill="#D4AF37" fill-opacity="0.1" stroke="#D4AF37" stroke-width="0.8" stroke-opacity="0.3"/>
+  <!-- Text lines in bubble -->
+  <line x1="158" y1="100" x2="198" y2="100" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.4" stroke-linecap="round"/>
+  <line x1="158" y1="108" x2="188" y2="108" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.25" stroke-linecap="round"/>
+  <!-- Clock indicator -->
+  <circle cx="90" cy="135" r="14" stroke="#D4AF37" stroke-width="1" fill="none" stroke-opacity="0.25"/>
+  <line x1="90" y1="135" x2="90" y2="126" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.5" stroke-linecap="round"/>
+  <line x1="90" y1="135" x2="97" y2="138" stroke="#D4AF37" stroke-width="1" stroke-opacity="0.5" stroke-linecap="round"/>
+  <text x="90" y="162" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="8" opacity="0.4">&lt;60s</text>
+  <!-- Label area -->
+  <text x="130" y="270" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="11" font-weight="600" letter-spacing="3" opacity="0.5">AUTOMATION</text>
+  <text x="130" y="295" text-anchor="middle" fill="white" font-family="serif" font-size="20" font-weight="600" opacity="0.7">60s Text-Back</text>
+  <text x="130" y="320" text-anchor="middle" fill="white" font-family="sans-serif" font-size="11" opacity="0.25">Never lose a missed call</text>
+</svg>
