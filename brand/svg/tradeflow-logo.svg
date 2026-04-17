@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none" role="img" aria-label="Tradeflow">
+  <defs>
+    <linearGradient id="tf-gold-dk" x1="4" y1="8" x2="36" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F2D378"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#9E7C17"/>
+    </linearGradient>
+    <linearGradient id="tf-bg-dk" x1="0" y1="4" x2="0" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1C1C1C"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon badge (scaled to 40×40, centered vertically) -->
+  <g transform="translate(0, 4)">
+    <rect width="40" height="40" rx="9" fill="url(#tf-bg-dk)"/>
+    <rect x="0.5" y="0.5" width="39" height="39" rx="8.5" fill="none" stroke="#D4AF37" stroke-opacity="0.3"/>
+    <g fill="url(#tf-gold-dk)">
+      <rect x="7.5" y="8.5" width="25" height="5.5" rx="1.85"/>
+      <rect x="17.25" y="12" width="5.5" height="20" rx="1.85"/>
+    </g>
+    <circle cx="30.5" cy="27" r="1.9" fill="url(#tf-gold-dk)"/>
+    <circle cx="26.75" cy="24.9" r="0.95" fill="url(#tf-gold-dk)" opacity="0.55"/>
+  </g>
+
+  <!-- Wordmark: "Trade" off-white + "flow" gold — matches the nav style -->
+  <text x="52" y="33" font-family="'Gambetta', Georgia, 'Times New Roman', serif" font-size="26" font-weight="600" letter-spacing="-0.6">
+    <tspan fill="#F5F5F5">Trade</tspan><tspan fill="#D4AF37">flow</tspan>
+  </text>
+</svg>
