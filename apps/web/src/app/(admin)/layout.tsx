@@ -21,9 +21,10 @@ export default async function AdminLayout({
     <div className="min-h-screen bg-black">
       <header className="sticky top-0 z-40 backdrop-blur-sm" style={{ background: 'rgba(0,0,0,0.85)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5">
-          <Link href="/admin/clients" className="text-base font-semibold tracking-tight text-white" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
-            Trade<span style={{ color: GOLD }}>flow</span>
-            <span className="ml-2 text-xs font-medium text-white/25 uppercase tracking-widest">Admin</span>
+          <Link href="/admin/clients" className="flex items-center gap-2.5 text-base font-semibold tracking-tight text-white" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
+            <img src="/logo-icon.svg" alt="" width={26} height={26} className="shrink-0" />
+            <span>Trade<span style={{ color: GOLD }}>flow</span></span>
+            <span className="text-xs font-medium text-white/25 uppercase tracking-widest">Admin</span>
           </Link>
           <div className="flex items-center gap-5">
             <Link href="/admin/clients" className="text-sm font-medium text-white/50 hover:text-white transition-colors">

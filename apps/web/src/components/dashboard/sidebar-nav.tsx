@@ -32,10 +32,13 @@ export function SidebarNav({ businessName, showAdmin }: SidebarNavProps) {
       <aside className="hidden md:flex md:w-60 flex-col h-screen sticky top-0" style={{ background: '#050505', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
         {/* Logo */}
         <div className="px-5 py-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-          <span className="text-base font-semibold tracking-tight text-white" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
-            Trade<span style={{ color: GOLD }}>flow</span>
-          </span>
-          <p className="text-xs text-white/35 mt-0.5 truncate">{businessName}</p>
+          <div className="flex items-center gap-2.5">
+            <img src="/logo-icon.svg" alt="" width={26} height={26} className="shrink-0" />
+            <span className="text-base font-semibold tracking-tight text-white" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
+              Trade<span style={{ color: GOLD }}>flow</span>
+            </span>
+          </div>
+          <p className="text-xs text-white/35 mt-1.5 truncate">{businessName}</p>
         </div>
 
         <nav className="flex flex-col gap-1 px-3 py-4 flex-1">

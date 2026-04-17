@@ -45,7 +45,8 @@ export default function LoginPage() {
       <div className="relative w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/">
+          <Link href="/" className="inline-flex flex-col items-center gap-3">
+            <img src="/logo-icon.svg" alt="" width={48} height={48} />
             <h1
               className="text-2xl font-semibold tracking-tight text-white"
               style={{ fontFamily: "'Gambetta', Georgia, serif" }}
