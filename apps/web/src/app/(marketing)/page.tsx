@@ -10,11 +10,11 @@ export default function MarketingHomePage() {
     >
       {/* ─── NAV ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/4 bg-black/80 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto flex items-center justify-between h-14 px-6">
-          <div className="flex items-center gap-2.5">
-            <img src="/logo-icon.svg" alt="" width={28} height={28} className="shrink-0" />
+        <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-6">
+          <div className="flex items-center gap-3">
+            <img src="/logo-icon.svg" alt="" width={40} height={40} className="shrink-0" />
             <span
-              className="text-xl font-semibold tracking-tight"
+              className="text-2xl font-semibold tracking-tight"
               style={{ fontFamily: "'Gambetta', Georgia, serif" }}
             >
               Trade<span style={{ color: GOLD }}>flow</span>
@@ -463,10 +463,10 @@ export default function MarketingHomePage() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer className="border-t border-white/4 px-6 py-8">
+      <footer className="border-t border-white/4 px-6 py-10">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/20">
-          <span className="flex items-center gap-2 font-semibold text-white/40" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
-            <img src="/logo-icon.svg" alt="" width={20} height={20} className="shrink-0 opacity-70" />
+          <span className="flex items-center gap-3 text-2xl font-semibold tracking-tight text-white" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
+            <img src="/logo-icon.svg" alt="" width={40} height={40} className="shrink-0" />
             Trade<span style={{ color: GOLD }}>flow</span>
           </span>
           <span>AI-powered lead generation for HVAC contractors</span>
