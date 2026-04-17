@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="Tradeflow">
+  <defs>
+    <!-- Metallic gold gradient: lighter top-left, deeper bottom-right -->
+    <linearGradient id="tf-gold" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F2D378"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#9E7C17"/>
+    </linearGradient>
+    <!-- Subtle dark badge gradient for depth -->
+    <linearGradient id="tf-bg" x1="0" y1="0" x2="0" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1C1C1C"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded-square badge -->
+  <rect width="48" height="48" rx="11" fill="url(#tf-bg)"/>
+  <!-- Premium gold hairline -->
+  <rect x="0.5" y="0.5" width="47" height="47" rx="10.5" fill="none" stroke="#D4AF37" stroke-opacity="0.3"/>
+
+  <!-- Bold "T" monogram — architectural, anchors "Trade" -->
+  <g fill="url(#tf-gold)">
+    <rect x="9" y="10" width="30" height="6.5" rx="2.25"/>
+    <rect x="20.75" y="14.5" width="6.5" height="23.5" rx="2.25"/>
+  </g>
+
+  <!-- Flow drops — captured leads streaming in -->
+  <circle cx="36.5" cy="32" r="2.25" fill="url(#tf-gold)"/>
+  <circle cx="32" cy="29.5" r="1.1" fill="url(#tf-gold)" opacity="0.55"/>
+</svg>
