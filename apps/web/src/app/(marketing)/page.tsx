@@ -467,7 +467,7 @@ export default function MarketingHomePage() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/20">
           <span className="flex items-center gap-3 text-2xl font-semibold tracking-tight text-white" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
             <img src="/logo-icon.svg" alt="" width={40} height={40} className="shrink-0" />
-            Trade<span style={{ color: GOLD }}>flow</span>
+            <span>Trade<span style={{ color: GOLD }}>flow</span></span>
           </span>
           <span>AI-powered lead generation for HVAC contractors</span>
           <Link href="/login" className="hover:text-white/40 transition-colors">Contractor login</Link>
