@@ -21,13 +21,22 @@ export default function MarketingHomePage() {
             </span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#how-it-works" className="hidden sm:inline text-[13px] text-white/40 hover:text-white/70 transition-colors">
+            <a
+              href="#how-it-works"
+              className="hidden sm:inline text-[13px] text-white/70 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
               How it works
             </a>
-            <a href="#pricing" className="hidden sm:inline text-[13px] text-white/40 hover:text-white/70 transition-colors">
+            <a
+              href="#pricing"
+              className="hidden sm:inline text-[13px] text-white/70 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
               Pricing
             </a>
-            <Link href="/login" className="text-[13px] text-white/40 hover:text-white/70 transition-colors">
+            <Link
+              href="/login"
+              className="text-[13px] text-white/70 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
               Sign in &rarr;
             </Link>
           </div>
@@ -75,12 +84,15 @@ export default function MarketingHomePage() {
               <div className="flex flex-col sm:flex-row gap-3 items-start">
                 <a
                   href="mailto:hello@tradeflow.io"
-                  className="inline-flex items-center gap-2 font-bold text-[15px] py-3.5 px-8 rounded-xl transition-all hover:brightness-110"
+                  className="inline-flex items-center gap-2 font-bold text-[15px] py-3.5 px-8 rounded-xl transition-all hover:brightness-110 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   style={{ background: GOLD, color: '#000', boxShadow: '0 0 40px rgba(212,175,55,0.25)' }}
                 >
                   Get started &mdash; free trial &rarr;
                 </a>
-                <a href="#how-it-works" className="text-[13px] text-white/30 hover:text-white/50 transition-colors py-3.5 px-2">
+                <a
+                  href="#how-it-works"
+                  className="text-[13px] text-white/60 hover:text-white/90 transition-colors py-3.5 px-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
                   See how it works &darr;
                 </a>
               </div>
@@ -418,11 +430,11 @@ export default function MarketingHomePage() {
                 </ul>
                 <a
                   href="mailto:hello@tradeflow.io"
-                  className="block text-center font-bold py-3.5 px-6 rounded-xl text-[13px] transition-all hover:brightness-110"
+                  className="block text-center font-bold py-3.5 px-6 rounded-xl text-[13px] transition-all hover:brightness-110 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   style={{
                     background: plan.highlight ? GOLD : 'rgba(255,255,255,0.06)',
-                    color: plan.highlight ? '#000' : 'rgba(255,255,255,0.6)',
-                    border: plan.highlight ? 'none' : '1px solid rgba(255,255,255,0.08)',
+                    color: plan.highlight ? '#000' : 'rgba(255,255,255,0.85)',
+                    border: plan.highlight ? 'none' : '1px solid rgba(255,255,255,0.12)',
                     boxShadow: plan.highlight ? '0 0 30px rgba(212,175,55,0.2)' : 'none',
                   }}
                 >
@@ -453,7 +465,7 @@ export default function MarketingHomePage() {
           </p>
           <a
             href="mailto:hello@tradeflow.io"
-            className="inline-flex items-center gap-2 font-bold text-[15px] py-3.75 px-10 rounded-xl transition-all hover:brightness-110"
+            className="inline-flex items-center gap-2 font-bold text-[15px] py-3.75 px-10 rounded-xl transition-all hover:brightness-110 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             style={{ background: GOLD, color: '#000', boxShadow: '0 0 50px rgba(212,175,55,0.3)' }}
           >
             Claim your free trial &rarr;
@@ -470,7 +482,12 @@ export default function MarketingHomePage() {
             <span>Trade<span style={{ color: GOLD }}>flow</span></span>
           </span>
           <span>AI-powered lead generation for HVAC contractors</span>
-          <Link href="/login" className="hover:text-white/40 transition-colors">Contractor login</Link>
+          <Link
+            href="/login"
+            className="text-white/60 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            Contractor login
+          </Link>
         </div>
       </footer>
     </div>
