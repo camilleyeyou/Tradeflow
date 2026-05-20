@@ -82,13 +82,13 @@ export default function MarketingHomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 items-start">
-                <a
-                  href="mailto:hello@tradeflow.io"
+                <Link
+                  href="/get-started"
                   className="inline-flex items-center gap-2 font-bold text-[15px] py-3.5 px-8 rounded-xl transition-all hover:brightness-110 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   style={{ background: GOLD, color: '#000', boxShadow: '0 0 40px rgba(212,175,55,0.25)' }}
                 >
                   Get started &mdash; free trial &rarr;
-                </a>
+                </Link>
                 <a
                   href="#how-it-works"
                   className="text-[13px] text-white/60 hover:text-white/90 transition-colors py-3.5 px-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
@@ -428,8 +428,8 @@ export default function MarketingHomePage() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="mailto:hello@tradeflow.io"
+                <Link
+                  href="/get-started"
                   className="block text-center font-bold py-3.5 px-6 rounded-xl text-[13px] transition-all hover:brightness-110 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   style={{
                     background: plan.highlight ? GOLD : 'rgba(255,255,255,0.06)',
@@ -439,7 +439,7 @@ export default function MarketingHomePage() {
                   }}
                 >
                   Start free trial &rarr;
-                </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -463,14 +463,22 @@ export default function MarketingHomePage() {
             We&apos;re onboarding a small number of HVAC contractors in Chicagoland
             right now. 2-week free trial, $200 in ad spend on us.
           </p>
-          <a
-            href="mailto:hello@tradeflow.io"
+          <Link
+            href="/get-started"
             className="inline-flex items-center gap-2 font-bold text-[15px] py-3.75 px-10 rounded-xl transition-all hover:brightness-110 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             style={{ background: GOLD, color: '#000', boxShadow: '0 0 50px rgba(212,175,55,0.3)' }}
           >
             Claim your free trial &rarr;
-          </a>
-          <p className="mt-5 text-white/20 text-[12px]">No credit card required</p>
+          </Link>
+          <p className="mt-5 text-white/20 text-[12px]">
+            No credit card required &middot; Prefer email?{' '}
+            <a
+              href="mailto:hello@tradeflow-technologies.com?cc=contact@tradeflow-technologies.com&subject=Tradeflow%20%E2%80%94%20Free%20trial%20inquiry"
+              className="text-white/40 hover:text-white/80 underline underline-offset-2 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              hello@tradeflow-technologies.com
+            </a>
+          </p>
         </div>
       </section>
 
