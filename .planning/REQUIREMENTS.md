@@ -118,10 +118,10 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 
 ### Low-Priority Hygiene
 
-- [ ] **HYG-01**: Stale/committed cruft is removed or ignored (`CLAUDE (1).md`, unused create-next-app SVGs, the untracked brand-binaries directory)
-- [ ] **HYG-02**: The app serves a styled `not-found` page and a global error boundary for ad-click visitors hitting bad slugs
-- [ ] **HYG-03**: Hardcoded placeholder copy is fixed (the "312 number" success message) and the low-contrast admin link is corrected
-- [ ] **HYG-04**: Planning docs are internally consistent and the web README accurately reflects shipped features
+- [x] **HYG-01**: Stale/committed cruft is removed or ignored (`CLAUDE (1).md`, unused create-next-app SVGs, the untracked brand-binaries directory)
+- [x] **HYG-02**: The app serves a styled `not-found` page and a global error boundary for ad-click visitors hitting bad slugs
+- [x] **HYG-03**: Hardcoded placeholder copy is fixed (the "312 number" success message) and the low-contrast admin link is corrected
+- [x] **HYG-04**: Planning docs are internally consistent and the web README accurately reflects shipped features
 
 ### Features
 
@@ -260,10 +260,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HARD-08 | Phase 7 | Complete |
 | HARD-09 | Phase 7 | Complete |
 | HARD-10 | Phase 7 | Complete |
-| HYG-01 | Phase 8 | Pending |
-| HYG-02 | Phase 8 | Pending |
-| HYG-03 | Phase 8 | Pending |
-| HYG-04 | Phase 8 | Pending |
+| HYG-01 | Phase 8 | Complete |
+| HYG-02 | Phase 8 | Complete |
+| HYG-03 | Phase 8 | Complete |
+| HYG-04 | Phase 8 | Complete |
 | DUR-01 | Phase 9 | Pending |
 | OBSV-01 | Phase 9 | Pending |
 | OBSV-02 | Phase 9 | Pending |

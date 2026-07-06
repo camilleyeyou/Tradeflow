@@ -21,7 +21,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 5: Critical Security & Launch Blockers** - Close remotely exploitable security gaps and build the missing missed-call text-back pipeline
 - [x] **Phase 6: High-Priority Correctness, Legal & SEO** - Fix per-client token/slug/validation bugs, add spam protection, legal pages, and landing-page SEO (completed 2026-07-06)
 - [x] **Phase 7: Medium-Priority Hardening** - Async DB access, least-privilege RLS, schema integrity, and operational safety nets (completed 2026-07-06)
-- [ ] **Phase 8: Low-Priority Hygiene** - Repo cleanup, error pages, copy fixes, and doc accuracy
+- [x] **Phase 8: Low-Priority Hygiene** - Repo cleanup, error pages, copy fixes, and doc accuracy (completed 2026-07-06)
 - [ ] **Phase 9: Features** - Webhook durability, error observability, ROI dashboard, SMS inbox, and AI lead scoring
 
 ## Phase Details
@@ -175,7 +175,7 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 08-01-PLAN.md — HYG-01..04: remove stale cruft, add not-found/global-error pages, fix hardcoded copy, correct README/ROADMAP docs
+- [x] 08-01-PLAN.md — HYG-01..04: remove stale cruft, add not-found/global-error pages, fix hardcoded copy, correct README/ROADMAP docs
 
 ### Phase 9: Features
 **Goal**: The platform is durable and observable in production, and HVAC owners get ROI visibility, a two-way SMS inbox, and AI-driven urgency ranking that surfaces the hottest leads first
@@ -204,5 +204,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 5. Critical Security & Launch Blockers | 5/6 | In Progress|  |
 | 6. High-Priority Correctness, Legal & SEO | 6/6 | Complete    | 2026-07-06 |
 | 7. Medium-Priority Hardening | 4/4 | Complete    | 2026-07-06 |
-| 8. Low-Priority Hygiene | 0/TBD | Not started | - |
+| 8. Low-Priority Hygiene | 1/1 | Complete   | 2026-07-06 |
 | 9. Features | 0/TBD | Not started | - |

@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Completed 07-04-PLAN.md
-last_updated: "2026-07-06T13:42:26.547Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 08-01-PLAN.md
+last_updated: "2026-07-06T14:00:25.443Z"
 progress:
   total_phases: 9
-  completed_phases: 6
-  total_plans: 32
-  completed_plans: 31
+  completed_phases: 7
+  total_plans: 33
+  completed_plans: 32
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-06)
 
 **Core value:** Every inbound lead is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
-**Current focus:** Phase 7 — Medium-Priority Hardening
+**Current focus:** Phase 8 — Low-Priority Hygiene
 
 ## Current Position
 
-Phase: 8
-Plan: Not started
+Phase: 8 (Low-Priority Hygiene) — EXECUTING
+Plan: 1 of 1
 
 ## Performance Metrics
 
@@ -77,6 +77,7 @@ Plan: Not started
 | Phase 07 P02 | 6min | 3 tasks | 6 files |
 | Phase 07-medium-priority-hardening P03 | 8min | 3 tasks | 8 files |
 | Phase 07 P04 | 8min | 2 tasks | 3 files |
+| Phase 08-low-priority-hygiene P01 | 20min | 4 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -146,6 +147,7 @@ Recent decisions affecting current work:
 - [Phase 07]: [Phase 07]: [07-03]: Reused inline escapeHtml() from api/get-started/route.ts verbatim as the new shared apps/web/src/lib/escape-html.ts util rather than writing new logic
 - [Phase 07]: [Phase 07][07-04]: Removed Fontshare <head> block outright rather than migrating General Sans/Gambetta to next/font/local — no CSS depends on them, only inline styles with system/Georgia fallbacks already present
 - [Phase 07]: [Phase 07][07-04]: validateEnv() parsing kept inside function body (not module top-level) so next build never crashes; only runs when instrumentation.ts register() executes on nodejs runtime at actual server boot
+- [Phase 08-low-priority-hygiene]: [Phase 08-01]: Also removed the stale legacy RSA GHL signature mention from README's architecture diagram while fixing the CallRail webhook omission — that path was already removed in Phase 5 (SEC-03)
 
 ### Pending Todos
 
@@ -162,6 +164,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T13:41:25.242Z
-Stopped at: Completed 07-04-PLAN.md
+Last session: 2026-07-06T14:00:25.436Z
+Stopped at: Completed 08-01-PLAN.md
 Resume file: None
