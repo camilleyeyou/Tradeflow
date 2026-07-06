@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 
 // Landing pages are public but fetch client data server-side using the service
 // role key so RLS doesn't block reads. The key never reaches the browser.
@@ -116,6 +117,39 @@ export async function generateStaticParams() {
 
 interface Props {
   params: Promise<{ clientSlug: string; service: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { clientSlug, service } = await params
+
+  if (!SERVICE_TYPES.includes(service as (typeof SERVICE_TYPES)[number])) {
+    return {}
+  }
+
+  const supabase = createServerClient()
+
+  const { data: client } = await supabase
+    .from('clients')
+    .select('business_name, city')
+    .eq('slug', clientSlug)
+    .eq('is_active', true)
+    .single()
+
+  if (!client) {
+    return { title: 'HVAC Services' }
+  }
+
+  const serviceLabel = SERVICE_LABELS[service] ?? service
+  const businessName = client.business_name as string
+  const city = client.city as string
+  const title = `${serviceLabel} in ${city} | ${businessName}`
+  const description = `Fast, licensed ${serviceLabel.toLowerCase()} in ${city} from ${businessName}. Same-day service — get a free quote or call now.`
+
+  return {
+    title,
+    description,
+    openGraph: { title, description, type: 'website' },
+  }
 }
 
 export default async function LandingPage({ params }: Props) {
