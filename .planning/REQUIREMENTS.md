@@ -131,8 +131,8 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **ROI-01**: Each lead records its time-to-first-contact (first status change off `new` or first outbound touch)
 - [x] **ROI-02**: The client dashboard shows a monthly summary of lead count, estimated lead value, and speed-to-lead
 - [x] **INBX-01**: The client dashboard shows the SMS conversation per lead and lets the owner send a reply through GHL
-- [ ] **AI-01**: Inbound leads are scored for urgency (e.g. 1–10) via the Claude API from the available lead/call data
-- [ ] **AI-02**: The dashboard surfaces high-urgency ("hot") leads at the top of the list
+- [x] **AI-01**: Inbound leads are scored for urgency (e.g. 1–10) via the Claude API from the available lead/call data
+- [x] **AI-02**: The dashboard surfaces high-urgency ("hot") leads at the top of the list
 
 ## v2 Requirements
 
@@ -270,8 +270,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ROI-01 | Phase 9 | Complete |
 | ROI-02 | Phase 9 | Complete |
 | INBX-01 | Phase 9 | Complete |
-| AI-01 | Phase 9 | Pending |
-| AI-02 | Phase 9 | Pending |
+| AI-01 | Phase 9 | Complete |
+| AI-02 | Phase 9 | Complete |
 
 **Coverage:**
 - v1 requirements: 39 total
