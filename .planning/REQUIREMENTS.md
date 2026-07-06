@@ -77,7 +77,7 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 
 ### Critical Security & Launch Blockers
 
-- [ ] **SEC-01**: `onboardClient` and `createClientLogin` Server Actions reject any caller who is not an authenticated admin (verified via `getUser()` + `isAdmin()`) before touching the service-role client
+- [x] **SEC-01**: `onboardClient` and `createClientLogin` Server Actions reject any caller who is not an authenticated admin (verified via `getUser()` + `isAdmin()`) before touching the service-role client
 - [ ] **SEC-02**: RLS is enabled on `client_users` with a self-read-only policy; no authenticated or anon user can read or write another user's mapping via PostgREST
 - [ ] **SEC-03**: The GHL webhook rejects any request without a valid Ed25519 `X-GHL-Signature`; the always-true legacy `X-WH-Signature` path is removed
 - [ ] **MISS-01**: A CallRail webhook endpoint (`POST /api/webhooks/callrail`) receives call events and verifies their authenticity (token/signature) before processing
@@ -228,7 +228,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BILL-04 | Phase 4 | Complete |
 | BILL-05 | Phase 4 | Complete |
 | BILL-06 | Phase 4 | Complete |
-| SEC-01 | Phase 5 | Pending |
+| SEC-01 | Phase 5 | Complete |
 | SEC-02 | Phase 5 | Pending |
 | SEC-03 | Phase 5 | Pending |
 | MISS-01 | Phase 5 | Pending |

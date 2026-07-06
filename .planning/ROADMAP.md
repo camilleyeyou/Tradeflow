@@ -114,7 +114,7 @@ Plans:
 **Plans**: 6 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — SEC-01: admin authorization guard on onboardClient + createClientLogin (wave 1)
+- [x] 05-01-PLAN.md — SEC-01: admin authorization guard on onboardClient + createClientLogin (wave 1)
 - [ ] 05-02-PLAN.md — SEC-02: enable RLS on client_users with self-read-only policy (wave 1)
 - [ ] 05-03-PLAN.md — SEC-03: remove GHL legacy X-WH-Signature bypass, Ed25519-only (wave 1)
 - [ ] 05-04-PLAN.md — MISS-01..04: CallRail webhook → deduped call+lead → GHL text-back → dashboard (wave 1)
@@ -184,7 +184,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 2. Lead Pipeline | 4/5 | In Progress|  |
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
 | 4. Operations | 4/4 | Complete   | 2026-03-26 |
-| 5. Critical Security & Launch Blockers | 0/TBD | Not started | - |
+| 5. Critical Security & Launch Blockers | 1/6 | In Progress|  |
 | 6. High-Priority Correctness, Legal & SEO | 0/TBD | Not started | - |
 | 7. Medium-Priority Hardening | 0/TBD | Not started | - |
 | 8. Low-Priority Hygiene | 0/TBD | Not started | - |

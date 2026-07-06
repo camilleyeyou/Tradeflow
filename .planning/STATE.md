@@ -1,15 +1,15 @@
 ---
 gsd_state_version: 1.0
 milestone: v1.1
-milestone_name: Pre-launch hardening + core features
-status: Roadmap created
-stopped_at: Roadmap created for v1.1 (Phases 5-9) — ready for /gsd:plan-phase 5
-last_updated: "2026-07-06T10:15:00.000Z"
+milestone_name: milestone
+status: Ready to execute
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-07-06T11:06:48.351Z"
 progress:
-  total_phases: 5
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_phases: 9
+  completed_phases: 4
+  total_plans: 22
+  completed_plans: 17
 ---
 
 # Project State
@@ -19,14 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-06)
 
 **Core value:** Every inbound lead is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
-**Current focus:** Milestone v1.1 — pre-launch hardening + core features (Phase 5: Critical Security & Launch Blockers)
+**Current focus:** Phase 5 — Critical Security & Launch Blockers
 
 ## Current Position
 
-Phase: 5 — Critical Security & Launch Blockers (not started)
-Plan: —
-Status: Roadmap created, awaiting phase planning
-Last activity: 2026-07-06 — ROADMAP.md created for v1.1 (Phases 5-9), REQUIREMENTS.md traceability updated
+Phase: 5 (Critical Security & Launch Blockers) — EXECUTING
+Plan: 2 of 6
 
 ## Performance Metrics
 
@@ -64,6 +62,7 @@ Last activity: 2026-07-06 — ROADMAP.md created for v1.1 (Phases 5-9), REQUIREM
 | Phase 04-operations P01 | 516 | 2 tasks | 3 files |
 | Phase 04-operations P03 | 20 | 2 tasks | 6 files |
 | Phase 04-operations P04 | 2 | 1 tasks | 0 files |
+| Phase 05 P01 | 2min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -111,6 +110,7 @@ Recent decisions affecting current work:
 - [Phase 04-operations]: state field in onboardingSchema uses z.string().min(1) without .default() — .default() makes input type optional, breaking react-hook-form Resolver type; IL default set in form defaultValues instead
 - [Phase 04-operations]: Admin (admin) route group compiles correctly but does not appear in Next.js build summary output — routes confirmed in .next/server/app/(admin)/ after build
 - [Milestone v1.1 roadmap]: Phases 5-9 derived directly from the pre-launch audit's priority tiers (Critical → High → Medium → Low → Features) per explicit user ordering; security and the advertised-but-missing missed-call feature land first (Phase 5) before any correctness/hardening/hygiene work, and the four new differentiating features land last (Phase 9) since they depend on a stable, secured foundation
+- [Phase 05]: Reused the existing getUser()/isAdmin() guard pattern from settings-actions.ts for onboardClient and createClientLogin rather than introducing a new helper (SEC-01 fix)
 
 ### Pending Todos
 
@@ -127,6 +127,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T10:15:00.000Z
-Stopped at: ROADMAP.md created for v1.1 (Phases 5-9); REQUIREMENTS.md traceability updated. Next: `/gsd:plan-phase 5`
+Last session: 2026-07-06T11:06:48.346Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None
