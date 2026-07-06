@@ -20,6 +20,8 @@ export interface Lead {
   booked_at: string | null
   completed_at: string | null
   first_contact_at: string | null
+  urgency_score: number | null
+  urgency_reason: string | null
 }
 
 export interface Call {
