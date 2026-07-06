@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 09-03-PLAN.md
-last_updated: "2026-07-06T17:18:23.840Z"
+stopped_at: Completed 09-04-PLAN.md
+last_updated: "2026-07-06T17:27:58.503Z"
 progress:
   total_phases: 9
   completed_phases: 7
   total_plans: 38
-  completed_plans: 35
+  completed_plans: 36
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 ## Current Position
 
 Phase: 9 (Features) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 
 ## Performance Metrics
 
@@ -81,6 +81,7 @@ Plan: 4 of 5
 | Phase 09-features P01 | 12min | 3 tasks | 6 files |
 | Phase 09-features P02 | 20min | 3 tasks | 8 files |
 | Phase 09-features P03 | 5min | 3 tasks | 6 files |
+| Phase 09-features P04 | 8min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -157,6 +158,7 @@ Recent decisions affecting current work:
 - [Phase 09-features]: [Phase 09][09-02]: All Sentry/Anthropic env vars are optional/feature-flag — DSN or key unset fully disables the feature with no crash, no addition to REQUIRED_ENV_VARS or serverEnvSchema
 - [Phase 09-features]: [Phase 09][09-03]: ESTIMATED_LEAD_VALUE hardcoded at $400/lead as a placeholder constant, exported and clearly labeled 'estimated, not actual revenue' in the UI — no real per-job revenue data exists yet
 - [Phase 09-features]: [Phase 09][09-03]: first_contact_at stamped via read-then-conditional-write inside updateLeadStatus (earliest-touch wins) rather than a DB trigger
+- [Phase 09-features]: [Phase 09][09-04]: decryptToken() wrapped in try/catch inside resolveLeadContext so a missing/invalid GHL_TOKEN_ENC_KEY degrades to empty thread / 409 rather than a 500 crash
 
 ### Pending Todos
 
@@ -173,6 +175,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T17:18:23.835Z
-Stopped at: Completed 09-03-PLAN.md
+Last session: 2026-07-06T17:27:58.497Z
+Stopped at: Completed 09-04-PLAN.md
 Resume file: None

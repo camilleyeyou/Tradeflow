@@ -193,7 +193,7 @@ Plans:
 - [x] 09-01-PLAN.md — DUR-01: webhook_events migration (010) + record-before-ACK in all 3 FastAPI handlers + replay path (wave 1)
 - [x] 09-02-PLAN.md — OBSV-01/02: Sentry on FastAPI + Next.js + backups/uptime/env docs in DEPLOY-CHECKLIST (wave 1)
 - [x] 09-03-PLAN.md — ROI-01/02: migration 011 (leads.first_contact_at) + first-contact stamping + dashboard ROI summary (wave 1)
-- [ ] 09-04-PLAN.md — INBX-01: GHL conversations service + auth'd route handler + lead-detail SMS inbox UI (wave 1)
+- [x] 09-04-PLAN.md — INBX-01: GHL conversations service + auth'd route handler + lead-detail SMS inbox UI (wave 1)
 - [ ] 09-05-PLAN.md — AI-01/02: migration 012 (urgency_score/reason) + claude-fable-5 scoring in lead-submit after() + hot-lead sort/badge (wave 2)
 **UI hint**: yes
 
