@@ -1,5 +1,7 @@
 import { redirect } from 'next/navigation'
 
+export const revalidate = 3600
+
 interface Props {
   params: Promise<{ clientSlug: string }>
 }

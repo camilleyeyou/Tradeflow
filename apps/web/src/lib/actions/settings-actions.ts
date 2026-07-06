@@ -33,4 +33,8 @@ export async function updateClientSettings(formData: {
 
   if (error) throw new Error(error.message)
   revalidatePath('/dashboard/settings')
+
+  // HARD-08: keep the public landing page in sync with client edits (e.g. phone number).
+  const { data: row } = await supabase.from('clients').select('slug').eq('id', clientId).single()
+  if (row?.slug) revalidatePath(`/${(row as { slug: string }).slug}`)
 }

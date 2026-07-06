@@ -87,6 +87,8 @@ function PhoneIcon() {
   )
 }
 
+export const revalidate = 3600
+
 export async function generateStaticParams() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY

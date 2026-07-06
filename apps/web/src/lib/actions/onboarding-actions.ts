@@ -7,6 +7,7 @@ import { createSubAccount } from '@/lib/ghl'
 import { onboardingSchema } from '@/lib/validations/onboarding'
 import { encryptToken } from '@/lib/crypto'
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 
 export async function onboardClient(formData: {
   business_name: string
@@ -105,6 +106,9 @@ export async function onboardClient(formData: {
     }
     // If GHL fails: client record still created, ghl_sub_account_id remains null (D-54)
   }
+
+  // HARD-08: prime the new client's landing page in the cache.
+  revalidatePath(`/${slug}`)
 
   redirect(`/admin/clients/${typedClient.id}`)
 }
