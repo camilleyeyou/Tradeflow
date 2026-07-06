@@ -80,10 +80,10 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **SEC-01**: `onboardClient` and `createClientLogin` Server Actions reject any caller who is not an authenticated admin (verified via `getUser()` + `isAdmin()`) before touching the service-role client
 - [x] **SEC-02**: RLS is enabled on `client_users` with a self-read-only policy; no authenticated or anon user can read or write another user's mapping via PostgREST
 - [x] **SEC-03**: The GHL webhook rejects any request without a valid Ed25519 `X-GHL-Signature`; the always-true legacy `X-WH-Signature` path is removed
-- [ ] **MISS-01**: A CallRail webhook endpoint (`POST /api/webhooks/callrail`) receives call events and verifies their authenticity (token/signature) before processing
-- [ ] **MISS-02**: A missed call creates a `calls` record and a `leads` record (source `direct_call`), deduplicated on the CallRail call id
-- [ ] **MISS-03**: A missed call triggers the GHL text-back workflow within 15 seconds of the event
-- [ ] **MISS-04**: The dashboard call log populates from ingested CallRail calls with recording links
+- [x] **MISS-01**: A CallRail webhook endpoint (`POST /api/webhooks/callrail`) receives call events and verifies their authenticity (token/signature) before processing
+- [x] **MISS-02**: A missed call creates a `calls` record and a `leads` record (source `direct_call`), deduplicated on the CallRail call id
+- [x] **MISS-03**: A missed call triggers the GHL text-back workflow within 15 seconds of the event
+- [x] **MISS-04**: The dashboard call log populates from ingested CallRail calls with recording links
 - [ ] **DPLY-01**: Supabase migrations are applied and generated Database types replace the `types.ts` placeholder stub (removing the `as any`/`@ts-expect-error` workarounds)
 - [ ] **DPLY-02**: A documented env-var + end-to-end verification checklist exists for Supabase, Vercel, and Railway (one real lead traced form → DB → GHL SMS → Resend email; one real missed call traced to text-back)
 
@@ -231,10 +231,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SEC-01 | Phase 5 | Complete |
 | SEC-02 | Phase 5 | Complete |
 | SEC-03 | Phase 5 | Complete |
-| MISS-01 | Phase 5 | Pending |
-| MISS-02 | Phase 5 | Pending |
-| MISS-03 | Phase 5 | Pending |
-| MISS-04 | Phase 5 | Pending |
+| MISS-01 | Phase 5 | Complete |
+| MISS-02 | Phase 5 | Complete |
+| MISS-03 | Phase 5 | Complete |
+| MISS-04 | Phase 5 | Complete |
 | DPLY-01 | Phase 5 | Pending |
 | DPLY-02 | Phase 5 | Pending |
 | FIX-01 | Phase 6 | Pending |

@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 05-03-PLAN.md
-last_updated: "2026-07-06T11:13:50.096Z"
+stopped_at: Completed 05-04-PLAN.md
+last_updated: "2026-07-06T11:22:30.453Z"
 progress:
   total_phases: 9
   completed_phases: 4
   total_plans: 22
-  completed_plans: 19
+  completed_plans: 20
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 ## Current Position
 
 Phase: 5 (Critical Security & Launch Blockers) — EXECUTING
-Plan: 4 of 6
+Plan: 5 of 6
 
 ## Performance Metrics
 
@@ -65,6 +65,7 @@ Plan: 4 of 6
 | Phase 05 P01 | 2min | 2 tasks | 2 files |
 | Phase 05 P02 | 3min | 1 tasks | 1 files |
 | Phase 05 P03 | 4min | 2 tasks | 2 files |
+| Phase 05 P04 | 7min | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -115,6 +116,9 @@ Recent decisions affecting current work:
 - [Phase 05]: Reused the existing getUser()/isAdmin() guard pattern from settings-actions.ts for onboardClient and createClientLogin rather than introducing a new helper (SEC-01 fix)
 - [Phase 05]: Confirmed v1.0 circular-dependency rationale for disabling RLS on client_users was incorrect; self-read SELECT policy (user_id = auth.uid()) closes SEC-02 without breaking other tables' subqueries. No write policies added — admin writes use service role key.
 - [Phase 05]: Removed verify_ghl_legacy_signature entirely rather than implementing real RSA verification (SEC-03) — GHL Ed25519 path already correct; legacy path was a dead always-true bypass with no remaining use case
+- [Phase 05]: CallRail signature verification computes and compares both hex and base64 HMAC-SHA256 digests against the header value since CallRail's exact digest encoding must be confirmed at deploy time (fails closed either way)
+- [Phase 05]: is_missed_call checks event.answered is False (strict identity) so payloads lacking the answered field are not misclassified as missed
+- [Phase 05]: Kept per-client GHL token as shared GHL_PRIVATE_TOKEN env var for this plan — Phase 6 FIX-01 seam left as a comment in ghl_api.py and callrail_webhooks.py
 
 ### Pending Todos
 
@@ -131,6 +135,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T11:13:50.091Z
-Stopped at: Completed 05-03-PLAN.md
+Last session: 2026-07-06T11:22:19.367Z
+Stopped at: Completed 05-04-PLAN.md
 Resume file: None

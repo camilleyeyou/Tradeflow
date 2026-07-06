@@ -117,7 +117,7 @@ Plans:
 - [x] 05-01-PLAN.md — SEC-01: admin authorization guard on onboardClient + createClientLogin (wave 1)
 - [x] 05-02-PLAN.md — SEC-02: enable RLS on client_users with self-read-only policy (wave 1)
 - [x] 05-03-PLAN.md — SEC-03: remove GHL legacy X-WH-Signature bypass, Ed25519-only (wave 1)
-- [ ] 05-04-PLAN.md — MISS-01..04: CallRail webhook → deduped call+lead → GHL text-back → dashboard (wave 1)
+- [x] 05-04-PLAN.md — MISS-01..04: CallRail webhook → deduped call+lead → GHL text-back → dashboard (wave 1)
 - [ ] 05-05-PLAN.md — DPLY-01/02: schema-accurate types.ts, remove type workarounds, write DEPLOY-CHECKLIST.md (wave 2)
 - [ ] 05-06-PLAN.md — DPLY-01/02: requires-human/deploy — apply migrations, live type-gen, run two E2E traces (wave 3)
 **UI hint**: yes
