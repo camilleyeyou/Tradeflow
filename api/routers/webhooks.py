@@ -4,6 +4,7 @@ Single endpoint at POST /api/webhooks/ghl that receives all GHL events.
 Routes by event_type field in payload (per D-28: GHL allows only one webhook URL per app).
 """
 
+import hashlib
 import json
 import logging
 from typing import Optional
@@ -13,6 +14,7 @@ from fastapi.concurrency import run_in_threadpool
 
 from api.services.ghl_service import verify_ghl_ed25519_signature
 from api.services.supabase_client import get_supabase
+from api.services.webhook_events import record_event, run_processing
 
 logger = logging.getLogger(__name__)
 
@@ -40,8 +42,23 @@ async def ghl_webhook(
 
     logger.info("[ghl-webhook] Received event_type=%s", event_type)
 
+    # Durably record the raw event before ACK (DUR-01). GHL payloads don't
+    # guarantee a single canonical event-id field, so fall back through the
+    # common candidates and finally a body hash for a stable dedup key.
+    provider_event_id = str(
+        payload.get("webhookId") or payload.get("id") or payload.get("messageId")
+        or hashlib.sha256(body).hexdigest()
+    )
+    try:
+        event_row_id = await record_event("ghl", provider_event_id, event_type, payload, True)
+    except Exception:
+        logger.exception("[ghl-webhook] durable record failed")
+        raise HTTPException(status_code=503, detail="Could not record event")
+    if event_row_id is None:
+        return {"status": "duplicate"}
+
     # Process in background — return 200 immediately (per D-28)
-    background_tasks.add_task(process_ghl_event, event_type, payload)
+    background_tasks.add_task(run_processing, "ghl", event_row_id, payload)
     return {"status": "received"}
 
 

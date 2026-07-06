@@ -21,6 +21,7 @@ from api.services.callrail_service import (
 )
 from api.services.ghl_api import trigger_textback
 from api.services.supabase_client import get_supabase
+from api.services.webhook_events import record_event, run_processing
 
 logger = logging.getLogger(__name__)
 
@@ -55,9 +56,20 @@ async def callrail_webhook(
 
     logger.info("[callrail-webhook] Received call id=%s answered=%s", event.id, event.answered)
 
+    # Durably record the raw event before ACK (DUR-01). Dedup on CallRail's
+    # call id; a real DB failure (non-duplicate) surfaces as 5xx so CallRail
+    # retries the delivery.
+    try:
+        event_row_id = await record_event("callrail", event.id, "call", payload, True)
+    except Exception:
+        logger.exception("[callrail-webhook] durable record failed")
+        raise HTTPException(status_code=503, detail="Could not record event")
+    if event_row_id is None:
+        return {"status": "duplicate"}
+
     # Process in background — return 200 immediately so the 15s text-back
     # budget is met by the background task, not the webhook round-trip.
-    background_tasks.add_task(process_callrail_event, event)
+    background_tasks.add_task(run_processing, "callrail", event_row_id, payload)
     return {"status": "received"}
 
 

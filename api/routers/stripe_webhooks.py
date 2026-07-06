@@ -12,7 +12,7 @@ from typing import Optional
 import stripe
 from fastapi import APIRouter, Request, Header, HTTPException, BackgroundTasks
 
-from api.services.stripe_service import process_stripe_event
+from api.services.webhook_events import record_event, run_processing
 
 logger = logging.getLogger(__name__)
 
@@ -58,6 +58,17 @@ async def stripe_webhook(
 
     logger.info("[stripe-webhook] Received event type=%s id=%s", event["type"], event["id"])
 
+    # Durably record the raw event before ACK (DUR-01). Dedup on Stripe's
+    # event id; a real DB failure (non-duplicate) surfaces as 5xx so Stripe
+    # retries the delivery.
+    try:
+        event_row_id = await record_event("stripe", event["id"], event["type"], dict(event), True)
+    except Exception:
+        logger.exception("[stripe-webhook] durable record failed")
+        raise HTTPException(status_code=503, detail="Could not record event")
+    if event_row_id is None:
+        return {"status": "duplicate"}
+
     # Process in background — return 200 immediately (D-62)
-    background_tasks.add_task(process_stripe_event, event)
+    background_tasks.add_task(run_processing, "stripe", event_row_id, dict(event))
     return {"status": "received"}
