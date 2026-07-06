@@ -90,6 +90,93 @@ export async function addContactToWorkflow(
   }
 }
 
+export interface GHLMessage {
+  id: string
+  direction: 'inbound' | 'outbound'
+  body: string
+  dateAdded: string
+}
+
+interface GHLConversationSearchResponse {
+  conversations?: Array<{ id?: string }>
+}
+
+interface GHLMessagesResponse {
+  messages?: Array<Record<string, unknown>> | { messages?: Array<Record<string, unknown>> }
+}
+
+/**
+ * Fetches the SMS thread for a GHL contact.
+ *
+ * GHL v2 (LeadConnector) endpoints used — NOT yet verified against a live
+ * conversations-scoped token in this codebase; confirm at deploy time:
+ *   GET /conversations/search?locationId=&contactId=  -> { conversations: [{ id }] }
+ *   GET /conversations/{conversationId}/messages       -> { messages: [...] | { messages: [...] } }
+ *
+ * Degrades to [] on any error (missing scope, network failure, no conversation)
+ * so the dashboard never crashes if the conversations scope is unavailable.
+ */
+export async function getConversationMessages(
+  contactId: string,
+  locationId: string,
+  token: string
+): Promise<GHLMessage[]> {
+  try {
+    const search = await ghlFetch(
+      `/conversations/search?${new URLSearchParams({ locationId, contactId }).toString()}`,
+      token,
+      { method: 'GET' }
+    )
+    const sdata = await search.json() as GHLConversationSearchResponse
+    const conversationId = sdata.conversations?.[0]?.id
+    if (!conversationId) return []
+
+    const res = await ghlFetch(`/conversations/${conversationId}/messages`, token, { method: 'GET' })
+    const data = await res.json() as GHLMessagesResponse
+    // GHL nests messages under messages.messages in some responses — normalize both shapes.
+    const raw = Array.isArray(data.messages)
+      ? data.messages
+      : (data.messages?.messages ?? [])
+
+    return raw.map((m) => ({
+      id: String(m.id ?? ''),
+      direction: m.direction === 'inbound' ? 'inbound' : 'outbound',
+      body: String(m.body ?? m.message ?? ''),
+      dateAdded: String(m.dateAdded ?? m.dateUpdated ?? ''),
+    }))
+  } catch (err) {
+    console.error('[ghl] getConversationMessages error:', err)
+    return []
+  }
+}
+
+/**
+ * Sends an outbound SMS reply to a GHL contact.
+ *
+ * GHL v2 endpoint used — NOT yet verified against a live conversations-scoped
+ * token in this codebase; confirm at deploy time:
+ *   POST /conversations/messages  { type: 'SMS', contactId, message }
+ *
+ * Degrades to false on any error so the caller can surface a retry prompt
+ * instead of crashing.
+ */
+export async function sendSMSReply(
+  contactId: string,
+  message: string,
+  token: string
+): Promise<boolean> {
+  try {
+    await ghlFetch('/conversations/messages', token, {
+      method: 'POST',
+      body: JSON.stringify({ type: 'SMS', contactId, message }),
+    })
+    return true
+  } catch (err) {
+    console.error('[ghl] sendSMSReply error:', err)
+    return false
+  }
+}
+
 interface CreateSubAccountInput {
   name: string
   phone: string
