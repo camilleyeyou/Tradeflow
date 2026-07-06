@@ -111,7 +111,7 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **HARD-04**: The auth callback validates the `next` redirect param to prevent open redirects
 - [x] **HARD-05**: Lead notification emails escape user-supplied values, and the `notifications_enabled` preference actually suppresses the email
 - [x] **HARD-06**: Temporary client passwords are generated with a cryptographically secure RNG
-- [ ] **HARD-07**: Fonts are self-hosted (via `next/font/local`) so landing pages carry no render-blocking third-party font requests
+- [x] **HARD-07**: Fonts are self-hosted (via `next/font/local`) so landing pages carry no render-blocking third-party font requests
 - [x] **HARD-08**: Landing pages revalidate when a client's info or onboarding changes (no indefinitely stale phone numbers)
 - [x] **HARD-09**: Both apps validate required environment variables at boot and fail fast with a clear message
 - [x] **HARD-10**: `requirements.txt` is minimal and fully pinned (unused packages removed, `resend` pinned); a Python version is pinned for deployment
@@ -256,7 +256,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HARD-04 | Phase 7 | Complete |
 | HARD-05 | Phase 7 | Complete |
 | HARD-06 | Phase 7 | Complete |
-| HARD-07 | Phase 7 | Pending |
+| HARD-07 | Phase 7 | Complete |
 | HARD-08 | Phase 7 | Complete |
 | HARD-09 | Phase 7 | Complete |
 | HARD-10 | Phase 7 | Complete |

@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 07-03-PLAN.md
-last_updated: "2026-07-06T13:31:46.643Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 07-04-PLAN.md
+last_updated: "2026-07-06T13:41:25.248Z"
 progress:
   total_phases: 9
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 32
-  completed_plans: 30
+  completed_plans: 31
 ---
 
 # Project State
@@ -76,6 +76,7 @@ Plan: 4 of 4
 | Phase 07 P01 | 6min | 2 tasks | 2 files |
 | Phase 07 P02 | 6min | 3 tasks | 6 files |
 | Phase 07-medium-priority-hardening P03 | 8min | 3 tasks | 8 files |
+| Phase 07 P04 | 8min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -143,6 +144,8 @@ Recent decisions affecting current work:
 - [Phase 07]: [Phase 07-02]: Kept sync Supabase client as-is, only wrapped .execute() calls in run_in_threadpool per plan interface — no async-client migration
 - [Phase 07]: [Phase 07-02]: requirements.txt trimmed to 9 top-level imported packages (verified via grep) plus uvicorn/python-dotenv — removed pyiceberg, fastar, pyroaring, fastapi-cloud-cli, fastapi-cli, sentry-sdk; resend[async] pinned exact to 2.32.2
 - [Phase 07]: [Phase 07]: [07-03]: Reused inline escapeHtml() from api/get-started/route.ts verbatim as the new shared apps/web/src/lib/escape-html.ts util rather than writing new logic
+- [Phase 07]: [Phase 07][07-04]: Removed Fontshare <head> block outright rather than migrating General Sans/Gambetta to next/font/local — no CSS depends on them, only inline styles with system/Georgia fallbacks already present
+- [Phase 07]: [Phase 07][07-04]: validateEnv() parsing kept inside function body (not module top-level) so next build never crashes; only runs when instrumentation.ts register() executes on nodejs runtime at actual server boot
 
 ### Pending Todos
 
@@ -159,6 +162,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T13:31:46.638Z
-Stopped at: Completed 07-03-PLAN.md
+Last session: 2026-07-06T13:41:25.242Z
+Stopped at: Completed 07-04-PLAN.md
 Resume file: None
