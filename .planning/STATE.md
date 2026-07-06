@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 05-05-PLAN.md
-last_updated: "2026-07-06T11:34:12.353Z"
+stopped_at: Completed 06-01-PLAN.md
+last_updated: "2026-07-06T12:03:00.324Z"
 progress:
   total_phases: 9
   completed_phases: 4
-  total_plans: 22
-  completed_plans: 21
+  total_plans: 28
+  completed_plans: 22
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-06)
 
 **Core value:** Every inbound lead is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
-**Current focus:** Phase 5 — Critical Security & Launch Blockers
+**Current focus:** Phase 6 — High-Priority Correctness, Legal & SEO
 
 ## Current Position
 
-Phase: 5 (Critical Security & Launch Blockers) — EXECUTING
-Plan: 6 of 6
+Phase: 6 (High-Priority Correctness, Legal & SEO) — EXECUTING
+Plan: 2 of 6
 
 ## Performance Metrics
 
@@ -67,6 +67,7 @@ Plan: 6 of 6
 | Phase 05 P03 | 4min | 2 tasks | 2 files |
 | Phase 05 P04 | 7min | 3 tasks | 6 files |
 | Phase 05 P05 | 12min | 3 tasks | 6 files |
+| Phase 06 P01 | 8min | 4 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -122,6 +123,7 @@ Recent decisions affecting current work:
 - [Phase 05]: Kept per-client GHL token as shared GHL_PRIVATE_TOKEN env var for this plan — Phase 6 FIX-01 seam left as a comment in ghl_api.py and callrail_webhooks.py
 - [Phase 05]: DPLY-01: Hand-authored schema-accurate Database type from migrations 001-005 (mirrors real supabase gen types shape); live type-gen deferred to 05-06
 - [Phase 05]: onboardClient was missing required clients.slug on insert (NOT NULL, no DB default) — real types surfaced this bug; fixed by deriving slug from business_name using migration 002's backfill normalization
+- [Phase 06]: Middleware inlines emailIsAdmin() helper mirroring src/lib/admin.ts rather than importing it, to keep admin gating unified on ADMIN_EMAILS without adding server-only deps to the Edge runtime
 
 ### Pending Todos
 
@@ -138,6 +140,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T11:34:12.348Z
-Stopped at: Completed 05-05-PLAN.md
+Last session: 2026-07-06T12:03:00.319Z
+Stopped at: Completed 06-01-PLAN.md
 Resume file: None

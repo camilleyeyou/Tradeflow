@@ -91,10 +91,10 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 
 - [ ] **FIX-01**: Lead submission uses the client's own GHL token (stored per client at onboarding), not a single global token
 - [ ] **FIX-02**: Client onboarding derives and stores a unique `slug` (collision-handled) so inserts never violate the NOT NULL constraint
-- [ ] **FIX-03**: The lead form accepts common phone formats (parentheses, dashes, spaces) by normalizing to digits before validation
-- [ ] **FIX-04**: The Stripe webhook returns 400 (not 500) on an invalid signature — the exception reference is corrected to the installed SDK's class
-- [ ] **FIX-05**: Admin authorization is unified on `isAdmin()` across middleware and layouts, supporting `ADMIN_EMAILS`; `ADMIN_EMAILS` is documented in `.env.example`
-- [ ] **FIX-06**: The FastAPI service boots on Railway with a verified Procfile/module path and a pinned Python version
+- [x] **FIX-03**: The lead form accepts common phone formats (parentheses, dashes, spaces) by normalizing to digits before validation
+- [x] **FIX-04**: The Stripe webhook returns 400 (not 500) on an invalid signature — the exception reference is corrected to the installed SDK's class
+- [x] **FIX-05**: Admin authorization is unified on `isAdmin()` across middleware and layouts, supporting `ADMIN_EMAILS`; `ADMIN_EMAILS` is documented in `.env.example`
+- [x] **FIX-06**: The FastAPI service boots on Railway with a verified Procfile/module path and a pinned Python version
 - [ ] **SPAM-01**: The lead-submit and get-started endpoints reject bot traffic via a honeypot field plus per-IP rate limiting
 - [ ] **LEGL-01**: The lead form displays SMS/call consent language at the point of capture before enrolling a number in automated messaging
 - [ ] **LEGL-02**: Privacy Policy and Terms of Service pages exist and are linked from the marketing and landing-page footers
@@ -239,10 +239,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DPLY-02 | Phase 5 | Complete |
 | FIX-01 | Phase 6 | Pending |
 | FIX-02 | Phase 6 | Pending |
-| FIX-03 | Phase 6 | Pending |
-| FIX-04 | Phase 6 | Pending |
-| FIX-05 | Phase 6 | Pending |
-| FIX-06 | Phase 6 | Pending |
+| FIX-03 | Phase 6 | Complete |
+| FIX-04 | Phase 6 | Complete |
+| FIX-05 | Phase 6 | Complete |
+| FIX-06 | Phase 6 | Complete |
 | SPAM-01 | Phase 6 | Pending |
 | LEGL-01 | Phase 6 | Pending |
 | LEGL-02 | Phase 6 | Pending |
