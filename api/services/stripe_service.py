@@ -12,6 +12,8 @@ import logging
 from datetime import datetime, timezone
 
 import resend
+from fastapi.concurrency import run_in_threadpool
+
 from api.services.supabase_client import get_supabase
 
 logger = logging.getLogger(__name__)
@@ -40,10 +42,12 @@ async def handle_subscription_created(subscription: dict) -> None:
     customer_id = subscription["customer"]
     subscription_id = subscription["id"]
 
-    result = db.table("clients").update({
-        "is_active": True,
-        "stripe_subscription_id": subscription_id,
-    }).eq("stripe_customer_id", customer_id).execute()
+    result = await run_in_threadpool(
+        lambda: db.table("clients").update({
+            "is_active": True,
+            "stripe_subscription_id": subscription_id,
+        }).eq("stripe_customer_id", customer_id).execute()
+    )
 
     if not result.data:
         logger.warning(
@@ -58,9 +62,11 @@ async def handle_subscription_deleted(subscription: dict) -> None:
     db = get_supabase()
     customer_id = subscription["customer"]
 
-    result = db.table("clients").update({
-        "is_active": False,
-    }).eq("stripe_customer_id", customer_id).execute()
+    result = await run_in_threadpool(
+        lambda: db.table("clients").update({
+            "is_active": False,
+        }).eq("stripe_customer_id", customer_id).execute()
+    )
 
     if not result.data:
         logger.warning(
@@ -76,9 +82,11 @@ async def handle_invoice_paid(invoice: dict) -> None:
     customer_id = invoice["customer"]
 
     # Look up client_id from stripe_customer_id (D-63)
-    client_result = db.table("clients").select("id, business_name").eq(
-        "stripe_customer_id", customer_id
-    ).execute()
+    client_result = await run_in_threadpool(
+        lambda: db.table("clients").select("id, business_name").eq(
+            "stripe_customer_id", customer_id
+        ).execute()
+    )
 
     if not client_result.data:
         logger.warning("[stripe] No client for invoice customer_id=%s", customer_id)
@@ -96,17 +104,19 @@ async def handle_invoice_paid(invoice: dict) -> None:
     )
 
     try:
-        db.table("billing").insert({
-            "client_id": client["id"],
-            "stripe_invoice_id": invoice["id"],
-            "stripe_subscription_id": invoice.get("subscription"),
-            "amount_cents": invoice.get("amount_paid", 0),
-            "currency": invoice.get("currency", "usd"),
-            "status": "paid",
-            "period_start": period_start,
-            "period_end": period_end,
-            "paid_at": datetime.now(tz=timezone.utc).isoformat(),
-        }).execute()
+        await run_in_threadpool(
+            lambda: db.table("billing").insert({
+                "client_id": client["id"],
+                "stripe_invoice_id": invoice["id"],
+                "stripe_subscription_id": invoice.get("subscription"),
+                "amount_cents": invoice.get("amount_paid", 0),
+                "currency": invoice.get("currency", "usd"),
+                "status": "paid",
+                "period_start": period_start,
+                "period_end": period_end,
+                "paid_at": datetime.now(tz=timezone.utc).isoformat(),
+            }).execute()
+        )
         logger.info(
             "[stripe] Billing record created for client=%s invoice=%s",
             client["business_name"], invoice["id"]
@@ -124,9 +134,11 @@ async def handle_invoice_failed(invoice: dict) -> None:
     db = get_supabase()
     customer_id = invoice["customer"]
 
-    client_result = db.table("clients").select("business_name").eq(
-        "stripe_customer_id", customer_id
-    ).execute()
+    client_result = await run_in_threadpool(
+        lambda: db.table("clients").select("business_name").eq(
+            "stripe_customer_id", customer_id
+        ).execute()
+    )
     client_name = client_result.data[0]["business_name"] if client_result.data else "Unknown Client"
 
     amount_due = invoice.get("amount_due", 0)

@@ -12,6 +12,7 @@ from typing import Optional
 import os
 
 from fastapi import APIRouter, Request, Header, HTTPException, BackgroundTasks
+from fastapi.concurrency import run_in_threadpool
 
 from api.services.callrail_service import (
     verify_callrail_signature,
@@ -69,8 +70,8 @@ async def process_callrail_event(event: CallRailEvent) -> None:
     db = get_supabase()
 
     # Resolve client by CallRail tracking number
-    client_result = (
-        db.table("clients")
+    client_result = await run_in_threadpool(
+        lambda: db.table("clients")
         .select("id, ghl_sub_account_id")
         .eq("callrail_tracking_number", event.tracking_phone_number)
         .execute()
@@ -87,38 +88,42 @@ async def process_callrail_event(event: CallRailEvent) -> None:
     ghl_sub_account_id = client.get("ghl_sub_account_id")
 
     # Dedup: idempotent redelivery of the same CallRail call id
-    existing_call = (
-        db.table("calls").select("id").eq("callrail_call_id", event.id).execute()
+    existing_call = await run_in_threadpool(
+        lambda: db.table("calls").select("id").eq("callrail_call_id", event.id).execute()
     )
     if existing_call.data:
         logger.info("[callrail-webhook] Call id=%s already processed — skipping", event.id)
         return
 
     # Insert calls row — these are exactly the columns the dashboard call log reads (MISS-04)
-    db.table("calls").insert(
-        {
-            "client_id": client_id,
-            "callrail_call_id": event.id,
-            "caller_number": event.customer_phone_number,
-            "tracking_number": event.tracking_phone_number,
-            "duration_seconds": event.duration,
-            "recording_url": event.recording,
-            "outcome": "missed",
-        }
-    ).execute()
+    await run_in_threadpool(
+        lambda: db.table("calls").insert(
+            {
+                "client_id": client_id,
+                "callrail_call_id": event.id,
+                "caller_number": event.customer_phone_number,
+                "tracking_number": event.tracking_phone_number,
+                "duration_seconds": event.duration,
+                "recording_url": event.recording,
+                "outcome": "missed",
+            }
+        ).execute()
+    )
 
     # Insert leads row (source direct_call). Race dedup via unique index
     # leads_callrail_call_id_unique — treat a unique-violation as benign no-op.
     try:
-        db.table("leads").insert(
-            {
-                "client_id": client_id,
-                "phone": event.customer_phone_number,
-                "zip_code": event.customer_zip,
-                "source": "direct_call",
-                "callrail_call_id": event.id,
-            }
-        ).execute()
+        await run_in_threadpool(
+            lambda: db.table("leads").insert(
+                {
+                    "client_id": client_id,
+                    "phone": event.customer_phone_number,
+                    "zip_code": event.customer_zip,
+                    "source": "direct_call",
+                    "callrail_call_id": event.id,
+                }
+            ).execute()
+        )
     except Exception as e:
         if "duplicate key" in str(e).lower() or "unique" in str(e).lower():
             logger.info(

@@ -9,6 +9,7 @@ import logging
 from typing import Optional
 
 from fastapi import APIRouter, Request, Header, HTTPException, BackgroundTasks
+from fastapi.concurrency import run_in_threadpool
 
 from api.services.ghl_service import verify_ghl_ed25519_signature
 from api.services.supabase_client import get_supabase
@@ -66,7 +67,9 @@ async def handle_inbound_message(db, payload: dict) -> None:
         return
 
     # Look up lead by ghl_contact_id
-    result = db.table("leads").select("id, notes").eq("ghl_contact_id", contact_id).execute()
+    result = await run_in_threadpool(
+        lambda: db.table("leads").select("id, notes").eq("ghl_contact_id", contact_id).execute()
+    )
     if not result.data:
         logger.warning("[ghl-webhook] No lead found for ghl_contact_id=%s", contact_id)
         return
@@ -77,10 +80,18 @@ async def handle_inbound_message(db, payload: dict) -> None:
 
     # Append SMS reply to notes
     updated_notes = f"{existing_notes}\n[SMS Reply] {message_body}".strip()
-    db.table("leads").update({"notes": updated_notes}).eq("id", lead_id).execute()
+    await run_in_threadpool(
+        lambda: db.table("leads").update({"notes": updated_notes}).eq("id", lead_id).execute()
+    )
 
     # Mark pending sms_sequences as stopped (per LEAD-06)
-    db.table("sms_sequences").update({"status": "stopped"}).eq("lead_id", lead_id).eq("status", "pending").execute()
+    await run_in_threadpool(
+        lambda: db.table("sms_sequences")
+        .update({"status": "stopped"})
+        .eq("lead_id", lead_id)
+        .eq("status", "pending")
+        .execute()
+    )
 
     logger.info("[ghl-webhook] InboundMessage processed for lead_id=%s", lead_id)
 
@@ -104,10 +115,14 @@ async def handle_contact_tag_added(db, payload: dict) -> None:
     for tag in tags:
         tag_lower = tag.lower() if isinstance(tag, str) else ""
         if tag_lower in TAG_TO_STATUS:
-            result = db.table("leads").select("id").eq("ghl_contact_id", contact_id).execute()
+            result = await run_in_threadpool(
+                lambda: db.table("leads").select("id").eq("ghl_contact_id", contact_id).execute()
+            )
             if result.data:
                 lead_id = result.data[0]["id"]
                 new_status = TAG_TO_STATUS[tag_lower]
-                db.table("leads").update({"status": new_status}).eq("id", lead_id).execute()
+                await run_in_threadpool(
+                    lambda: db.table("leads").update({"status": new_status}).eq("id", lead_id).execute()
+                )
                 logger.info("[ghl-webhook] Tag '%s' -> status '%s' for lead_id=%s", tag, new_status, lead_id)
             break  # Only process first matching tag
