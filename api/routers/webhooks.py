@@ -10,7 +10,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Request, Header, HTTPException, BackgroundTasks
 
-from api.services.ghl_service import verify_ghl_ed25519_signature, verify_ghl_legacy_signature
+from api.services.ghl_service import verify_ghl_ed25519_signature
 from api.services.supabase_client import get_supabase
 
 logger = logging.getLogger(__name__)
@@ -23,21 +23,15 @@ async def ghl_webhook(
     request: Request,
     background_tasks: BackgroundTasks,
     x_ghl_signature: Optional[str] = Header(default=None, alias="X-GHL-Signature"),
-    x_wh_signature: Optional[str] = Header(default=None, alias="X-WH-Signature"),
 ):
     # Read raw body BEFORE JSON parsing — required for signature verification
     body = await request.body()
 
-    # Signature verification (per D-26, GHL-05)
-    # Prefer Ed25519 (new); fall back to legacy RSA during transition
-    if x_ghl_signature:
-        if not verify_ghl_ed25519_signature(body, x_ghl_signature):
-            raise HTTPException(status_code=401, detail="Invalid GHL Ed25519 signature")
-    elif x_wh_signature:
-        if not verify_ghl_legacy_signature(body, x_wh_signature):
-            raise HTTPException(status_code=401, detail="Invalid GHL legacy signature")
-    else:
+    # Signature verification (per D-26, GHL-05, SEC-03) — Ed25519 only
+    if not x_ghl_signature:
         raise HTTPException(status_code=401, detail="Missing GHL signature header")
+    if not verify_ghl_ed25519_signature(body, x_ghl_signature):
+        raise HTTPException(status_code=401, detail="Invalid GHL Ed25519 signature")
 
     # Parse payload after signature is verified
     payload = json.loads(body)
