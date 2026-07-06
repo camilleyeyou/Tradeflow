@@ -1,7 +1,6 @@
 """GHL webhook signature verification.
 
-Supports both X-GHL-Signature (Ed25519, preferred) and X-WH-Signature (RSA, legacy).
-Legacy RSA support must be removed after July 1, 2026.
+Verifies X-GHL-Signature (Ed25519) only. Legacy X-WH-Signature (RSA) support was removed in Phase 5 (SEC-03).
 
 Source: https://marketplace.gohighlevel.com/docs/webhook/WebhookIntegrationGuide/index.html
 """
@@ -47,32 +46,3 @@ def verify_ghl_ed25519_signature(body: bytes, signature_header: str) -> bool:
     except Exception as e:
         logger.error("[ghl] Signature verification error: %s", e)
         return False
-
-
-def verify_ghl_legacy_signature(body: bytes, signature_header: str) -> bool:
-    """Verify X-WH-Signature (RSA, legacy).
-
-    SECURITY: KNOWN PERMISSIVE GAP — This function does NOT verify the RSA
-    signature. It accepts all requests with an X-WH-Signature header during
-    the GHL transition period. This is a deliberate trade-off to avoid
-    dropping legitimate events while GHL migrates to Ed25519.
-
-    HARD DEADLINE: Remove this function and all X-WH-Signature support
-    after July 1, 2026 (GHL legacy deprecation date). After removal,
-    only X-GHL-Signature (Ed25519) should be accepted.
-
-    Args:
-        body: Raw request body bytes.
-        signature_header: Legacy RSA signature from X-WH-Signature header.
-
-    Returns:
-        True (permissive during transition). Log warning for tracking.
-    """
-    # SECURITY: Permissive-only during transition. Remove after July 1, 2026.
-    logger.warning(
-        "[ghl] Legacy X-WH-Signature received — RSA verification not implemented. "
-        "Accepting during transition period. REMOVE AFTER JULY 1, 2026."
-    )
-    # TODO(security): Implement RSA verification or remove legacy support entirely.
-    # Tracking: GHL deprecation deadline is July 1, 2026.
-    return True
