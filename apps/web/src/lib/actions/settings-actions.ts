@@ -29,7 +29,6 @@ export async function updateClientSettings(formData: {
 
   // RLS UPDATE policy (migration 003) ensures only own record is updated
   const clientId = (clientUser as { client_id: string }).client_id
-  // @ts-expect-error -- types.ts is a stub until supabase gen types runs post-deployment
   const { error } = await supabase.from('clients').update(parsed.data).eq('id', clientId)
 
   if (error) throw new Error(error.message)

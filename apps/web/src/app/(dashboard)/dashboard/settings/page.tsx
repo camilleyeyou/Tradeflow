@@ -11,10 +11,7 @@ export default async function SettingsPage() {
   if (!user) redirect('/login')
 
   // Get client data via client_users join
-  // Cast to any — types.ts is a stub until supabase gen types runs post-deployment
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const db = supabase as any
-  const { data: clientUser } = await db
+  const { data: clientUser } = await supabase
     .from('client_users')
     .select('client_id, clients(*)')
     .eq('user_id', user.id)

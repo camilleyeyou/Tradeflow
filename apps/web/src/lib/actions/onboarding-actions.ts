@@ -31,9 +31,14 @@ export async function onboardClient(formData: {
   const supabase = createAdminClient()
 
   // Step 1: Insert client record (D-54 step 1)
-  // Cast insert payload to any — types.ts stub maps Insert to Record<string,unknown> which
-  // the Postgres builder treats as never for write operations; auto-resolves post-deployment
-  const { data: client, error } = await (supabase as any)
+  // slug has no DB default (migration 002 backfilled existing rows only) — derive it
+  // here using the same normalization the backfill used, so new inserts satisfy NOT NULL.
+  const slug = parsed.data.business_name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+
+  const { data: client, error } = await supabase
     .from('clients')
     .insert({
       business_name: parsed.data.business_name,
@@ -47,6 +52,7 @@ export async function onboardClient(formData: {
         .map((z: string) => z.trim())
         .filter(Boolean),
       plan: parsed.data.plan,
+      slug,
     })
     .select()
     .single()
@@ -74,7 +80,7 @@ export async function onboardClient(formData: {
 
     if (locationId) {
       // Step 3: Store ghl_sub_account_id on client record (D-54 step 3)
-      await (supabase as any)
+      await supabase
         .from('clients')
         .update({ ghl_sub_account_id: locationId })
         .eq('id', typedClient.id)
