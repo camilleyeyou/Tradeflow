@@ -1,6 +1,16 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+function emailIsAdmin(email: string | null | undefined): boolean {
+  if (!email) return false
+  const raw = process.env.ADMIN_EMAILS ?? process.env.ADMIN_EMAIL ?? ''
+  return raw
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean)
+    .includes(email.toLowerCase())
+}
+
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
 
@@ -26,15 +36,15 @@ export async function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname
   const isDashboard = path.startsWith('/dashboard')
-  const isAdmin = path.startsWith('/admin')
+  const isAdminPath = path.startsWith('/admin')
 
-  if ((isDashboard || isAdmin) && !user) {
+  if ((isDashboard || isAdminPath) && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
   }
 
-  if (isAdmin && user?.email !== process.env.ADMIN_EMAIL) {
+  if (isAdminPath && !emailIsAdmin(user?.email)) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
