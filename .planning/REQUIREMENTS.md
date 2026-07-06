@@ -106,8 +106,8 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 ### Medium-Priority Hardening
 
 - [ ] **HARD-01**: FastAPI webhook DB access no longer blocks the event loop (async Supabase client or threadpool offload)
-- [ ] **HARD-02**: RLS grants are least-privilege — column-scoped UPDATE on `clients`; explicit SELECT + scoped UPDATE (no client DELETE/INSERT) on `leads`, `calls`, `sms_sequences`
-- [ ] **HARD-03**: The schema enforces integrity — CHECK constraints on status/plan/outcome fields, indexes on `billing(client_id)`/`leads(ghl_contact_id)`/`calls(lead_id)`, a unique index on `leads(callrail_call_id)`, and `updated_at` columns with triggers
+- [x] **HARD-02**: RLS grants are least-privilege — column-scoped UPDATE on `clients`; explicit SELECT + scoped UPDATE (no client DELETE/INSERT) on `leads`, `calls`, `sms_sequences`
+- [x] **HARD-03**: The schema enforces integrity — CHECK constraints on status/plan/outcome fields, indexes on `billing(client_id)`/`leads(ghl_contact_id)`/`calls(lead_id)`, a unique index on `leads(callrail_call_id)`, and `updated_at` columns with triggers
 - [ ] **HARD-04**: The auth callback validates the `next` redirect param to prevent open redirects
 - [ ] **HARD-05**: Lead notification emails escape user-supplied values, and the `notifications_enabled` preference actually suppresses the email
 - [ ] **HARD-06**: Temporary client passwords are generated with a cryptographically secure RNG
@@ -251,8 +251,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SEO-02 | Phase 6 | Complete |
 | DEP-01 | Phase 6 | Complete |
 | HARD-01 | Phase 7 | Pending |
-| HARD-02 | Phase 7 | Pending |
-| HARD-03 | Phase 7 | Pending |
+| HARD-02 | Phase 7 | Complete |
+| HARD-03 | Phase 7 | Complete |
 | HARD-04 | Phase 7 | Pending |
 | HARD-05 | Phase 7 | Pending |
 | HARD-06 | Phase 7 | Pending |
