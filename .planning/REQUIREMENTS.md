@@ -95,7 +95,7 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **FIX-04**: The Stripe webhook returns 400 (not 500) on an invalid signature — the exception reference is corrected to the installed SDK's class
 - [x] **FIX-05**: Admin authorization is unified on `isAdmin()` across middleware and layouts, supporting `ADMIN_EMAILS`; `ADMIN_EMAILS` is documented in `.env.example`
 - [x] **FIX-06**: The FastAPI service boots on Railway with a verified Procfile/module path and a pinned Python version
-- [ ] **SPAM-01**: The lead-submit and get-started endpoints reject bot traffic via a honeypot field plus per-IP rate limiting
+- [x] **SPAM-01**: The lead-submit and get-started endpoints reject bot traffic via a honeypot field plus per-IP rate limiting
 - [x] **LEGL-01**: The lead form displays SMS/call consent language at the point of capture before enrolling a number in automated messaging
 - [x] **LEGL-02**: Privacy Policy and Terms of Service pages exist and are linked from the marketing and landing-page footers
 - [x] **LEGL-03**: Landing-page review rating and count are per-client data fields (hidden when absent), never a hardcoded claim
@@ -243,7 +243,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FIX-04 | Phase 6 | Complete |
 | FIX-05 | Phase 6 | Complete |
 | FIX-06 | Phase 6 | Complete |
-| SPAM-01 | Phase 6 | Pending |
+| SPAM-01 | Phase 6 | Complete |
 | LEGL-01 | Phase 6 | Complete |
 | LEGL-02 | Phase 6 | Complete |
 | LEGL-03 | Phase 6 | Complete |

@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 06-04-PLAN.md
-last_updated: "2026-07-06T12:35:49.440Z"
+stopped_at: Completed 06-05-PLAN.md
+last_updated: "2026-07-06T12:43:13.249Z"
 progress:
   total_phases: 9
   completed_phases: 4
   total_plans: 28
-  completed_plans: 25
+  completed_plans: 26
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 ## Current Position
 
 Phase: 6 (High-Priority Correctness, Legal & SEO) — EXECUTING
-Plan: 5 of 6
+Plan: 6 of 6
 
 ## Performance Metrics
 
@@ -71,6 +71,7 @@ Plan: 5 of 6
 | Phase 06 P02 | 15min | 4 tasks | 10 files |
 | Phase 06 P03 | 12min | 4 tasks | 8 files |
 | Phase 06 P04 | 6min | 3 tasks | 4 files |
+| Phase 06-high-priority-correctness-legal-seo P05 | 3min | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -131,6 +132,7 @@ Recent decisions affecting current work:
 - [Phase 06]: [Phase 06-02]: Lead-submit's GHL block now guards on token presence — a client with neither a stored per-client token nor a configured global GHL_PRIVATE_TOKEN fallback skips GHL silently instead of throwing
 - [Phase 06]: [Phase 06-03]: Landing-page reviews block gated on hasReviews (both review_rating and review_count non-null) — null is the intentional 'hide' signal, not a sentinel like 0
 - [Phase 06]: [Phase 06-04]: generateMetadata mirrors the page component's own service-role client fetch pattern rather than a shared cache; sitemap.ts and robots.ts both reuse the exact placeholder-guard from generateStaticParams, with sitemap.ts additionally try/catching the query to degrade to static-only URLs on any Supabase error
+- [Phase 06-high-priority-correctness-legal-seo]: [Phase 06-05]: In-memory Map-based rate limiter accepted as best-effort per serverless instance rather than adding Redis/Upstash — sufficient for basic bot deterrence at launch scope
 
 ### Pending Todos
 
@@ -147,6 +149,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T12:35:49.435Z
-Stopped at: Completed 06-04-PLAN.md
+Last session: 2026-07-06T12:43:13.244Z
+Stopped at: Completed 06-05-PLAN.md
 Resume file: None

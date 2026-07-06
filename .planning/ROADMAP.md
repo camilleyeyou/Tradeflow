@@ -139,7 +139,7 @@ Plans:
 - [x] 06-02-PLAN.md — FIX-01/02: per-client encrypted GHL token (migration 006) + collision-safe slug verify
 - [x] 06-03-PLAN.md — LEGL-01/02/03: SMS consent copy, privacy/terms pages + footers, per-client reviews (migration 007)
 - [x] 06-04-PLAN.md — SEO-01/02: landing generateMetadata + robots.ts + sitemap.ts
-- [ ] 06-05-PLAN.md — SPAM-01: honeypot + per-IP rate limiting on lead-submit and get-started
+- [x] 06-05-PLAN.md — SPAM-01: honeypot + per-IP rate limiting on lead-submit and get-started
 - [ ] 06-06-PLAN.md — DEP-01: npm audit fix + patched Next 15.5.x + build verification
 **UI hint**: yes
 
@@ -193,7 +193,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
 | 4. Operations | 4/4 | Complete   | 2026-03-26 |
 | 5. Critical Security & Launch Blockers | 1/6 | In Progress|  |
-| 6. High-Priority Correctness, Legal & SEO | 0/6 | Not started | - |
+| 6. High-Priority Correctness, Legal & SEO | 5/6 | In Progress|  |
 | 7. Medium-Priority Hardening | 0/TBD | Not started | - |
 | 8. Low-Priority Hygiene | 0/TBD | Not started | - |
 | 9. Features | 0/TBD | Not started | - |
