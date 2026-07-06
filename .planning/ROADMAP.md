@@ -190,7 +190,7 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 09-01-PLAN.md — DUR-01: webhook_events migration (010) + record-before-ACK in all 3 FastAPI handlers + replay path (wave 1)
+- [x] 09-01-PLAN.md — DUR-01: webhook_events migration (010) + record-before-ACK in all 3 FastAPI handlers + replay path (wave 1)
 - [ ] 09-02-PLAN.md — OBSV-01/02: Sentry on FastAPI + Next.js + backups/uptime/env docs in DEPLOY-CHECKLIST (wave 1)
 - [ ] 09-03-PLAN.md — ROI-01/02: migration 011 (leads.first_contact_at) + first-contact stamping + dashboard ROI summary (wave 1)
 - [ ] 09-04-PLAN.md — INBX-01: GHL conversations service + auth'd route handler + lead-detail SMS inbox UI (wave 1)
@@ -212,4 +212,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. High-Priority Correctness, Legal & SEO | 6/6 | Complete    | 2026-07-06 |
 | 7. Medium-Priority Hardening | 4/4 | Complete    | 2026-07-06 |
 | 8. Low-Priority Hygiene | 1/1 | Complete    | 2026-07-06 |
-| 9. Features | 0/5 | Not started | - |
+| 9. Features | 1/5 | In Progress|  |

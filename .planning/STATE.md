@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Completed 08-01-PLAN.md
-last_updated: "2026-07-06T14:01:47.557Z"
+status: Ready to execute
+stopped_at: Completed 09-01-PLAN.md
+last_updated: "2026-07-06T14:24:38.117Z"
 progress:
   total_phases: 9
   completed_phases: 7
-  total_plans: 33
-  completed_plans: 32
+  total_plans: 38
+  completed_plans: 33
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-06)
 
 **Core value:** Every inbound lead is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
-**Current focus:** Phase 8 — Low-Priority Hygiene
+**Current focus:** Phase 9 — Features
 
 ## Current Position
 
-Phase: 9
-Plan: Not started
+Phase: 9 (Features) — EXECUTING
+Plan: 2 of 5
 
 ## Performance Metrics
 
@@ -78,6 +78,7 @@ Plan: Not started
 | Phase 07-medium-priority-hardening P03 | 8min | 3 tasks | 8 files |
 | Phase 07 P04 | 8min | 2 tasks | 3 files |
 | Phase 08-low-priority-hygiene P01 | 20min | 4 tasks | 11 files |
+| Phase 09-features P01 | 12min | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -148,6 +149,8 @@ Recent decisions affecting current work:
 - [Phase 07]: [Phase 07][07-04]: Removed Fontshare <head> block outright rather than migrating General Sans/Gambetta to next/font/local — no CSS depends on them, only inline styles with system/Georgia fallbacks already present
 - [Phase 07]: [Phase 07][07-04]: validateEnv() parsing kept inside function body (not module top-level) so next build never crashes; only runs when instrumentation.ts register() executes on nodejs runtime at actual server boot
 - [Phase 08-low-priority-hygiene]: [Phase 08-01]: Also removed the stale legacy RSA GHL signature mention from README's architecture diagram while fixing the CallRail webhook omission — that path was already removed in Phase 5 (SEC-03)
+- [Phase 09-features]: [Phase 09][09-01]: GHL provider_event_id fallback chain (webhookId -> id -> messageId -> body hash) since GHL webhooks lack one canonical id field across event types
+- [Phase 09-features]: [Phase 09][09-01]: webhook_events RLS enabled with zero policies — service-role only, no anon/authenticated access by design
 
 ### Pending Todos
 
@@ -164,6 +167,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T14:00:25.436Z
-Stopped at: Completed 08-01-PLAN.md
+Last session: 2026-07-06T14:24:38.111Z
+Stopped at: Completed 09-01-PLAN.md
 Resume file: None
