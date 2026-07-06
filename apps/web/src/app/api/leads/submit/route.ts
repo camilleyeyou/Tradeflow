@@ -5,6 +5,7 @@ import { leadSchema } from '@/lib/validations/lead'
 import { createGHLContact, addContactToWorkflow, lookupContactByPhone } from '@/lib/ghl'
 import { decryptToken } from '@/lib/crypto'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
+import { escapeHtml } from '@/lib/escape-html'
 import { Resend } from 'resend'
 
 export async function POST(request: Request) {
@@ -145,22 +146,22 @@ export async function POST(request: Request) {
     try {
       const { data: clientRow } = await supabase
         .from('clients')
-        .select('email, business_name, city')
+        .select('email, business_name, city, notifications_enabled')
         .eq('id', client_id)
         .single()
 
-      if (clientRow?.email) {
+      if (clientRow?.email && clientRow.notifications_enabled !== false) {
         const resend = new Resend(process.env.RESEND_API_KEY)
         await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL ?? 'leads@tradeflow.io',
           to: clientRow.email,
           subject: `New Lead: ${homeowner_name} — ${service_type.replace('-', ' ')}`,
-          html: `<h2>New lead for ${clientRow.business_name}</h2>
+          html: `<h2>New lead for ${escapeHtml(clientRow.business_name)}</h2>
             <table style="border-collapse:collapse;">
-              <tr><td style="padding:4px 12px;font-weight:bold;">Name</td><td style="padding:4px 12px;">${homeowner_name}</td></tr>
-              <tr><td style="padding:4px 12px;font-weight:bold;">Phone</td><td style="padding:4px 12px;">${phone}</td></tr>
-              <tr><td style="padding:4px 12px;font-weight:bold;">Service</td><td style="padding:4px 12px;">${service_type.replace('-', ' ')}</td></tr>
-              <tr><td style="padding:4px 12px;font-weight:bold;">Zip Code</td><td style="padding:4px 12px;">${zip_code}</td></tr>
+              <tr><td style="padding:4px 12px;font-weight:bold;">Name</td><td style="padding:4px 12px;">${escapeHtml(homeowner_name)}</td></tr>
+              <tr><td style="padding:4px 12px;font-weight:bold;">Phone</td><td style="padding:4px 12px;">${escapeHtml(phone)}</td></tr>
+              <tr><td style="padding:4px 12px;font-weight:bold;">Service</td><td style="padding:4px 12px;">${escapeHtml(service_type.replace('-', ' '))}</td></tr>
+              <tr><td style="padding:4px 12px;font-weight:bold;">Zip Code</td><td style="padding:4px 12px;">${escapeHtml(zip_code)}</td></tr>
             </table>
             <p style="margin-top:16px;"><a href="${process.env.NEXT_PUBLIC_APP_URL || ''}/dashboard">View in dashboard</a></p>`,
         })
