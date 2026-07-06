@@ -15,6 +15,7 @@ export default async function LeadsPage() {
   const { data: allLeads } = await supabase
     .from('leads')
     .select('*')
+    .order('urgency_score', { ascending: false, nullsFirst: false })
     .order('created_at', { ascending: false })
 
   const leads = (allLeads ?? []) as Lead[]

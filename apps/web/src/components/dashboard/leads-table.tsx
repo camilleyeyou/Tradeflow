@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Badge } from '@/components/ui/badge'
 import { StatusSelect } from './status-select'
 import { NotesEditor } from './notes-editor'
 import { formatChicagoTime, truncatePhone } from '@/lib/utils/format'
@@ -44,12 +45,22 @@ export function LeadsTable({ leads }: LeadsTableProps) {
           {leads.map((lead) => (
             <TableRow key={lead.id}>
               <TableCell className="font-medium">
-                <Link
-                  href={`/dashboard/leads/${lead.id}`}
-                  className="underline-offset-4 hover:underline"
-                >
-                  {lead.homeowner_name ?? 'Unknown'}
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/dashboard/leads/${lead.id}`}
+                    className="underline-offset-4 hover:underline"
+                  >
+                    {lead.homeowner_name ?? 'Unknown'}
+                  </Link>
+                  {lead.urgency_score !== null && lead.urgency_score >= 8 && (
+                    <Badge
+                      variant="destructive"
+                      title={lead.urgency_reason ?? `Urgency score: ${lead.urgency_score}/10`}
+                    >
+                      Hot
+                    </Badge>
+                  )}
+                </div>
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 {lead.phone ? truncatePhone(lead.phone) : '-'}
