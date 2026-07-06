@@ -104,6 +104,7 @@ export type Database = {
           contacted_at: string | null
           booked_at: string | null
           completed_at: string | null
+          first_contact_at: string | null
         }
         Insert: {
           id?: string
@@ -123,6 +124,7 @@ export type Database = {
           contacted_at?: string | null
           booked_at?: string | null
           completed_at?: string | null
+          first_contact_at?: string | null
         }
         Update: {
           id?: string
@@ -142,6 +144,7 @@ export type Database = {
           contacted_at?: string | null
           booked_at?: string | null
           completed_at?: string | null
+          first_contact_at?: string | null
         }
         Relationships: [
           {
