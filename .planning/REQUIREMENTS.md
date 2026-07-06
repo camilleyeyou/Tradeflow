@@ -99,8 +99,8 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **LEGL-01**: The lead form displays SMS/call consent language at the point of capture before enrolling a number in automated messaging
 - [x] **LEGL-02**: Privacy Policy and Terms of Service pages exist and are linked from the marketing and landing-page footers
 - [x] **LEGL-03**: Landing-page review rating and count are per-client data fields (hidden when absent), never a hardcoded claim
-- [ ] **SEO-01**: Each landing page emits page-specific metadata (title/description/OG) derived from business, service, and city
-- [ ] **SEO-02**: The site serves a `robots.txt` (disallowing `/dashboard`, `/admin`, `/api`) and a `sitemap.xml` of public landing pages
+- [x] **SEO-01**: Each landing page emits page-specific metadata (title/description/OG) derived from business, service, and city
+- [x] **SEO-02**: The site serves a `robots.txt` (disallowing `/dashboard`, `/admin`, `/api`) and a `sitemap.xml` of public landing pages
 - [ ] **DEP-01**: Known-vulnerable production dependencies are patched (Next.js bumped to a patched 15.5.x; `npm audit` high-severity findings resolved)
 
 ### Medium-Priority Hardening
@@ -247,8 +247,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LEGL-01 | Phase 6 | Complete |
 | LEGL-02 | Phase 6 | Complete |
 | LEGL-03 | Phase 6 | Complete |
-| SEO-01 | Phase 6 | Pending |
-| SEO-02 | Phase 6 | Pending |
+| SEO-01 | Phase 6 | Complete |
+| SEO-02 | Phase 6 | Complete |
 | DEP-01 | Phase 6 | Pending |
 | HARD-01 | Phase 7 | Pending |
 | HARD-02 | Phase 7 | Pending |
