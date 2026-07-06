@@ -17,9 +17,10 @@ const SERVICE_OPTION_LABELS: Record<string, string> = {
 interface LeadFormProps {
   clientId: string
   serviceType: string
+  businessName?: string
 }
 
-export default function LeadForm({ clientId, serviceType }: LeadFormProps) {
+export default function LeadForm({ clientId, serviceType, businessName }: LeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -256,6 +257,12 @@ export default function LeadForm({ clientId, serviceType }: LeadFormProps) {
 
       <p className="mt-3 text-center text-xs text-slate-500">
         No spam. Your info is only shared with the local technician.
+      </p>
+
+      <p className="mt-2 text-center text-xs text-slate-500">
+        By submitting, you agree to receive calls and texts (including automated) from{' '}
+        {businessName ?? 'this business'} about your request. Msg &amp; data rates may apply.
+        Reply STOP to opt out.
       </p>
 
       {/* Server / network error */}

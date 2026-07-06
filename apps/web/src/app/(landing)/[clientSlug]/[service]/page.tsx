@@ -248,7 +248,11 @@ export default async function LandingPage({ params }: Props) {
               <p className="text-sm text-slate-600 mb-5">
                 We&apos;ll call you back within 5 minutes.
               </p>
-              <LeadForm clientId={client.id as string} serviceType={service} />
+              <LeadForm
+                clientId={client.id as string}
+                serviceType={service}
+                businessName={client.business_name as string}
+              />
             </div>
           </div>
         </div>
