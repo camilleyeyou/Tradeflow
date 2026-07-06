@@ -33,6 +33,7 @@ export type Database = {
           created_at: string
           slug: string
           notifications_enabled: boolean
+          ghl_private_token_encrypted: string | null
         }
         Insert: {
           id?: string
@@ -53,6 +54,7 @@ export type Database = {
           created_at?: string
           slug: string
           notifications_enabled?: boolean
+          ghl_private_token_encrypted?: string | null
         }
         Update: {
           id?: string
@@ -73,6 +75,7 @@ export type Database = {
           created_at?: string
           slug?: string
           notifications_enabled?: boolean
+          ghl_private_token_encrypted?: string | null
         }
         Relationships: []
       }
