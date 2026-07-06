@@ -1,6 +1,8 @@
 'use server'
 
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
+import { isAdmin } from '@/lib/admin'
 
 function generateTempPassword(): string {
   const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789'
@@ -15,6 +17,12 @@ export async function createClientLogin(
   clientId: string,
   email: string,
 ): Promise<{ tempPassword: string } | { error: string }> {
+  const authClient = await createClient()
+  const { data: { user } } = await authClient.auth.getUser()
+  if (!user || !isAdmin(user.email ?? undefined)) {
+    throw new Error('Not authorized')
+  }
+
   const supabase = createAdminClient()
 
   // Check if a login already exists
