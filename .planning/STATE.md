@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 05-04-PLAN.md
-last_updated: "2026-07-06T11:22:30.453Z"
+stopped_at: Completed 05-05-PLAN.md
+last_updated: "2026-07-06T11:34:12.353Z"
 progress:
   total_phases: 9
   completed_phases: 4
   total_plans: 22
-  completed_plans: 20
+  completed_plans: 21
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 ## Current Position
 
 Phase: 5 (Critical Security & Launch Blockers) — EXECUTING
-Plan: 5 of 6
+Plan: 6 of 6
 
 ## Performance Metrics
 
@@ -66,6 +66,7 @@ Plan: 5 of 6
 | Phase 05 P02 | 3min | 1 tasks | 1 files |
 | Phase 05 P03 | 4min | 2 tasks | 2 files |
 | Phase 05 P04 | 7min | 3 tasks | 6 files |
+| Phase 05 P05 | 12min | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -119,6 +120,8 @@ Recent decisions affecting current work:
 - [Phase 05]: CallRail signature verification computes and compares both hex and base64 HMAC-SHA256 digests against the header value since CallRail's exact digest encoding must be confirmed at deploy time (fails closed either way)
 - [Phase 05]: is_missed_call checks event.answered is False (strict identity) so payloads lacking the answered field are not misclassified as missed
 - [Phase 05]: Kept per-client GHL token as shared GHL_PRIVATE_TOKEN env var for this plan — Phase 6 FIX-01 seam left as a comment in ghl_api.py and callrail_webhooks.py
+- [Phase 05]: DPLY-01: Hand-authored schema-accurate Database type from migrations 001-005 (mirrors real supabase gen types shape); live type-gen deferred to 05-06
+- [Phase 05]: onboardClient was missing required clients.slug on insert (NOT NULL, no DB default) — real types surfaced this bug; fixed by deriving slug from business_name using migration 002's backfill normalization
 
 ### Pending Todos
 
@@ -135,6 +138,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T11:22:19.367Z
-Stopped at: Completed 05-04-PLAN.md
+Last session: 2026-07-06T11:34:12.348Z
+Stopped at: Completed 05-05-PLAN.md
 Resume file: None

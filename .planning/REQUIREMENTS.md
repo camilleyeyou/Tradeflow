@@ -84,8 +84,8 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **MISS-02**: A missed call creates a `calls` record and a `leads` record (source `direct_call`), deduplicated on the CallRail call id
 - [x] **MISS-03**: A missed call triggers the GHL text-back workflow within 15 seconds of the event
 - [x] **MISS-04**: The dashboard call log populates from ingested CallRail calls with recording links
-- [ ] **DPLY-01**: Supabase migrations are applied and generated Database types replace the `types.ts` placeholder stub (removing the `as any`/`@ts-expect-error` workarounds)
-- [ ] **DPLY-02**: A documented env-var + end-to-end verification checklist exists for Supabase, Vercel, and Railway (one real lead traced form → DB → GHL SMS → Resend email; one real missed call traced to text-back)
+- [x] **DPLY-01**: Supabase migrations are applied and generated Database types replace the `types.ts` placeholder stub (removing the `as any`/`@ts-expect-error` workarounds)
+- [x] **DPLY-02**: A documented env-var + end-to-end verification checklist exists for Supabase, Vercel, and Railway (one real lead traced form → DB → GHL SMS → Resend email; one real missed call traced to text-back)
 
 ### High-Priority Correctness, Legal & SEO
 
@@ -235,8 +235,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MISS-02 | Phase 5 | Complete |
 | MISS-03 | Phase 5 | Complete |
 | MISS-04 | Phase 5 | Complete |
-| DPLY-01 | Phase 5 | Pending |
-| DPLY-02 | Phase 5 | Pending |
+| DPLY-01 | Phase 5 | Complete |
+| DPLY-02 | Phase 5 | Complete |
 | FIX-01 | Phase 6 | Pending |
 | FIX-02 | Phase 6 | Pending |
 | FIX-03 | Phase 6 | Pending |
