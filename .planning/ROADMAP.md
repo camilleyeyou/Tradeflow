@@ -22,7 +22,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 6: High-Priority Correctness, Legal & SEO** - Fix per-client token/slug/validation bugs, add spam protection, legal pages, and landing-page SEO (completed 2026-07-06)
 - [x] **Phase 7: Medium-Priority Hardening** - Async DB access, least-privilege RLS, schema integrity, and operational safety nets (completed 2026-07-06)
 - [x] **Phase 8: Low-Priority Hygiene** - Repo cleanup, error pages, copy fixes, and doc accuracy (completed 2026-07-06)
-- [ ] **Phase 9: Features** - Webhook durability, error observability, ROI dashboard, SMS inbox, and AI lead scoring
+- [x] **Phase 9: Features** - Webhook durability, error observability, ROI dashboard, SMS inbox, and AI lead scoring (completed 2026-07-06)
 
 ## Phase Details
 
@@ -212,4 +212,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. High-Priority Correctness, Legal & SEO | 6/6 | Complete    | 2026-07-06 |
 | 7. Medium-Priority Hardening | 4/4 | Complete    | 2026-07-06 |
 | 8. Low-Priority Hygiene | 1/1 | Complete    | 2026-07-06 |
-| 9. Features | 1/5 | In Progress|  |
+| 9. Features | 1/5 | Complete    | 2026-07-06 |
