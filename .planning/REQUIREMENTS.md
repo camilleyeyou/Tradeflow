@@ -126,8 +126,8 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 ### Features
 
 - [x] **DUR-01**: Every webhook handler durably records the raw event (deduped on the provider event id) before returning 200, and supports replay of a stored event
-- [ ] **OBSV-01**: Sentry (or equivalent) captures unhandled errors on both the FastAPI service and the Next.js app
-- [ ] **OBSV-02**: Supabase automated backups are enabled/documented and an uptime check pings `/health`
+- [x] **OBSV-01**: Sentry (or equivalent) captures unhandled errors on both the FastAPI service and the Next.js app
+- [x] **OBSV-02**: Supabase automated backups are enabled/documented and an uptime check pings `/health`
 - [ ] **ROI-01**: Each lead records its time-to-first-contact (first status change off `new` or first outbound touch)
 - [ ] **ROI-02**: The client dashboard shows a monthly summary of lead count, estimated lead value, and speed-to-lead
 - [ ] **INBX-01**: The client dashboard shows the SMS conversation per lead and lets the owner send a reply through GHL
@@ -265,8 +265,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HYG-03 | Phase 8 | Complete |
 | HYG-04 | Phase 8 | Complete |
 | DUR-01 | Phase 9 | Complete |
-| OBSV-01 | Phase 9 | Pending |
-| OBSV-02 | Phase 9 | Pending |
+| OBSV-01 | Phase 9 | Complete |
+| OBSV-02 | Phase 9 | Complete |
 | ROI-01 | Phase 9 | Pending |
 | ROI-02 | Phase 9 | Pending |
 | INBX-01 | Phase 9 | Pending |

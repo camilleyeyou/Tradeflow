@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 09-01-PLAN.md
-last_updated: "2026-07-06T14:24:38.117Z"
+stopped_at: Completed 09-02-PLAN.md
+last_updated: "2026-07-06T17:11:29.405Z"
 progress:
   total_phases: 9
   completed_phases: 7
   total_plans: 38
-  completed_plans: 33
+  completed_plans: 34
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 ## Current Position
 
 Phase: 9 (Features) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 
 ## Performance Metrics
 
@@ -79,6 +79,7 @@ Plan: 2 of 5
 | Phase 07 P04 | 8min | 2 tasks | 3 files |
 | Phase 08-low-priority-hygiene P01 | 20min | 4 tasks | 11 files |
 | Phase 09-features P01 | 12min | 3 tasks | 6 files |
+| Phase 09-features P02 | 20min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -151,6 +152,8 @@ Recent decisions affecting current work:
 - [Phase 08-low-priority-hygiene]: [Phase 08-01]: Also removed the stale legacy RSA GHL signature mention from README's architecture diagram while fixing the CallRail webhook omission — that path was already removed in Phase 5 (SEC-03)
 - [Phase 09-features]: [Phase 09][09-01]: GHL provider_event_id fallback chain (webhookId -> id -> messageId -> body hash) since GHL webhooks lack one canonical id field across event types
 - [Phase 09-features]: [Phase 09][09-01]: webhook_events RLS enabled with zero policies — service-role only, no anon/authenticated access by design
+- [Phase 09-features]: [Phase 09][09-02]: Placed instrumentation-client.ts under apps/web/src/ (not repo root as in plan frontmatter) to match this project's src-dir convention and Next.js's requirement that it live alongside instrumentation.ts
+- [Phase 09-features]: [Phase 09][09-02]: All Sentry/Anthropic env vars are optional/feature-flag — DSN or key unset fully disables the feature with no crash, no addition to REQUIRED_ENV_VARS or serverEnvSchema
 
 ### Pending Todos
 
@@ -167,6 +170,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T14:24:38.111Z
-Stopped at: Completed 09-01-PLAN.md
+Last session: 2026-07-06T17:11:29.397Z
+Stopped at: Completed 09-02-PLAN.md
 Resume file: None
