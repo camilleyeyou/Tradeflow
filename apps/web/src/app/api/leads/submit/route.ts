@@ -4,11 +4,29 @@ import { createClient } from '@supabase/supabase-js'
 import { leadSchema } from '@/lib/validations/lead'
 import { createGHLContact, addContactToWorkflow, lookupContactByPhone } from '@/lib/ghl'
 import { decryptToken } from '@/lib/crypto'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 import { Resend } from 'resend'
 
 export async function POST(request: Request) {
   // Step 1 — Parse and validate (per D-13)
   const body = await request.json()
+
+  // Step 1a — Honeypot (SPAM-01): silently succeed without processing.
+  // The honeypot field is read from the raw body, not the Zod-parsed
+  // result, since the schema strips unknown keys.
+  if (typeof body?.company_website === 'string' && body.company_website.trim() !== '') {
+    return NextResponse.json({ success: true })
+  }
+
+  // Step 1b — Per-IP rate limit (SPAM-01), before any DB/Zod work.
+  const ip = getClientIp(request)
+  if (!rateLimit(`lead:${ip}`, 5, 60_000).allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests', code: 'RATE_LIMITED' },
+      { status: 429 }
+    )
+  }
+
   const result = leadSchema.safeParse(body)
   if (!result.success) {
     return NextResponse.json(

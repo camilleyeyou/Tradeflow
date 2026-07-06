@@ -24,6 +24,9 @@ export default function LeadForm({ clientId, serviceType, businessName }: LeadFo
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  // Honeypot (SPAM-01): kept outside react-hook-form so it is never wired to
+  // a visible/labeled field; bots that auto-fill all inputs will populate it.
+  const [honeypot, setHoneypot] = useState('')
 
   const {
     register,
@@ -48,7 +51,7 @@ export default function LeadForm({ clientId, serviceType, businessName }: LeadFo
       const response = await fetch('/api/leads/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, company_website: honeypot }),
       })
 
       const body = await response.json()
@@ -116,6 +119,19 @@ export default function LeadForm({ clientId, serviceType, businessName }: LeadFo
     >
       {/* Hidden client_id field */}
       <input type="hidden" {...register('client_id')} />
+
+      {/* Honeypot (SPAM-01): hidden from real users, not a react-hook-form
+          field — bots that blindly fill every input will trip this. */}
+      <input
+        type="text"
+        name="company_website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        className="hidden"
+      />
 
       {/* Field 1: Name */}
       <div className="mb-4">
