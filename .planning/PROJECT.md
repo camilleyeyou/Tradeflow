@@ -8,6 +8,21 @@ Tradeflow is an AI-powered lead generation platform for home service businesses,
 
 Every inbound lead — whether from an ad click, landing page form, or missed call — is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
 
+## Current Milestone: v1.1 Pre-launch hardening + core features
+
+**Goal:** Close every security, correctness, and legal gap found in the pre-launch audit and ship four differentiating features so Tradeflow can safely onboard paying HVAC clients at launch.
+
+**Target features:**
+- Critical security fixes: authorize service-role Server Actions, enable RLS on `client_users`, remove the GHL signature bypass, and build the missing CallRail missed-call text-back integration
+- Correctness/legal fixes: per-client GHL tokens, onboarding slug bug, phone-format validation, spam protection, SMS consent + privacy/terms, dependency patches, admin gating, landing-page SEO
+- Hardening: async DB access, tightened RLS grants, constraints/indexes, secret-strength passwords, self-hosted fonts, env validation, repo hygiene
+- Webhook durability (`webhook_events` idempotency/replay) + Sentry error tracking on both apps
+- ROI + speed-to-lead dashboard (time-to-first-contact, monthly lead-value summary)
+- Two-way SMS inbox in the client dashboard (reply to homeowners via GHL)
+- Claude-API lead scoring that auto-ranks inbound leads by urgency
+
+**Key context:** Launch is imminent (targeted the week of 2026-07-13). Security fixes are the top priority and must land first. Several audit findings are remotely exploitable today (GHL signature bypass, unauthenticated admin Server Actions, `client_users` with RLS disabled). Missed-call text-back is advertised on the live marketing site but was never built — this milestone builds it rather than removing the claim.
+
 ## Requirements
 
 ### Validated
@@ -20,10 +35,16 @@ Every inbound lead — whether from an ad click, landing page form, or missed ca
 - [x] Admin panel: list all clients, onboard new clients (+ GHL sub-account), view any client's leads and calls — Validated in Phase 4: Operations
 - [x] Stripe billing: subscription lifecycle webhooks, invoice tracking, payment failure alerts — Validated in Phase 4: Operations
 
-### Active
+### Active (Milestone v1.1)
 
-- [ ] Missed-call text-back: CallRail webhook → lead creation → GHL text-back workflow trigger (deferred to v2)
-- [ ] CallRail integration: call tracking per campaign, call recording/transcript storage, missed call detection
+- [ ] Critical security remediation: authorize service-role Server Actions, enable RLS on `client_users`, remove GHL legacy signature bypass
+- [ ] Missed-call text-back: CallRail webhook → lead creation → GHL text-back workflow trigger (promoted from v2 — sold on live marketing)
+- [ ] CallRail integration: call event ingestion, missed-call detection, call log population
+- [ ] Legal/compliance: SMS consent capture, privacy + terms pages, truthful per-client review claims
+- [ ] Reliability: webhook idempotency/replay store, Sentry on both apps, tightened RLS + DB constraints
+- [ ] Two-way SMS inbox in the client dashboard
+- [ ] ROI + speed-to-lead metrics in the client dashboard
+- [ ] Claude-API lead scoring (urgency ranking)
 
 ### Out of Scope
 
@@ -69,6 +90,9 @@ Every inbound lead — whether from an ad click, landing page form, or missed ca
 | FastAPI backend separate from Next.js | Webhook processing, cron jobs, and GHL orchestration need a dedicated service | — Pending |
 | One Next.js app for all three sites | Marketing, landing pages, dashboard, and admin share one deployment — simpler infra | — Pending |
 | Sub-account per client in GHL | Isolation between clients, no cross-contamination of contacts or workflows | — Pending |
+| Enable RLS on `client_users` with a self-read policy | The v1.0 "circular dependency" concern was incorrect — a `user_id = auth.uid()` SELECT policy lets users read their own mapping without breaking other tables' policies; leaving RLS off exposed every tenant | v1.1 — corrects prior decision |
+| Build missed-call text-back rather than remove the claim | Feature is advertised on the live marketing site and pricing; removing it weakens the core pitch, and CallRail + GHL make it tractable | v1.1 |
+| Claude API for lead scoring (promoted from v2) | Urgency ranking is a low-effort, high-signal differentiator that improves speed-to-lead on the highest-value jobs | v1.1 |
 
 ## Evolution
 
@@ -88,4 +112,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-26 after Phase 4 completion (all v1 phases complete)*
+*Last updated: 2026-07-06 — started milestone v1.1 (pre-launch hardening + core features)*
