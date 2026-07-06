@@ -13,7 +13,19 @@ export async function updateLeadStatus(leadId: string, status: LeadStatus) {
   if (!user) throw new Error('Not authenticated')
 
   // RLS enforces ownership — no manual client_id check needed
-  const { error } = await supabase.from('leads').update({ status }).eq('id', leadId)
+  const { data: current } = await supabase
+    .from('leads')
+    .select('first_contact_at')
+    .eq('id', leadId)
+    .maybeSingle()
+
+  const update: { status: LeadStatus; first_contact_at?: string } = { status }
+  if (status !== 'new' && !current?.first_contact_at) {
+    // Earliest-touch wins — only stamp on the first move off 'new' (ROI-01)
+    update.first_contact_at = new Date().toISOString()
+  }
+
+  const { error } = await supabase.from('leads').update(update).eq('id', leadId)
 
   if (error) throw new Error(error.message)
   revalidatePath('/dashboard/leads')
