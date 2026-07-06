@@ -105,7 +105,7 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 
 ### Medium-Priority Hardening
 
-- [ ] **HARD-01**: FastAPI webhook DB access no longer blocks the event loop (async Supabase client or threadpool offload)
+- [x] **HARD-01**: FastAPI webhook DB access no longer blocks the event loop (async Supabase client or threadpool offload)
 - [x] **HARD-02**: RLS grants are least-privilege — column-scoped UPDATE on `clients`; explicit SELECT + scoped UPDATE (no client DELETE/INSERT) on `leads`, `calls`, `sms_sequences`
 - [x] **HARD-03**: The schema enforces integrity — CHECK constraints on status/plan/outcome fields, indexes on `billing(client_id)`/`leads(ghl_contact_id)`/`calls(lead_id)`, a unique index on `leads(callrail_call_id)`, and `updated_at` columns with triggers
 - [ ] **HARD-04**: The auth callback validates the `next` redirect param to prevent open redirects
@@ -113,8 +113,8 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [ ] **HARD-06**: Temporary client passwords are generated with a cryptographically secure RNG
 - [ ] **HARD-07**: Fonts are self-hosted (via `next/font/local`) so landing pages carry no render-blocking third-party font requests
 - [ ] **HARD-08**: Landing pages revalidate when a client's info or onboarding changes (no indefinitely stale phone numbers)
-- [ ] **HARD-09**: Both apps validate required environment variables at boot and fail fast with a clear message
-- [ ] **HARD-10**: `requirements.txt` is minimal and fully pinned (unused packages removed, `resend` pinned); a Python version is pinned for deployment
+- [x] **HARD-09**: Both apps validate required environment variables at boot and fail fast with a clear message
+- [x] **HARD-10**: `requirements.txt` is minimal and fully pinned (unused packages removed, `resend` pinned); a Python version is pinned for deployment
 
 ### Low-Priority Hygiene
 
@@ -250,7 +250,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SEO-01 | Phase 6 | Complete |
 | SEO-02 | Phase 6 | Complete |
 | DEP-01 | Phase 6 | Complete |
-| HARD-01 | Phase 7 | Pending |
+| HARD-01 | Phase 7 | Complete |
 | HARD-02 | Phase 7 | Complete |
 | HARD-03 | Phase 7 | Complete |
 | HARD-04 | Phase 7 | Pending |
@@ -258,8 +258,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HARD-06 | Phase 7 | Pending |
 | HARD-07 | Phase 7 | Pending |
 | HARD-08 | Phase 7 | Pending |
-| HARD-09 | Phase 7 | Pending |
-| HARD-10 | Phase 7 | Pending |
+| HARD-09 | Phase 7 | Complete |
+| HARD-10 | Phase 7 | Complete |
 | HYG-01 | Phase 8 | Pending |
 | HYG-02 | Phase 8 | Pending |
 | HYG-03 | Phase 8 | Pending |
