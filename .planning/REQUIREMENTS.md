@@ -71,9 +71,74 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **GHL-04**: Inbound GHL webhook logs SMS replies from homeowners and updates lead notes
 - [x] **GHL-05**: GHL webhook verifies `X-GHL-Signature` (Ed25519, not deprecated `X-WH-Signature`)
 
+## v1.1 Requirements (Milestone v1.1 — Pre-launch hardening + core features)
+
+Sourced from the pre-launch audit. Grouped by the priority tier that becomes a roadmap phase: Critical → High → Medium → Low → Features.
+
+### Critical Security & Launch Blockers
+
+- [ ] **SEC-01**: `onboardClient` and `createClientLogin` Server Actions reject any caller who is not an authenticated admin (verified via `getUser()` + `isAdmin()`) before touching the service-role client
+- [ ] **SEC-02**: RLS is enabled on `client_users` with a self-read-only policy; no authenticated or anon user can read or write another user's mapping via PostgREST
+- [ ] **SEC-03**: The GHL webhook rejects any request without a valid Ed25519 `X-GHL-Signature`; the always-true legacy `X-WH-Signature` path is removed
+- [ ] **MISS-01**: A CallRail webhook endpoint (`POST /api/webhooks/callrail`) receives call events and verifies their authenticity (token/signature) before processing
+- [ ] **MISS-02**: A missed call creates a `calls` record and a `leads` record (source `direct_call`), deduplicated on the CallRail call id
+- [ ] **MISS-03**: A missed call triggers the GHL text-back workflow within 15 seconds of the event
+- [ ] **MISS-04**: The dashboard call log populates from ingested CallRail calls with recording links
+- [ ] **DPLY-01**: Supabase migrations are applied and generated Database types replace the `types.ts` placeholder stub (removing the `as any`/`@ts-expect-error` workarounds)
+- [ ] **DPLY-02**: A documented env-var + end-to-end verification checklist exists for Supabase, Vercel, and Railway (one real lead traced form → DB → GHL SMS → Resend email; one real missed call traced to text-back)
+
+### High-Priority Correctness, Legal & SEO
+
+- [ ] **FIX-01**: Lead submission uses the client's own GHL token (stored per client at onboarding), not a single global token
+- [ ] **FIX-02**: Client onboarding derives and stores a unique `slug` (collision-handled) so inserts never violate the NOT NULL constraint
+- [ ] **FIX-03**: The lead form accepts common phone formats (parentheses, dashes, spaces) by normalizing to digits before validation
+- [ ] **FIX-04**: The Stripe webhook returns 400 (not 500) on an invalid signature — the exception reference is corrected to the installed SDK's class
+- [ ] **FIX-05**: Admin authorization is unified on `isAdmin()` across middleware and layouts, supporting `ADMIN_EMAILS`; `ADMIN_EMAILS` is documented in `.env.example`
+- [ ] **FIX-06**: The FastAPI service boots on Railway with a verified Procfile/module path and a pinned Python version
+- [ ] **SPAM-01**: The lead-submit and get-started endpoints reject bot traffic via a honeypot field plus per-IP rate limiting
+- [ ] **LEGL-01**: The lead form displays SMS/call consent language at the point of capture before enrolling a number in automated messaging
+- [ ] **LEGL-02**: Privacy Policy and Terms of Service pages exist and are linked from the marketing and landing-page footers
+- [ ] **LEGL-03**: Landing-page review rating and count are per-client data fields (hidden when absent), never a hardcoded claim
+- [ ] **SEO-01**: Each landing page emits page-specific metadata (title/description/OG) derived from business, service, and city
+- [ ] **SEO-02**: The site serves a `robots.txt` (disallowing `/dashboard`, `/admin`, `/api`) and a `sitemap.xml` of public landing pages
+- [ ] **DEP-01**: Known-vulnerable production dependencies are patched (Next.js bumped to a patched 15.5.x; `npm audit` high-severity findings resolved)
+
+### Medium-Priority Hardening
+
+- [ ] **HARD-01**: FastAPI webhook DB access no longer blocks the event loop (async Supabase client or threadpool offload)
+- [ ] **HARD-02**: RLS grants are least-privilege — column-scoped UPDATE on `clients`; explicit SELECT + scoped UPDATE (no client DELETE/INSERT) on `leads`, `calls`, `sms_sequences`
+- [ ] **HARD-03**: The schema enforces integrity — CHECK constraints on status/plan/outcome fields, indexes on `billing(client_id)`/`leads(ghl_contact_id)`/`calls(lead_id)`, a unique index on `leads(callrail_call_id)`, and `updated_at` columns with triggers
+- [ ] **HARD-04**: The auth callback validates the `next` redirect param to prevent open redirects
+- [ ] **HARD-05**: Lead notification emails escape user-supplied values, and the `notifications_enabled` preference actually suppresses the email
+- [ ] **HARD-06**: Temporary client passwords are generated with a cryptographically secure RNG
+- [ ] **HARD-07**: Fonts are self-hosted (via `next/font/local`) so landing pages carry no render-blocking third-party font requests
+- [ ] **HARD-08**: Landing pages revalidate when a client's info or onboarding changes (no indefinitely stale phone numbers)
+- [ ] **HARD-09**: Both apps validate required environment variables at boot and fail fast with a clear message
+- [ ] **HARD-10**: `requirements.txt` is minimal and fully pinned (unused packages removed, `resend` pinned); a Python version is pinned for deployment
+
+### Low-Priority Hygiene
+
+- [ ] **HYG-01**: Stale/committed cruft is removed or ignored (`CLAUDE (1).md`, unused create-next-app SVGs, the untracked brand-binaries directory)
+- [ ] **HYG-02**: The app serves a styled `not-found` page and a global error boundary for ad-click visitors hitting bad slugs
+- [ ] **HYG-03**: Hardcoded placeholder copy is fixed (the "312 number" success message) and the low-contrast admin link is corrected
+- [ ] **HYG-04**: Planning docs are internally consistent and the web README accurately reflects shipped features
+
+### Features
+
+- [ ] **DUR-01**: Every webhook handler durably records the raw event (deduped on the provider event id) before returning 200, and supports replay of a stored event
+- [ ] **OBSV-01**: Sentry (or equivalent) captures unhandled errors on both the FastAPI service and the Next.js app
+- [ ] **OBSV-02**: Supabase automated backups are enabled/documented and an uptime check pings `/health`
+- [ ] **ROI-01**: Each lead records its time-to-first-contact (first status change off `new` or first outbound touch)
+- [ ] **ROI-02**: The client dashboard shows a monthly summary of lead count, estimated lead value, and speed-to-lead
+- [ ] **INBX-01**: The client dashboard shows the SMS conversation per lead and lets the owner send a reply through GHL
+- [ ] **AI-01**: Inbound leads are scored for urgency (e.g. 1–10) via the Claude API from the available lead/call data
+- [ ] **AI-02**: The dashboard surfaces high-urgency ("hot") leads at the top of the list
+
 ## v2 Requirements
 
 Deferred to future release. Tracked but not in current roadmap.
+
+> **Promoted to v1.1:** MISS-01..03 (missed-call automation), AI-01 (lead scoring). The v1.1 IDs above supersede the v2 stubs below.
 
 ### Missed-Call Automation
 
@@ -103,7 +168,7 @@ Explicitly excluded. Documented to prevent scope creep.
 
 | Feature | Reason |
 |---------|--------|
-| Missed-call text-back | Deferred to v2 — budget constraint ($2K), handle manually initially |
+| ~~Missed-call text-back~~ | **Promoted to v1.1** — it is advertised on the live marketing site, so it must exist before onboarding paying clients |
 | Facebook/Meta ads integration | LSA is primary channel first, prove before adding second |
 | Real-time chat inbox | GHL already provides this in sub-account UI — don't replicate |
 | DIY campaign builder for clients | Managed service model — clients get reporting, not controls |
