@@ -23,6 +23,7 @@ export default function NewClientPage() {
       state: 'IL',
       service_area_zips: '',
       plan: 'starter',
+      ghl_private_token: '',
     },
   })
 
@@ -120,6 +121,15 @@ export default function NewClientPage() {
           </select>
           {form.formState.errors.plan && (
             <p className="mt-1 text-sm text-red-600">{form.formState.errors.plan.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="ghl_private_token" className="mb-1 block text-sm font-medium">GHL Private Integration Token</label>
+          <Input id="ghl_private_token" type="password" {...form.register('ghl_private_token')} placeholder="pit-..." />
+          <p className="mt-1 text-xs text-gray-500">Stored encrypted. Leave blank to use the global fallback.</p>
+          {form.formState.errors.ghl_private_token && (
+            <p className="mt-1 text-sm text-red-600">{form.formState.errors.ghl_private_token.message}</p>
           )}
         </div>
 

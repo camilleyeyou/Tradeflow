@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import { isAdmin } from '@/lib/admin'
 import { createSubAccount } from '@/lib/ghl'
 import { onboardingSchema } from '@/lib/validations/onboarding'
+import { encryptToken } from '@/lib/crypto'
 import { redirect } from 'next/navigation'
 
 export async function onboardClient(formData: {
@@ -16,6 +17,7 @@ export async function onboardClient(formData: {
   state: string
   service_area_zips: string
   plan: string
+  ghl_private_token?: string
 }) {
   const authClient = await createClient()
   const { data: { user } } = await authClient.auth.getUser()
@@ -33,10 +35,23 @@ export async function onboardClient(formData: {
   // Step 1: Insert client record (D-54 step 1)
   // slug has no DB default (migration 002 backfilled existing rows only) — derive it
   // here using the same normalization the backfill used, so new inserts satisfy NOT NULL.
-  const slug = parsed.data.business_name
+  let slug = parsed.data.business_name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
+
+  // FIX-02: collision-safe slug — append -2, -3, ... on duplicate so inserts never
+  // violate the slug UNIQUE constraint (migration 002).
+  const { data: taken } = await supabase
+    .from('clients')
+    .select('slug')
+    .ilike('slug', `${slug}%`)
+  const existing = new Set((taken ?? []).map((r) => r.slug))
+  if (existing.has(slug)) {
+    let n = 2
+    while (existing.has(`${slug}-${n}`)) n++
+    slug = `${slug}-${n}`
+  }
 
   const { data: client, error } = await supabase
     .from('clients')
@@ -53,6 +68,9 @@ export async function onboardClient(formData: {
         .filter(Boolean),
       plan: parsed.data.plan,
       slug,
+      ghl_private_token_encrypted: parsed.data.ghl_private_token
+        ? encryptToken(parsed.data.ghl_private_token)
+        : null,
     })
     .select()
     .single()
