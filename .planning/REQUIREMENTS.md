@@ -228,12 +228,59 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BILL-04 | Phase 4 | Complete |
 | BILL-05 | Phase 4 | Complete |
 | BILL-06 | Phase 4 | Complete |
+| SEC-01 | Phase 5 | Pending |
+| SEC-02 | Phase 5 | Pending |
+| SEC-03 | Phase 5 | Pending |
+| MISS-01 | Phase 5 | Pending |
+| MISS-02 | Phase 5 | Pending |
+| MISS-03 | Phase 5 | Pending |
+| MISS-04 | Phase 5 | Pending |
+| DPLY-01 | Phase 5 | Pending |
+| DPLY-02 | Phase 5 | Pending |
+| FIX-01 | Phase 6 | Pending |
+| FIX-02 | Phase 6 | Pending |
+| FIX-03 | Phase 6 | Pending |
+| FIX-04 | Phase 6 | Pending |
+| FIX-05 | Phase 6 | Pending |
+| FIX-06 | Phase 6 | Pending |
+| SPAM-01 | Phase 6 | Pending |
+| LEGL-01 | Phase 6 | Pending |
+| LEGL-02 | Phase 6 | Pending |
+| LEGL-03 | Phase 6 | Pending |
+| SEO-01 | Phase 6 | Pending |
+| SEO-02 | Phase 6 | Pending |
+| DEP-01 | Phase 6 | Pending |
+| HARD-01 | Phase 7 | Pending |
+| HARD-02 | Phase 7 | Pending |
+| HARD-03 | Phase 7 | Pending |
+| HARD-04 | Phase 7 | Pending |
+| HARD-05 | Phase 7 | Pending |
+| HARD-06 | Phase 7 | Pending |
+| HARD-07 | Phase 7 | Pending |
+| HARD-08 | Phase 7 | Pending |
+| HARD-09 | Phase 7 | Pending |
+| HARD-10 | Phase 7 | Pending |
+| HYG-01 | Phase 8 | Pending |
+| HYG-02 | Phase 8 | Pending |
+| HYG-03 | Phase 8 | Pending |
+| HYG-04 | Phase 8 | Pending |
+| DUR-01 | Phase 9 | Pending |
+| OBSV-01 | Phase 9 | Pending |
+| OBSV-02 | Phase 9 | Pending |
+| ROI-01 | Phase 9 | Pending |
+| ROI-02 | Phase 9 | Pending |
+| INBX-01 | Phase 9 | Pending |
+| AI-01 | Phase 9 | Pending |
+| AI-02 | Phase 9 | Pending |
 
 **Coverage:**
 - v1 requirements: 39 total
 - Mapped to phases: 39
 - Unmapped: 0 ✓
+- v1.1 requirements: 44 total
+- Mapped to phases: 44
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-25*
-*Last updated: 2026-03-25 after roadmap creation*
+*Last updated: 2026-07-06 after v1.1 roadmap creation (Phases 5-9)*

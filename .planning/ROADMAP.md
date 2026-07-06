@@ -4,6 +4,8 @@
 
 Tradeflow is built in four phases that mirror the dependency chain from infrastructure to revenue. Phase 1 locks the data model and multi-tenancy before any code touches production data. Phase 2 builds the full lead pipeline — landing pages, form capture, GHL contact sync, SMS follow-up, and owner email notification — the closed loop that justifies the monthly retainer. Phase 3 gives HVAC clients a dashboard to see their leads moving through a pipeline, which is the primary retention driver. Phase 4 adds the admin panel for client onboarding and Stripe billing webhooks so the service can collect money and scale without manual database operations.
 
+**Milestone v1.1 (Pre-launch hardening + core features)** continues the roadmap at Phase 5. A pre-launch audit found remotely exploitable security gaps and a missing feature that is already advertised on the live marketing site (missed-call text-back), so Phase 5 closes those launch blockers first. Phases 6–8 work down the audit's priority tiers (correctness/legal/SEO → hardening → hygiene) so the codebase is safe and clean before Phase 9 ships the four differentiating features (webhook durability + observability, ROI dashboard, two-way SMS inbox, and Claude-API lead scoring) that depend on a stable, secure foundation.
+
 ## Phases
 
 **Phase Numbering:**
@@ -16,6 +18,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: Lead Pipeline** - Landing pages, lead capture API, GHL contact sync, SMS follow-up, and email notification
 - [x] **Phase 3: Client Dashboard** - Auth-protected lead list, 5-stage status pipeline, call log, and settings (completed 2026-03-25)
 - [x] **Phase 4: Operations** - Admin panel with GHL onboarding and Stripe billing webhooks (completed 2026-03-26)
+- [ ] **Phase 5: Critical Security & Launch Blockers** - Close remotely exploitable security gaps and build the missing missed-call text-back pipeline
+- [ ] **Phase 6: High-Priority Correctness, Legal & SEO** - Fix per-client token/slug/validation bugs, add spam protection, legal pages, and landing-page SEO
+- [ ] **Phase 7: Medium-Priority Hardening** - Async DB access, least-privilege RLS, schema integrity, and operational safety nets
+- [ ] **Phase 8: Low-Priority Hygiene** - Repo cleanup, error pages, copy fixes, and doc accuracy
+- [ ] **Phase 9: Features** - Webhook durability, error observability, ROI dashboard, SMS inbox, and AI lead scoring
 
 ## Phase Details
 
@@ -94,10 +101,74 @@ Plans:
 - [x] 04-03-PLAN.md — Client onboarding form with GHL sub-account provisioning and client detail page
 - [x] 04-04-PLAN.md — Build verification and visual checkpoint for admin panel
 
+### Phase 5: Critical Security & Launch Blockers
+**Goal**: Every remotely exploitable security gap found in the audit is closed, and missed calls are automatically captured as leads and text-backed within 15 seconds — so the platform can safely onboard paying clients
+**Depends on**: Existing v1.0 app (Phases 1–4)
+**Requirements**: SEC-01, SEC-02, SEC-03, MISS-01, MISS-02, MISS-03, MISS-04, DPLY-01, DPLY-02
+**Success Criteria** (what must be TRUE):
+  1. Calling `onboardClient` or `createClientLogin` as a non-admin or unauthenticated caller is rejected before the service-role client is touched, and no record is written
+  2. RLS is enabled on `client_users` with a self-read-only policy; a client JWT cannot read or write another user's row via PostgREST
+  3. The GHL webhook rejects any request without a valid Ed25519 `X-GHL-Signature`; the always-true legacy `X-WH-Signature` path no longer exists in the code
+  4. A missed call arriving at the CallRail webhook (with valid token) creates a deduplicated `calls` record and a `leads` record (source `direct_call`), and triggers the GHL text-back workflow within 15 seconds; the dashboard call log shows the new call with its recording link
+  5. Generated Supabase Database types replace the `types.ts` placeholder stub (no remaining `as any`/`@ts-expect-error` workarounds), and a documented checklist confirms one real lead traced form → DB → GHL SMS → Resend email, and one real missed call traced to text-back
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 6: High-Priority Correctness, Legal & SEO
+**Goal**: Lead submission is technically correct for every client, the site meets baseline SMS/legal compliance, and landing pages are discoverable and free of known-vulnerable dependencies
+**Depends on**: Phase 5
+**Requirements**: FIX-01, FIX-02, FIX-03, FIX-04, FIX-05, FIX-06, SPAM-01, LEGL-01, LEGL-02, LEGL-03, SEO-01, SEO-02, DEP-01
+**Success Criteria** (what must be TRUE):
+  1. Every client's lead submissions route through that client's own stored GHL token (not a shared global token), and onboarding always derives a unique, collision-safe slug
+  2. The lead form accepts phone numbers typed with parentheses, dashes, or spaces; the Stripe webhook returns 400 (not 500) on an invalid signature; admin authorization is unified on `isAdmin()` with `ADMIN_EMAILS` documented in `.env.example`; the FastAPI service boots reliably on Railway with a verified Procfile and pinned Python version
+  3. Submitting the lead-submit or get-started form as a bot (honeypot filled, or exceeding the per-IP rate limit) is rejected
+  4. The lead form shows SMS/call consent language before submission; Privacy Policy and Terms of Service pages are live and linked from the marketing and landing-page footers; a landing page's review rating and count come from that client's own data and are hidden when absent, never hardcoded
+  5. Each landing page emits page-specific title/description/OG metadata; the site serves a `robots.txt` disallowing `/dashboard`, `/admin`, `/api` and a `sitemap.xml` of public landing pages; `npm audit` shows no unresolved high-severity findings on a patched Next.js 15.5.x
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 7: Medium-Priority Hardening
+**Goal**: Data integrity, performance, and operational safety nets match production standards, so degraded conditions (slow DB calls, bad redirects, missing env vars) fail safely instead of silently
+**Depends on**: Phase 6
+**Requirements**: HARD-01, HARD-02, HARD-03, HARD-04, HARD-05, HARD-06, HARD-07, HARD-08, HARD-09, HARD-10
+**Success Criteria** (what must be TRUE):
+  1. FastAPI webhook handlers no longer block the event loop on DB calls (verified under concurrent webhook load with an async client or threadpool offload)
+  2. RLS grants are least-privilege — column-scoped UPDATE on `clients`, and explicit SELECT with scoped UPDATE but no DELETE/INSERT on `leads`, `calls`, `sms_sequences` — verified with a client JWT
+  3. The schema enforces integrity: CHECK constraints exist on status/plan/outcome fields, required indexes exist (`billing(client_id)`, `leads(ghl_contact_id)`, `calls(lead_id)`), a unique index prevents duplicate `leads(callrail_call_id)`, and `updated_at` triggers fire on update
+  4. The auth callback rejects an open-redirect `next` param; lead notification emails escape user-supplied values and honor `notifications_enabled`; temporary client passwords are generated with a cryptographically secure RNG
+  5. Landing pages self-host fonts with no render-blocking third-party font requests and revalidate when a client's info changes; both apps validate required environment variables at boot and fail fast with a clear message; `requirements.txt` is minimal, fully pinned, and specifies a pinned Python version
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 8: Low-Priority Hygiene
+**Goal**: The repository and public-facing edge cases are clean, so ad-click visitors and future contributors don't hit stale files, broken pages, or inaccurate docs
+**Depends on**: Phase 7
+**Requirements**: HYG-01, HYG-02, HYG-03, HYG-04
+**Success Criteria** (what must be TRUE):
+  1. Stale committed cruft (`CLAUDE (1).md`, unused create-next-app SVGs, the untracked brand-binaries directory) is removed or gitignored
+  2. Visiting an unknown/bad slug shows a styled not-found page instead of a default framework error, and an unhandled render error is caught by a global error boundary
+  3. The lead-form success message no longer references a hardcoded "312 number," and the low-contrast admin link is corrected to a readable style
+  4. Planning docs and the web app README are internally consistent and accurately describe only the features that have actually shipped
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 9: Features
+**Goal**: The platform is durable and observable in production, and HVAC owners get ROI visibility, a two-way SMS inbox, and AI-driven urgency ranking that surfaces the hottest leads first
+**Depends on**: Phase 8
+**Requirements**: DUR-01, OBSV-01, OBSV-02, ROI-01, ROI-02, INBX-01, AI-01, AI-02
+**Success Criteria** (what must be TRUE):
+  1. Every webhook handler durably records the raw event (deduped on the provider's event id) before returning 200, and a stored event can be replayed on demand
+  2. Unhandled errors on both the FastAPI service and the Next.js app are captured by Sentry (or equivalent); Supabase automated backups are enabled/documented and an uptime check pings `/health`
+  3. Each lead records a time-to-first-contact timestamp (first status change off `new` or first outbound touch), and the client dashboard shows a monthly summary of lead count, estimated lead value, and speed-to-lead
+  4. An HVAC owner can view the SMS conversation for a lead in the dashboard and send a reply that reaches the homeowner through GHL
+  5. Inbound leads are scored 1–10 for urgency via the Claude API from available lead/call data, and hot leads are surfaced at the top of the dashboard lead list
+**Plans**: TBD
+**UI hint**: yes
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -105,3 +176,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 2. Lead Pipeline | 4/5 | In Progress|  |
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
 | 4. Operations | 4/4 | Complete   | 2026-03-26 |
+| 5. Critical Security & Launch Blockers | 0/TBD | Not started | - |
+| 6. High-Priority Correctness, Legal & SEO | 0/TBD | Not started | - |
+| 7. Medium-Priority Hardening | 0/TBD | Not started | - |
+| 8. Low-Priority Hygiene | 0/TBD | Not started | - |
+| 9. Features | 0/TBD | Not started | - |
