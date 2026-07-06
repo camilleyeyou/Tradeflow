@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 05-02-PLAN.md
-last_updated: "2026-07-06T11:10:05.246Z"
+stopped_at: Completed 05-03-PLAN.md
+last_updated: "2026-07-06T11:13:50.096Z"
 progress:
   total_phases: 9
   completed_phases: 4
   total_plans: 22
-  completed_plans: 18
+  completed_plans: 19
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 ## Current Position
 
 Phase: 5 (Critical Security & Launch Blockers) — EXECUTING
-Plan: 3 of 6
+Plan: 4 of 6
 
 ## Performance Metrics
 
@@ -64,6 +64,7 @@ Plan: 3 of 6
 | Phase 04-operations P04 | 2 | 1 tasks | 0 files |
 | Phase 05 P01 | 2min | 2 tasks | 2 files |
 | Phase 05 P02 | 3min | 1 tasks | 1 files |
+| Phase 05 P03 | 4min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -113,6 +114,7 @@ Recent decisions affecting current work:
 - [Milestone v1.1 roadmap]: Phases 5-9 derived directly from the pre-launch audit's priority tiers (Critical → High → Medium → Low → Features) per explicit user ordering; security and the advertised-but-missing missed-call feature land first (Phase 5) before any correctness/hardening/hygiene work, and the four new differentiating features land last (Phase 9) since they depend on a stable, secured foundation
 - [Phase 05]: Reused the existing getUser()/isAdmin() guard pattern from settings-actions.ts for onboardClient and createClientLogin rather than introducing a new helper (SEC-01 fix)
 - [Phase 05]: Confirmed v1.0 circular-dependency rationale for disabling RLS on client_users was incorrect; self-read SELECT policy (user_id = auth.uid()) closes SEC-02 without breaking other tables' subqueries. No write policies added — admin writes use service role key.
+- [Phase 05]: Removed verify_ghl_legacy_signature entirely rather than implementing real RSA verification (SEC-03) — GHL Ed25519 path already correct; legacy path was a dead always-true bypass with no remaining use case
 
 ### Pending Todos
 
@@ -129,6 +131,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T11:10:05.241Z
-Stopped at: Completed 05-02-PLAN.md
+Last session: 2026-07-06T11:13:50.091Z
+Stopped at: Completed 05-03-PLAN.md
 Resume file: None
