@@ -171,8 +171,11 @@ Plans:
   2. Visiting an unknown/bad slug shows a styled not-found page instead of a default framework error, and an unhandled render error is caught by a global error boundary
   3. The lead-form success message no longer references a hardcoded "312 number," and the low-contrast admin link is corrected to a readable style
   4. Planning docs and the web app README are internally consistent and accurately describe only the features that have actually shipped
-**Plans**: TBD
+**Plans**: 1 plan
 **UI hint**: yes
+
+Plans:
+- [ ] 08-01-PLAN.md — HYG-01..04: remove stale cruft, add not-found/global-error pages, fix hardcoded copy, correct README/ROADMAP docs
 
 ### Phase 9: Features
 **Goal**: The platform is durable and observable in production, and HVAC owners get ROI visibility, a two-way SMS inbox, and AI-driven urgency ranking that surfaces the hottest leads first
