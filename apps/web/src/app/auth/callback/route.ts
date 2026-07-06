@@ -6,7 +6,10 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get('code')
   const tokenHash = searchParams.get('token_hash')
   const type = searchParams.get('type') as 'magiclink' | 'email' | null
-  const next = searchParams.get('next') ?? '/admin'
+  const rawNext = searchParams.get('next') ?? '/admin'
+  // HARD-04: reject off-site and protocol-relative redirects (e.g. "https://evil.com"
+  // or "//evil.com") — only allow same-origin paths.
+  const next = rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : '/admin'
 
   // Build the correct redirect base URL (handles Vercel proxy)
   const forwardedHost = request.headers.get('x-forwarded-host')
