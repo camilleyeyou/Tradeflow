@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import {
   Table,
   TableBody,
@@ -43,7 +44,12 @@ export function LeadsTable({ leads }: LeadsTableProps) {
           {leads.map((lead) => (
             <TableRow key={lead.id}>
               <TableCell className="font-medium">
-                {lead.homeowner_name ?? 'Unknown'}
+                <Link
+                  href={`/dashboard/leads/${lead.id}`}
+                  className="underline-offset-4 hover:underline"
+                >
+                  {lead.homeowner_name ?? 'Unknown'}
+                </Link>
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 {lead.phone ? truncatePhone(lead.phone) : '-'}
