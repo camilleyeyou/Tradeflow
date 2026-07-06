@@ -92,7 +92,7 @@ export default function LeadForm({ clientId, serviceType, businessName }: LeadFo
         <h3 className="text-xl font-bold mb-2 text-slate-900">Request received</h3>
         <p className="text-slate-600">We&apos;ll call you within 5 minutes.</p>
         <p className="text-sm text-slate-500 mt-2">
-          Watch for a call or text from a local 312 number.
+          Watch for a call or text from a local number.
         </p>
       </div>
     )

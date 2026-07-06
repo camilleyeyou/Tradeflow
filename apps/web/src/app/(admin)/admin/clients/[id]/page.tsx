@@ -66,7 +66,7 @@ export default async function ClientDetailPage({
   return (
     <div>
       <div className="mb-6 flex items-center gap-3">
-        <Link href="/admin/clients" className="text-sm text-white/40 hover:text-gray-700">
+        <Link href="/admin/clients" className="text-sm text-white/40 hover:text-white">
           &larr; All Clients
         </Link>
       </div>
