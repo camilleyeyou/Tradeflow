@@ -111,7 +111,15 @@ Plans:
   3. The GHL webhook rejects any request without a valid Ed25519 `X-GHL-Signature`; the always-true legacy `X-WH-Signature` path no longer exists in the code
   4. A missed call arriving at the CallRail webhook (with valid token) creates a deduplicated `calls` record and a `leads` record (source `direct_call`), and triggers the GHL text-back workflow within 15 seconds; the dashboard call log shows the new call with its recording link
   5. Generated Supabase Database types replace the `types.ts` placeholder stub (no remaining `as any`/`@ts-expect-error` workarounds), and a documented checklist confirms one real lead traced form → DB → GHL SMS → Resend email, and one real missed call traced to text-back
-**Plans**: TBD
+**Plans**: 6 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — SEC-01: admin authorization guard on onboardClient + createClientLogin (wave 1)
+- [ ] 05-02-PLAN.md — SEC-02: enable RLS on client_users with self-read-only policy (wave 1)
+- [ ] 05-03-PLAN.md — SEC-03: remove GHL legacy X-WH-Signature bypass, Ed25519-only (wave 1)
+- [ ] 05-04-PLAN.md — MISS-01..04: CallRail webhook → deduped call+lead → GHL text-back → dashboard (wave 1)
+- [ ] 05-05-PLAN.md — DPLY-01/02: schema-accurate types.ts, remove type workarounds, write DEPLOY-CHECKLIST.md (wave 2)
+- [ ] 05-06-PLAN.md — DPLY-01/02: requires-human/deploy — apply migrations, live type-gen, run two E2E traces (wave 3)
 **UI hint**: yes
 
 ### Phase 6: High-Priority Correctness, Legal & SEO
