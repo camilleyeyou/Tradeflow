@@ -96,9 +96,9 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **FIX-05**: Admin authorization is unified on `isAdmin()` across middleware and layouts, supporting `ADMIN_EMAILS`; `ADMIN_EMAILS` is documented in `.env.example`
 - [x] **FIX-06**: The FastAPI service boots on Railway with a verified Procfile/module path and a pinned Python version
 - [ ] **SPAM-01**: The lead-submit and get-started endpoints reject bot traffic via a honeypot field plus per-IP rate limiting
-- [ ] **LEGL-01**: The lead form displays SMS/call consent language at the point of capture before enrolling a number in automated messaging
-- [ ] **LEGL-02**: Privacy Policy and Terms of Service pages exist and are linked from the marketing and landing-page footers
-- [ ] **LEGL-03**: Landing-page review rating and count are per-client data fields (hidden when absent), never a hardcoded claim
+- [x] **LEGL-01**: The lead form displays SMS/call consent language at the point of capture before enrolling a number in automated messaging
+- [x] **LEGL-02**: Privacy Policy and Terms of Service pages exist and are linked from the marketing and landing-page footers
+- [x] **LEGL-03**: Landing-page review rating and count are per-client data fields (hidden when absent), never a hardcoded claim
 - [ ] **SEO-01**: Each landing page emits page-specific metadata (title/description/OG) derived from business, service, and city
 - [ ] **SEO-02**: The site serves a `robots.txt` (disallowing `/dashboard`, `/admin`, `/api`) and a `sitemap.xml` of public landing pages
 - [ ] **DEP-01**: Known-vulnerable production dependencies are patched (Next.js bumped to a patched 15.5.x; `npm audit` high-severity findings resolved)
@@ -244,9 +244,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FIX-05 | Phase 6 | Complete |
 | FIX-06 | Phase 6 | Complete |
 | SPAM-01 | Phase 6 | Pending |
-| LEGL-01 | Phase 6 | Pending |
-| LEGL-02 | Phase 6 | Pending |
-| LEGL-03 | Phase 6 | Pending |
+| LEGL-01 | Phase 6 | Complete |
+| LEGL-02 | Phase 6 | Complete |
+| LEGL-03 | Phase 6 | Complete |
 | SEO-01 | Phase 6 | Pending |
 | SEO-02 | Phase 6 | Pending |
 | DEP-01 | Phase 6 | Pending |

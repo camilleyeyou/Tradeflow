@@ -137,7 +137,7 @@ Plans:
 Plans:
 - [x] 06-01-PLAN.md — FIX-03/04/05/06: phone normalization, Stripe exception, unified admin gating, Railway boot pin
 - [x] 06-02-PLAN.md — FIX-01/02: per-client encrypted GHL token (migration 006) + collision-safe slug verify
-- [ ] 06-03-PLAN.md — LEGL-01/02/03: SMS consent copy, privacy/terms pages + footers, per-client reviews (migration 007)
+- [x] 06-03-PLAN.md — LEGL-01/02/03: SMS consent copy, privacy/terms pages + footers, per-client reviews (migration 007)
 - [ ] 06-04-PLAN.md — SEO-01/02: landing generateMetadata + robots.ts + sitemap.ts
 - [ ] 06-05-PLAN.md — SPAM-01: honeypot + per-IP rate limiting on lead-submit and get-started
 - [ ] 06-06-PLAN.md — DEP-01: npm audit fix + patched Next 15.5.x + build verification
