@@ -129,7 +129,7 @@ export default async function LandingPage({ params }: Props) {
 
   const { data: client } = await supabase
     .from('clients')
-    .select('id, business_name, phone, city, service_area_zips, slug')
+    .select('id, business_name, phone, city, service_area_zips, slug, review_rating, review_count')
     .eq('slug', clientSlug)
     .eq('is_active', true)
     .single()
@@ -143,6 +143,7 @@ export default async function LandingPage({ params }: Props) {
   const serviceAreaText = Array.isArray(client.service_area_zips)
     ? (client.service_area_zips as string[]).join(' · ')
     : (client.service_area_zips as string)
+  const hasReviews = client.review_rating != null && client.review_count != null
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -210,11 +211,17 @@ export default async function LandingPage({ params }: Props) {
 
             {/* Trust strip */}
             <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/60">
-              <span className="inline-flex items-center gap-1">
-                <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />
-                <span className="ml-1.5 text-white/80">4.9 from 100+ reviews</span>
-              </span>
-              <span className="hidden md:inline text-white/30">·</span>
+              {hasReviews && (
+                <>
+                  <span className="inline-flex items-center gap-1">
+                    <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon /> <StarIcon />
+                    <span className="ml-1.5 text-white/80">
+                      {client.review_rating as number} from {client.review_count as number}+ reviews
+                    </span>
+                  </span>
+                  <span className="hidden md:inline text-white/30">·</span>
+                </>
+              )}
               <span className="text-white/70">Licensed &amp; insured</span>
             </div>
 
@@ -286,18 +293,24 @@ export default async function LandingPage({ params }: Props) {
                 A real person calls you back fast &mdash; no phone trees.
               </p>
             </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-5">
-              <div
-                className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full"
-                style={{ background: 'rgba(212,175,55,0.12)' }}
-              >
-                <span className="font-bold" style={{ color: GOLD }}>4.9</span>
+            {hasReviews && (
+              <div className="bg-white border border-slate-200 rounded-xl p-5">
+                <div
+                  className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full"
+                  style={{ background: 'rgba(212,175,55,0.12)' }}
+                >
+                  <span className="font-bold" style={{ color: GOLD }}>
+                    {client.review_rating as number}
+                  </span>
+                </div>
+                <h3 className="font-semibold text-slate-900 mb-1">
+                  {client.review_count as number}+ reviews
+                </h3>
+                <p className="text-sm text-slate-600">
+                  Trusted by homeowners across {client.city as string}.
+                </p>
               </div>
-              <h3 className="font-semibold text-slate-900 mb-1">100+ reviews</h3>
-              <p className="text-sm text-slate-600">
-                Trusted by homeowners across {client.city as string}.
-              </p>
-            </div>
+            )}
           </div>
         </div>
       </section>
