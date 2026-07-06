@@ -101,7 +101,7 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 - [x] **LEGL-03**: Landing-page review rating and count are per-client data fields (hidden when absent), never a hardcoded claim
 - [x] **SEO-01**: Each landing page emits page-specific metadata (title/description/OG) derived from business, service, and city
 - [x] **SEO-02**: The site serves a `robots.txt` (disallowing `/dashboard`, `/admin`, `/api`) and a `sitemap.xml` of public landing pages
-- [ ] **DEP-01**: Known-vulnerable production dependencies are patched (Next.js bumped to a patched 15.5.x; `npm audit` high-severity findings resolved)
+- [x] **DEP-01**: Known-vulnerable production dependencies are patched (Next.js bumped to a patched 15.5.x; `npm audit` high-severity findings resolved)
 
 ### Medium-Priority Hardening
 
@@ -249,7 +249,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LEGL-03 | Phase 6 | Complete |
 | SEO-01 | Phase 6 | Complete |
 | SEO-02 | Phase 6 | Complete |
-| DEP-01 | Phase 6 | Pending |
+| DEP-01 | Phase 6 | Complete |
 | HARD-01 | Phase 7 | Pending |
 | HARD-02 | Phase 7 | Pending |
 | HARD-03 | Phase 7 | Pending |
