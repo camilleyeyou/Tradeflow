@@ -187,7 +187,14 @@ Plans:
   3. Each lead records a time-to-first-contact timestamp (first status change off `new` or first outbound touch), and the client dashboard shows a monthly summary of lead count, estimated lead value, and speed-to-lead
   4. An HVAC owner can view the SMS conversation for a lead in the dashboard and send a reply that reaches the homeowner through GHL
   5. Inbound leads are scored 1–10 for urgency via the Claude API from available lead/call data, and hot leads are surfaced at the top of the dashboard lead list
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 09-01-PLAN.md — DUR-01: webhook_events migration (010) + record-before-ACK in all 3 FastAPI handlers + replay path (wave 1)
+- [ ] 09-02-PLAN.md — OBSV-01/02: Sentry on FastAPI + Next.js + backups/uptime/env docs in DEPLOY-CHECKLIST (wave 1)
+- [ ] 09-03-PLAN.md — ROI-01/02: migration 011 (leads.first_contact_at) + first-contact stamping + dashboard ROI summary (wave 1)
+- [ ] 09-04-PLAN.md — INBX-01: GHL conversations service + auth'd route handler + lead-detail SMS inbox UI (wave 1)
+- [ ] 09-05-PLAN.md — AI-01/02: migration 012 (urgency_score/reason) + claude-fable-5 scoring in lead-submit after() + hot-lead sort/badge (wave 2)
 **UI hint**: yes
 
 ## Progress
@@ -205,4 +212,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. High-Priority Correctness, Legal & SEO | 6/6 | Complete    | 2026-07-06 |
 | 7. Medium-Priority Hardening | 4/4 | Complete    | 2026-07-06 |
 | 8. Low-Priority Hygiene | 1/1 | Complete    | 2026-07-06 |
-| 9. Features | 0/TBD | Not started | - |
+| 9. Features | 0/5 | Not started | - |
