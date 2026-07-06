@@ -89,8 +89,8 @@ Sourced from the pre-launch audit. Grouped by the priority tier that becomes a r
 
 ### High-Priority Correctness, Legal & SEO
 
-- [ ] **FIX-01**: Lead submission uses the client's own GHL token (stored per client at onboarding), not a single global token
-- [ ] **FIX-02**: Client onboarding derives and stores a unique `slug` (collision-handled) so inserts never violate the NOT NULL constraint
+- [x] **FIX-01**: Lead submission uses the client's own GHL token (stored per client at onboarding), not a single global token
+- [x] **FIX-02**: Client onboarding derives and stores a unique `slug` (collision-handled) so inserts never violate the NOT NULL constraint
 - [x] **FIX-03**: The lead form accepts common phone formats (parentheses, dashes, spaces) by normalizing to digits before validation
 - [x] **FIX-04**: The Stripe webhook returns 400 (not 500) on an invalid signature — the exception reference is corrected to the installed SDK's class
 - [x] **FIX-05**: Admin authorization is unified on `isAdmin()` across middleware and layouts, supporting `ADMIN_EMAILS`; `ADMIN_EMAILS` is documented in `.env.example`
@@ -237,8 +237,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MISS-04 | Phase 5 | Complete |
 | DPLY-01 | Phase 5 | Complete |
 | DPLY-02 | Phase 5 | Complete |
-| FIX-01 | Phase 6 | Pending |
-| FIX-02 | Phase 6 | Pending |
+| FIX-01 | Phase 6 | Complete |
+| FIX-02 | Phase 6 | Complete |
 | FIX-03 | Phase 6 | Complete |
 | FIX-04 | Phase 6 | Complete |
 | FIX-05 | Phase 6 | Complete |
