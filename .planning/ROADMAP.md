@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Client Dashboard** - Auth-protected lead list, 5-stage status pipeline, call log, and settings (completed 2026-03-25)
 - [x] **Phase 4: Operations** - Admin panel with GHL onboarding and Stripe billing webhooks (completed 2026-03-26)
 - [ ] **Phase 5: Critical Security & Launch Blockers** - Close remotely exploitable security gaps and build the missing missed-call text-back pipeline
-- [ ] **Phase 6: High-Priority Correctness, Legal & SEO** - Fix per-client token/slug/validation bugs, add spam protection, legal pages, and landing-page SEO
+- [x] **Phase 6: High-Priority Correctness, Legal & SEO** - Fix per-client token/slug/validation bugs, add spam protection, legal pages, and landing-page SEO (completed 2026-07-06)
 - [ ] **Phase 7: Medium-Priority Hardening** - Async DB access, least-privilege RLS, schema integrity, and operational safety nets
 - [ ] **Phase 8: Low-Priority Hygiene** - Repo cleanup, error pages, copy fixes, and doc accuracy
 - [ ] **Phase 9: Features** - Webhook durability, error observability, ROI dashboard, SMS inbox, and AI lead scoring
@@ -193,7 +193,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
 | 4. Operations | 4/4 | Complete   | 2026-03-26 |
 | 5. Critical Security & Launch Blockers | 1/6 | In Progress|  |
-| 6. High-Priority Correctness, Legal & SEO | 5/6 | In Progress|  |
+| 6. High-Priority Correctness, Legal & SEO | 5/6 | Complete    | 2026-07-06 |
 | 7. Medium-Priority Hardening | 0/TBD | Not started | - |
 | 8. Low-Priority Hygiene | 0/TBD | Not started | - |
 | 9. Features | 0/TBD | Not started | - |
