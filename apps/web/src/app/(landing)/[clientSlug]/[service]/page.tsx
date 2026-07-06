@@ -301,6 +301,23 @@ export default async function LandingPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* FOOTER */}
+      <footer className="px-4 py-8 text-center text-xs text-slate-400">
+        <p>
+          &copy; {new Date().getFullYear()} {client.business_name as string}. All rights
+          reserved.
+        </p>
+        <p className="mt-2 flex items-center justify-center gap-3">
+          <a href="/privacy" className="underline hover:text-slate-600">
+            Privacy
+          </a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="/terms" className="underline hover:text-slate-600">
+            Terms
+          </a>
+        </p>
+      </footer>
     </main>
   )
 }

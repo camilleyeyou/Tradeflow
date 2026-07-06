@@ -490,12 +490,26 @@ export default function MarketingHomePage() {
             <span>Trade<span style={{ color: GOLD }}>flow</span></span>
           </span>
           <span>AI-powered lead generation for HVAC contractors</span>
-          <Link
-            href="/login"
-            className="text-white/60 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          >
-            Contractor login
-          </Link>
+          <span className="flex items-center gap-4">
+            <Link
+              href="/privacy"
+              className="text-white/60 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-white/60 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Terms
+            </Link>
+            <Link
+              href="/login"
+              className="text-white/60 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Contractor login
+            </Link>
+          </span>
         </div>
       </footer>
     </div>
