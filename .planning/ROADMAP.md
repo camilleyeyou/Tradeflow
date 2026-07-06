@@ -204,5 +204,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 5. Critical Security & Launch Blockers | 5/6 | In Progress|  |
 | 6. High-Priority Correctness, Legal & SEO | 6/6 | Complete    | 2026-07-06 |
 | 7. Medium-Priority Hardening | 4/4 | Complete    | 2026-07-06 |
-| 8. Low-Priority Hygiene | 1/1 | Complete   | 2026-07-06 |
+| 8. Low-Priority Hygiene | 1/1 | Complete    | 2026-07-06 |
 | 9. Features | 0/TBD | Not started | - |
