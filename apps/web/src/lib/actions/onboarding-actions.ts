@@ -1,6 +1,8 @@
 'use server'
 
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
+import { isAdmin } from '@/lib/admin'
 import { createSubAccount } from '@/lib/ghl'
 import { onboardingSchema } from '@/lib/validations/onboarding'
 import { redirect } from 'next/navigation'
@@ -15,6 +17,12 @@ export async function onboardClient(formData: {
   service_area_zips: string
   plan: string
 }) {
+  const authClient = await createClient()
+  const { data: { user } } = await authClient.auth.getUser()
+  if (!user || !isAdmin(user.email ?? undefined)) {
+    throw new Error('Not authorized')
+  }
+
   const parsed = onboardingSchema.safeParse(formData)
   if (!parsed.success) {
     throw new Error(parsed.error.issues[0].message)
