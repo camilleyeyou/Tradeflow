@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { CountCards } from '@/components/dashboard/count-cards'
 import { RecentLeads } from '@/components/dashboard/recent-leads'
+import { RoiSummary, ESTIMATED_LEAD_VALUE } from '@/components/dashboard/roi-summary'
 import type { Lead, StatusCounts } from '@/lib/types/dashboard'
 
 export const dynamic = 'force-dynamic'
@@ -15,7 +16,7 @@ export default async function DashboardPage() {
   // RLS scopes to user's client automatically
   const { data: allLeads } = await supabase
     .from('leads')
-    .select('id, homeowner_name, service_type, status, created_at')
+    .select('id, homeowner_name, service_type, status, created_at, first_contact_at')
     .order('created_at', { ascending: false })
 
   const leads = (allLeads ?? []) as Lead[]
@@ -29,9 +30,29 @@ export default async function DashboardPage() {
 
   const recentLeads = leads.slice(0, 5)
 
+  // ROI-02: monthly lead count, estimated value, avg speed-to-lead
+  const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
+  const monthLeads = leads.filter(l => l.created_at >= startOfMonth)
+  const monthLeadCount = monthLeads.length
+  const estimatedValue = monthLeadCount * ESTIMATED_LEAD_VALUE
+
+  const speedsToLead = monthLeads
+    .filter(l => l.first_contact_at)
+    .map(l => (Date.parse(l.first_contact_at as string) - Date.parse(l.created_at)) / 60000)
+
+  const avgSpeedToLeadMinutes =
+    speedsToLead.length > 0
+      ? Math.round(speedsToLead.reduce((sum, m) => sum + m, 0) / speedsToLead.length)
+      : null
+
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Overview</h1>
+      <RoiSummary
+        monthLeadCount={monthLeadCount}
+        estimatedValue={estimatedValue}
+        avgSpeedToLeadMinutes={avgSpeedToLeadMinutes}
+      />
       <CountCards counts={counts} />
       <RecentLeads leads={recentLeads} />
     </div>
