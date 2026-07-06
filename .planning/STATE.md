@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 09-02-PLAN.md
-last_updated: "2026-07-06T17:11:29.405Z"
+stopped_at: Completed 09-03-PLAN.md
+last_updated: "2026-07-06T17:18:23.840Z"
 progress:
   total_phases: 9
   completed_phases: 7
   total_plans: 38
-  completed_plans: 34
+  completed_plans: 35
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-07-06)
 ## Current Position
 
 Phase: 9 (Features) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 
 ## Performance Metrics
 
@@ -80,6 +80,7 @@ Plan: 3 of 5
 | Phase 08-low-priority-hygiene P01 | 20min | 4 tasks | 11 files |
 | Phase 09-features P01 | 12min | 3 tasks | 6 files |
 | Phase 09-features P02 | 20min | 3 tasks | 8 files |
+| Phase 09-features P03 | 5min | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -154,6 +155,8 @@ Recent decisions affecting current work:
 - [Phase 09-features]: [Phase 09][09-01]: webhook_events RLS enabled with zero policies — service-role only, no anon/authenticated access by design
 - [Phase 09-features]: [Phase 09][09-02]: Placed instrumentation-client.ts under apps/web/src/ (not repo root as in plan frontmatter) to match this project's src-dir convention and Next.js's requirement that it live alongside instrumentation.ts
 - [Phase 09-features]: [Phase 09][09-02]: All Sentry/Anthropic env vars are optional/feature-flag — DSN or key unset fully disables the feature with no crash, no addition to REQUIRED_ENV_VARS or serverEnvSchema
+- [Phase 09-features]: [Phase 09][09-03]: ESTIMATED_LEAD_VALUE hardcoded at $400/lead as a placeholder constant, exported and clearly labeled 'estimated, not actual revenue' in the UI — no real per-job revenue data exists yet
+- [Phase 09-features]: [Phase 09][09-03]: first_contact_at stamped via read-then-conditional-write inside updateLeadStatus (earliest-touch wins) rather than a DB trigger
 
 ### Pending Todos
 
@@ -170,6 +173,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-07-06T17:11:29.397Z
-Stopped at: Completed 09-02-PLAN.md
+Last session: 2026-07-06T17:18:23.835Z
+Stopped at: Completed 09-03-PLAN.md
 Resume file: None
