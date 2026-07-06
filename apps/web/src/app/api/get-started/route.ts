@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { getStartedSchema } from '@/lib/validations/get-started'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 const TO_EMAIL = 'hello@tradeflow-technologies.com'
 const CC_EMAIL = 'contact@tradeflow-technologies.com'
@@ -23,6 +24,22 @@ function formatPhone(phone: string): string {
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null)
+
+  // Honeypot (SPAM-01): silently succeed without processing. Read from the
+  // raw body, not the Zod-parsed result, since the schema strips unknown keys.
+  if (typeof body?.company_website === 'string' && body.company_website.trim() !== '') {
+    return NextResponse.json({ success: true }, { status: 200 })
+  }
+
+  // Per-IP rate limit (SPAM-01), before Zod parse and before Resend.
+  const ip = getClientIp(request)
+  if (!rateLimit(`getstarted:${ip}`, 5, 60_000).allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests', code: 'RATE_LIMITED' },
+      { status: 429 }
+    )
+  }
+
   const result = getStartedSchema.safeParse(body)
 
   if (!result.success) {

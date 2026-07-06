@@ -20,6 +20,9 @@ type Status = 'idle' | 'submitting' | 'success' | 'error'
 export default function GetStartedPage() {
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  // Honeypot (SPAM-01): kept outside react-hook-form so it is never wired to
+  // a visible/labeled field; bots that auto-fill all inputs will populate it.
+  const [honeypot, setHoneypot] = useState('')
 
   const {
     register,
@@ -46,7 +49,7 @@ export default function GetStartedPage() {
       const res = await fetch('/api/get-started', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, company_website: honeypot }),
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
@@ -141,6 +144,20 @@ export default function GetStartedPage() {
                 border: '1px solid rgba(255,255,255,0.06)',
               }}
             >
+              {/* Honeypot (SPAM-01): hidden from real users, not a
+                  react-hook-form field — bots that blindly fill every input
+                  will trip this. */}
+              <input
+                type="text"
+                name="company_website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                className="hidden"
+              />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Field label="Full name" htmlFor="full_name" error={errors.full_name?.message}>
                   <input
