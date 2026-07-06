@@ -153,7 +153,13 @@ Plans:
   3. The schema enforces integrity: CHECK constraints exist on status/plan/outcome fields, required indexes exist (`billing(client_id)`, `leads(ghl_contact_id)`, `calls(lead_id)`), a unique index prevents duplicate `leads(callrail_call_id)`, and `updated_at` triggers fire on update
   4. The auth callback rejects an open-redirect `next` param; lead notification emails escape user-supplied values and honor `notifications_enabled`; temporary client passwords are generated with a cryptographically secure RNG
   5. Landing pages self-host fonts with no render-blocking third-party font requests and revalidate when a client's info changes; both apps validate required environment variables at boot and fail fast with a clear message; `requirements.txt` is minimal, fully pinned, and specifies a pinned Python version
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — HARD-02/03: least-privilege RLS (migration 008) + schema integrity CHECKs/indexes/updated_at triggers (migration 009) (wave 1)
+- [ ] 07-02-PLAN.md — HARD-01/09/10: FastAPI run_in_threadpool DB offload + fail-fast env validation + pinned minimal requirements.txt (wave 1)
+- [ ] 07-03-PLAN.md — HARD-04/05/06/08: open-redirect fix, email escaping + notifications_enabled, crypto passwords, landing revalidation (wave 1)
+- [ ] 07-04-PLAN.md — HARD-07/09: self-host fonts (remove Fontshare links) + Next.js boot env validation (wave 1)
 **UI hint**: yes
 
 ### Phase 8: Low-Priority Hygiene
@@ -194,6 +200,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 4. Operations | 4/4 | Complete   | 2026-03-26 |
 | 5. Critical Security & Launch Blockers | 1/6 | In Progress|  |
 | 6. High-Priority Correctness, Legal & SEO | 5/6 | Complete    | 2026-07-06 |
-| 7. Medium-Priority Hardening | 0/TBD | Not started | - |
+| 7. Medium-Priority Hardening | 0/4 | Not started | - |
 | 8. Low-Priority Hygiene | 0/TBD | Not started | - |
 | 9. Features | 0/TBD | Not started | - |
