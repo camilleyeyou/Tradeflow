@@ -72,6 +72,15 @@ Apply in strict numeric order via `supabase db push` (recommended) or by pasting
 | 3 | `003_add_notifications_enabled.sql` | Adds `clients.notifications_enabled` (default `true`) and the missing UPDATE policy so owners can update their own client record from the settings page. |
 | 4 | `004_enable_rls_client_users.sql` | **New in Phase 5 (SEC-02).** Enables RLS on `client_users` with a self-read-only SELECT policy. Corrects the v1.0 decision that left this identity-mapping table fully open to any authenticated user via PostgREST. No write policies — admin writes use the service-role key. |
 | 5 | `005_add_leads_callrail_call_id_unique.sql` | **New in Phase 5 (MISS-02).** Partial unique index on `leads.callrail_call_id` (NULLs allowed) for race-safe dedup of missed-call leads. |
+| 6 | `006_add_ghl_token_to_clients.sql` | Phase 6 (FIX-01). Adds encrypted per-client GHL token column. |
+| 7 | `007_add_reviews_to_clients.sql` | Phase 6. Adds per-client review rating/count columns for landing-page reviews block. |
+| 8 | `008_least_privilege_rls.sql` | Phase 7. Tightens RLS grants to least-privilege column-level `UPDATE` grants. |
+| 9 | `009_schema_integrity.sql` | Phase 7. Adds constraints/indexes for schema integrity hardening. |
+| 10 | `010_webhook_events.sql` | **New in Phase 9 (DUR-01).** Webhook idempotency/replay store (`webhook_events`). RLS enabled with zero policies — service-role only. |
+| 11 | `011_add_first_contact_at.sql` | **New in Phase 9 (ROI-01).** Adds `leads.first_contact_at` for time-to-first-contact / speed-to-lead metrics. |
+| 12 | `012_add_urgency.sql` | **New in Phase 9 (AI-01).** Adds urgency ranking column(s) to `leads` for Claude-API lead scoring. |
+
+Always apply in strict ascending numeric filename order regardless of which phase introduced a given migration.
 
 ```bash
 # From repo root, with the Supabase CLI authenticated and linked to the project:
@@ -145,4 +154,36 @@ After running:
 
 ---
 
-*Generated for Phase 5 (Critical Security & Launch Blockers), plan 05-05 (DPLY-01 in-repo + DPLY-02 doc). Live execution of Sections 3 and 5 is tracked in plan 05-06.*
+## 6. Observability, Backups & Uptime (Phase 9 — OBSV-01/02)
+
+### New env vars (Phase 9)
+
+| Variable | Used by | Where to obtain | Notes |
+|---|---|---|---|
+| `SENTRY_DSN` | FastAPI (`api/.env`) and Next.js server/edge (`apps/web/.env.local`) | Sentry → Project Settings → Client Keys (DSN) | Optional. Unset = Sentry fully disabled (no-op), no crash. |
+| `NEXT_PUBLIC_SENTRY_DSN` | Next.js browser (`apps/web/.env.local`) | Same Sentry project, Client Keys (DSN) | Optional. Unset = browser Sentry disabled. |
+| `SENTRY_TRACES_SAMPLE_RATE` | FastAPI + Next.js server | Set manually, default `0.1` | Optional, defaults to `0.1` if unset. |
+| `NEXT_PUBLIC_SENTRY_TRACES_SAMPLE_RATE` | Next.js browser | Set manually, default `0.1` | Optional, defaults to `0.1` if unset. |
+| `ANTHROPIC_API_KEY` | Next.js lead scoring (Phase 9, AI-01) | Anthropic Console → API Keys | Optional/feature-flag: lead urgency scoring is skipped when unset. |
+
+All five variables above are optional/feature-flag env vars — the app boots and builds normally with every one of them unset.
+
+### Supabase Backups (OBSV-02 — requires human)
+
+1. Open Supabase Dashboard → the project → **Database → Backups**.
+2. Enable **automated daily backups** (available on all plans).
+3. Enable **Point-in-Time Recovery (PITR)** — **requires a paid Supabase plan** (Pro tier or above). PITR allows restoring to any point within the retention window, not just the daily snapshot boundary.
+4. Document the retention window chosen for this project here once configured: `_________` (e.g., 7 days on Pro, longer on Team/Enterprise).
+5. Record the date of the first verified restore test (recommended before go-live, and periodically thereafter).
+
+### Uptime Check (OBSV-02)
+
+- **Uptime target:** `GET https://<railway-host>/health` — the FastAPI service's health endpoint.
+- Configure an external monitor (e.g. UptimeRobot, BetterStack, or Cronitor) to:
+  - Ping `/health` every 1–5 minutes.
+  - Alert (email/SMS/Slack) on any non-`200` response or response latency over 5 seconds.
+- Optionally add a second monitor for the Next.js app's root route (`https://<vercel-domain>/`) to catch Vercel-side outages independently of the Railway service.
+
+---
+
+*Generated for Phase 5 (Critical Security & Launch Blockers), plan 05-05 (DPLY-01 in-repo + DPLY-02 doc). Live execution of Sections 3 and 5 is tracked in plan 05-06. Section 6 added in Phase 9, plan 09-02 (OBSV-01/OBSV-02).*
