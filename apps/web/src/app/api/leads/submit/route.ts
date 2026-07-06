@@ -3,6 +3,7 @@ import { after } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { leadSchema } from '@/lib/validations/lead'
 import { createGHLContact, addContactToWorkflow, lookupContactByPhone } from '@/lib/ghl'
+import { decryptToken } from '@/lib/crypto'
 import { Resend } from 'resend'
 
 export async function POST(request: Request) {
@@ -68,47 +69,53 @@ export async function POST(request: Request) {
     try {
       const { data: clientRow } = await supabase
         .from('clients')
-        .select('ghl_sub_account_id, email, business_name, city')
+        .select('ghl_sub_account_id, email, business_name, city, ghl_private_token_encrypted')
         .eq('id', client_id)
         .single()
 
       if (clientRow?.ghl_sub_account_id) {
-        const token = process.env.GHL_PRIVATE_TOKEN!
+        // FIX-01: prefer this client's own encrypted token; fall back to the
+        // shared global token only if the client has none stored yet.
+        const token = clientRow?.ghl_private_token_encrypted
+          ? decryptToken(clientRow.ghl_private_token_encrypted)
+          : process.env.GHL_PRIVATE_TOKEN
 
-        // Idempotency: check GHL for existing contact by phone (per D-14)
-        let contactId = await lookupContactByPhone(phone, clientRow.ghl_sub_account_id, token)
+        if (token) {
+          // Idempotency: check GHL for existing contact by phone (per D-14)
+          let contactId = await lookupContactByPhone(phone, clientRow.ghl_sub_account_id, token)
 
-        if (!contactId) {
-          const nameParts = homeowner_name.split(' ')
-          contactId = await createGHLContact({
-            locationId: clientRow.ghl_sub_account_id,
-            firstName: nameParts[0] || homeowner_name,
-            lastName: nameParts.slice(1).join(' ') || '',
-            phone,
-            token,
-          })
-        }
-
-        if (contactId) {
-          // Store ghl_contact_id on lead record (per D-25, GHL-03)
-          await supabase
-            .from('leads')
-            .update({ ghl_contact_id: contactId })
-            .eq('id', lead.id)
-
-          // Trigger SMS workflow (per D-23, LEAD-05)
-          const workflowId = process.env.GHL_SMS_WORKFLOW_ID
-          if (workflowId) {
-            await addContactToWorkflow(contactId, workflowId, token)
-
-            // Write initial sms_sequences record (per D-24)
-            await supabase.from('sms_sequences').insert({
-              lead_id: lead.id,
-              touch_number: 1,
-              message_body: 'Initial SMS workflow triggered',
-              status: 'pending',
-              scheduled_at: new Date().toISOString(),
+          if (!contactId) {
+            const nameParts = homeowner_name.split(' ')
+            contactId = await createGHLContact({
+              locationId: clientRow.ghl_sub_account_id,
+              firstName: nameParts[0] || homeowner_name,
+              lastName: nameParts.slice(1).join(' ') || '',
+              phone,
+              token,
             })
+          }
+
+          if (contactId) {
+            // Store ghl_contact_id on lead record (per D-25, GHL-03)
+            await supabase
+              .from('leads')
+              .update({ ghl_contact_id: contactId })
+              .eq('id', lead.id)
+
+            // Trigger SMS workflow (per D-23, LEAD-05)
+            const workflowId = process.env.GHL_SMS_WORKFLOW_ID
+            if (workflowId) {
+              await addContactToWorkflow(contactId, workflowId, token)
+
+              // Write initial sms_sequences record (per D-24)
+              await supabase.from('sms_sequences').insert({
+                lead_id: lead.id,
+                touch_number: 1,
+                message_body: 'Initial SMS workflow triggered',
+                status: 'pending',
+                scheduled_at: new Date().toISOString(),
+              })
+            }
           }
         }
       }
