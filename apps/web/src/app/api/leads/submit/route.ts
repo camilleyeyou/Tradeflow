@@ -6,6 +6,7 @@ import { createGHLContact, addContactToWorkflow, lookupContactByPhone } from '@/
 import { decryptToken } from '@/lib/crypto'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
 import { escapeHtml } from '@/lib/escape-html'
+import { scoreLeadUrgency } from '@/lib/scoring'
 import { Resend } from 'resend'
 
 export async function POST(request: Request) {
@@ -169,6 +170,23 @@ export async function POST(request: Request) {
     } catch (err) {
       console.error('[lead-submit] Resend error:', err)
       // Best effort — do not throw (per D-30)
+    }
+
+    // --- AI Urgency Scoring (AI-01 — best effort, non-blocking) ---
+    try {
+      const urgency = await scoreLeadUrgency({
+        service_type,
+        source: 'landing_page',
+        created_at: new Date().toISOString(),
+      })
+      if (urgency) {
+        await supabase
+          .from('leads')
+          .update({ urgency_score: urgency.score, urgency_reason: urgency.reason })
+          .eq('id', lead.id)
+      }
+    } catch (err) {
+      console.error('[lead-submit] scoring error:', err)
     }
   })
 
