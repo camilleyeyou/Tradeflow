@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from api.config import validate_required_env
 from api.routers import health
 from api.routers import webhooks
 from api.routers import stripe_webhooks
@@ -9,6 +10,7 @@ from api.services.supabase_client import init_supabase
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    validate_required_env()
     init_supabase()
     yield
 
