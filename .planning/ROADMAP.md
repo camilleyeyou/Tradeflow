@@ -14,8 +14,8 @@ Tradeflow is built in four phases that mirror the dependency chain from infrastr
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Supabase schema, RLS policies, auth, and both app scaffolds
-- [ ] **Phase 2: Lead Pipeline** - Landing pages, lead capture API, GHL contact sync, SMS follow-up, and email notification
+- [x] **Phase 1: Foundation** - Supabase schema, RLS policies, auth, and both app scaffolds
+- [x] **Phase 2: Lead Pipeline** - Landing pages, lead capture API, GHL contact sync, SMS follow-up, and email notification
 - [x] **Phase 3: Client Dashboard** - Auth-protected lead list, 5-stage status pipeline, call log, and settings (completed 2026-03-25)
 - [x] **Phase 4: Operations** - Admin panel with GHL onboarding and Stripe billing webhooks (completed 2026-03-26)
 - [ ] **Phase 5: Critical Security & Launch Blockers** - Close remotely exploitable security gaps and build the missing missed-call text-back pipeline
@@ -198,11 +198,11 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete |  |
-| 2. Lead Pipeline | 4/5 | In Progress|  |
+| 2. Lead Pipeline | 5/5 | Complete |  |
 | 3. Client Dashboard | 4/4 | Complete   | 2026-03-25 |
 | 4. Operations | 4/4 | Complete   | 2026-03-26 |
-| 5. Critical Security & Launch Blockers | 1/6 | In Progress|  |
-| 6. High-Priority Correctness, Legal & SEO | 5/6 | Complete    | 2026-07-06 |
-| 7. Medium-Priority Hardening | 0/4 | Complete    | 2026-07-06 |
+| 5. Critical Security & Launch Blockers | 5/6 | In Progress|  |
+| 6. High-Priority Correctness, Legal & SEO | 6/6 | Complete    | 2026-07-06 |
+| 7. Medium-Priority Hardening | 4/4 | Complete    | 2026-07-06 |
 | 8. Low-Priority Hygiene | 0/TBD | Not started | - |
 | 9. Features | 0/TBD | Not started | - |
