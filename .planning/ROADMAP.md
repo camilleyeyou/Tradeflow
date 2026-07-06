@@ -158,7 +158,7 @@ Plans:
 Plans:
 - [x] 07-01-PLAN.md — HARD-02/03: least-privilege RLS (migration 008) + schema integrity CHECKs/indexes/updated_at triggers (migration 009) (wave 1)
 - [x] 07-02-PLAN.md — HARD-01/09/10: FastAPI run_in_threadpool DB offload + fail-fast env validation + pinned minimal requirements.txt (wave 1)
-- [ ] 07-03-PLAN.md — HARD-04/05/06/08: open-redirect fix, email escaping + notifications_enabled, crypto passwords, landing revalidation (wave 1)
+- [x] 07-03-PLAN.md — HARD-04/05/06/08: open-redirect fix, email escaping + notifications_enabled, crypto passwords, landing revalidation (wave 1)
 - [ ] 07-04-PLAN.md — HARD-07/09: self-host fonts (remove Fontshare links) + Next.js boot env validation (wave 1)
 **UI hint**: yes
 
