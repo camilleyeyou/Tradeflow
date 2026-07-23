@@ -175,8 +175,15 @@ None yet.
 - Phase 4 (prior): GHL Agency API for programmatic sub-account creation — endpoint and required OAuth scopes still need verification at implementation time.
 - Launch is targeted the week of 2026-07-13 — Phase 5 (security + missed-call) is the critical path and should be planned/executed first, ahead of Phases 6-9.
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260723-ih0 | Expand to HVAC + plumbing trades and add Tech Services section to marketing homepage | 2026-07-23 | ad7b0c7 | [260723-ih0-expand-to-hvac-plumbing-trades-and-add-t](./quick/260723-ih0-expand-to-hvac-plumbing-trades-and-add-t/) |
+
 ## Session Continuity
 
 Last session: 2026-07-06T17:35:59.796Z
 Stopped at: Completed 09-05-PLAN.md
 Resume file: None
+Last activity: 2026-07-23 - Completed quick task 260723-ih0: Expand to HVAC + plumbing trades and add Tech Services section to marketing homepage
