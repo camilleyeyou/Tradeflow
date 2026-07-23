@@ -174,8 +174,43 @@ export default async function LandingPage({ params }: Props) {
     : (client.service_area_zips as string)
   const hasReviews = client.review_rating != null && client.review_count != null
 
+  const cfg = getTradeConfig(client.trade as string)
+  const base = process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.tradeflow-technologies.com'
+  const zipsArray = Array.isArray(client.service_area_zips)
+    ? (client.service_area_zips as string[])
+    : client.service_area_zips
+      ? [client.service_area_zips as string]
+      : []
+  const postalCodes = zipsArray
+    .filter(Boolean)
+    .map((zip) => ({ '@type': 'PostalCode', postalCode: zip }))
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': cfg.schemaType,
+    name: client.business_name as string,
+    telephone: client.phone as string,
+    url: `${base}/${clientSlug}/${service}`,
+    address: { '@type': 'PostalAddress', addressLocality: client.city as string },
+    ...(postalCodes.length > 0 ? { areaServed: postalCodes } : {}),
+    ...(client.review_rating != null && client.review_count != null && (client.review_count as number) > 0
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: client.review_rating,
+            reviewCount: client.review_count,
+            bestRating: 5,
+          },
+        }
+      : {}),
+  }
+
   return (
     <main className="min-h-screen bg-slate-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* HERO + FORM (above the fold) */}
       <section className="relative overflow-hidden bg-slate-900 text-white">
         {/* Subtle gold radial glow + bottom fade */}

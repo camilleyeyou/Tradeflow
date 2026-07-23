@@ -2,12 +2,85 @@ import Link from 'next/link'
 
 const GOLD = '#D4AF37'
 
+const FAQ_ITEMS = [
+  {
+    q: 'What trades do you work with?',
+    a: 'HVAC and plumbing companies across the United States.',
+  },
+  {
+    q: 'How does the 2-week free trial work?',
+    a: 'You get a 2-week free trial plus $200 in ad spend on us, with no contracts.',
+  },
+  {
+    q: 'How is pricing structured?',
+    a: 'Choose a Starter plan at $500/mo, a Growth plan at $1,500/mo, or Pay Per Lead at $75 per qualified lead.',
+  },
+  {
+    q: 'What happens when I miss a call?',
+    a: 'An automated text-back goes out in under 60 seconds, branded with your company name.',
+  },
+  {
+    q: 'Are leads shared with other companies?',
+    a: 'No — leads are 100% exclusive and never shared.',
+  },
+  {
+    q: 'Can you build our website or custom software too?',
+    a: 'Yes — our tech-services team builds custom websites & landing pages, AI automation & chatbots, custom software & apps, and CRM & integrations setup.',
+  },
+]
+
 export default function MarketingHomePage() {
+  const base = process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.tradeflow-technologies.com'
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${base}#organization`,
+        name: 'Tradeflow',
+        url: base,
+        logo: `${base}/logo-icon.svg`,
+        email: 'hello@tradeflow-technologies.com',
+        description:
+          'AI-powered lead generation for HVAC & plumbing companies across the US, plus custom websites, AI automation, and software.',
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${base}#website`,
+        name: 'Tradeflow',
+        url: base,
+        publisher: { '@id': `${base}#organization` },
+      },
+      {
+        '@type': 'Service',
+        '@id': `${base}#service-leadgen`,
+        serviceType: 'Lead generation for home service businesses',
+        provider: { '@id': `${base}#organization` },
+        areaServed: 'US',
+        description:
+          'Managed Google Local Services Ads, missed-call text-back, SMS follow-up sequences, and call tracking for HVAC & plumbing companies.',
+      },
+      {
+        '@type': 'Service',
+        '@id': `${base}#service-tech`,
+        serviceType: 'Custom software & technology services',
+        provider: { '@id': `${base}#organization` },
+        areaServed: 'US',
+        description:
+          'Custom websites & landing pages, AI automation & chatbots, custom software & apps, and CRM & integrations setup.',
+      },
+    ],
+  }
+
   return (
     <div
       className="min-h-screen bg-black text-white"
       style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ─── NAV ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/4 bg-black/80 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-6">
@@ -38,6 +111,12 @@ export default function MarketingHomePage() {
               className="hidden sm:inline text-[13px] text-white/70 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               Tech services
+            </a>
+            <a
+              href="#faq"
+              className="hidden sm:inline text-[13px] text-white/70 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              FAQ
             </a>
             <Link
               href="/login"
@@ -210,7 +289,7 @@ export default function MarketingHomePage() {
           <div>
             <img
               src="/images/marketing/google-lsa.svg"
-              alt="Google search results showing your HVAC company at the top with Google Guaranteed badge"
+              alt="Google search results showing your company at the top with Google Guaranteed badge"
               className="w-full h-auto rounded-xl"
               style={{ boxShadow: '0 8px 60px rgba(0,0,0,0.5)' }}
             />
@@ -505,6 +584,35 @@ export default function MarketingHomePage() {
             >
               Contact us &mdash; book a call &rarr;
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section id="faq" className="px-6 py-24">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-14">
+            <GoldBadge>FAQ</GoldBadge>
+            <h2
+              className="text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-6"
+              style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}
+            >
+              Frequently asked questions
+            </h2>
+          </div>
+          <div className="space-y-3">
+            {FAQ_ITEMS.map((item) => (
+              <details
+                key={item.q}
+                className="rounded-2xl p-6"
+                style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
+              >
+                <summary className="font-semibold text-white text-[15px] cursor-pointer list-none">
+                  {item.q}
+                </summary>
+                <p className="text-white/40 text-[13px] leading-relaxed mt-3">{item.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

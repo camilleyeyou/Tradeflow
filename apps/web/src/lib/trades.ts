@@ -16,6 +16,8 @@ export interface TradeConfig {
   services: ServiceDef[]
   scoringDomain: string
   scoringEmergencyExamples: string
+  /** schema.org LocalBusiness subtype used for JSON-LD structured data. */
+  schemaType: string
 }
 
 export const TRADES: Record<Trade, TradeConfig> = {
@@ -31,6 +33,7 @@ export const TRADES: Record<Trade, TradeConfig> = {
     ],
     scoringDomain: 'HVAC',
     scoringEmergencyExamples: 'no heat or AC in extreme weather',
+    schemaType: 'HVACBusiness',
   },
   plumbing: {
     trade: 'plumbing',
@@ -44,6 +47,7 @@ export const TRADES: Record<Trade, TradeConfig> = {
     ],
     scoringDomain: 'plumbing',
     scoringEmergencyExamples: 'a burst pipe, active flooding, or no hot water',
+    schemaType: 'Plumber',
   },
 }
 
