@@ -13,10 +13,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const TITLE = "Tradeflow — AI-powered lead generation for HVAC & plumbing companies";
+const DESCRIPTION = "Tradeflow captures every call, form, and missed contact — then follows up automatically so home service companies never lose a lead. We also build custom websites, AI automation, and software.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
-  title: "Tradeflow — AI-powered lead generation for HVAC & plumbing companies",
-  description: "Tradeflow captures every call, form, and missed contact — then follows up automatically so home service companies never lose a lead. We also build custom websites, AI automation, and software.",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: "Tradeflow",
+    url: "/",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
