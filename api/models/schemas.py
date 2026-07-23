@@ -9,7 +9,7 @@ class LeadSubmitRequest(BaseModel):
     phone: str
     email: Optional[str] = None
     zip_code: str
-    service_type: str  # ac_repair | furnace_repair | installation | maintenance | other
+    service_type: str  # ac-repair | furnace-repair | installation | maintenance | drain-cleaning | water-heater-repair | leak-repair | emergency-plumbing
     source: str = "landing_page"
 
 

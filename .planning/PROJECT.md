@@ -57,7 +57,7 @@ Every inbound lead — whether from an ad click, landing page form, or missed ca
 - Web scraping pipeline (Apify) — Phase 3
 - Outbound LLM prospect scoring — Phase 3
 - Multi-client SaaS billing portal — Phase 3
-- Plumbing/roofing vertical expansion — Phase 3
+- Plumbing/roofing vertical expansion — Phase 3 (plumbing shipped 2026-07-23 via quick task 260723-ih0; roofing still out of scope)
 - Real-time chat — high complexity, not core
 - Mobile native app — web-first, mobile responsive sufficient
 - OAuth login — email/password sufficient for v1

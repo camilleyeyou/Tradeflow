@@ -180,7 +180,7 @@ export default function GetStartedPage() {
                     id="company_name"
                     type="text"
                     autoComplete="organization"
-                    placeholder="Smith HVAC"
+                    placeholder="Smith Plumbing & Heating"
                     aria-invalid={!!errors.company_name || undefined}
                     {...register('company_name')}
                     className={inputClass(!!errors.company_name)}
@@ -205,7 +205,7 @@ export default function GetStartedPage() {
                     id="email"
                     type="email"
                     autoComplete="email"
-                    placeholder="jane@smithhvac.com"
+                    placeholder="jane@smithplumbing.com"
                     aria-invalid={!!errors.email || undefined}
                     {...register('email')}
                     className={inputClass(!!errors.email)}

@@ -1,8 +1,8 @@
 # Tradeflow — Web App
 
-AI-powered lead generation for home-service businesses, starting with **HVAC contractors in the Chicagoland area**.
+AI-powered lead generation for home-service businesses — HVAC and plumbing companies across the United States.
 
-HVAC companies pay a monthly retainer and get managed Google Local Services Ads, optimized landing pages, missed-call text-back, SMS follow-up sequences, and a private dashboard showing every lead and how their spend is performing. The core promise: **every inbound lead — ad click, form, or missed call — is captured instantly, routed to the right contractor, and followed up automatically so no lead is ever lost.**
+HVAC and plumbing companies pay a monthly retainer and get managed Google Local Services Ads, optimized landing pages, missed-call text-back, SMS follow-up sequences, and a private dashboard showing every lead and how their spend is performing. The core promise: **every inbound lead — ad click, form, or missed call — is captured instantly, routed to the right contractor, and followed up automatically so no lead is ever lost.**
 
 This package (`apps/web`) is the **Next.js front end + lead-capture/notification API**. It is one of three parts of the platform — see [System Architecture](#system-architecture).
 
@@ -98,12 +98,12 @@ Routes are organized with App Router **route groups** (the parenthesized folders
 | `/` | `src/app/(marketing)/page.tsx` | Marketing homepage: hero, pain points, feature sections (Google LSA, missed-call text-back, SMS sequences, call tracking), pricing, CTAs. |
 | `/get-started` | `src/app/(marketing)/get-started/page.tsx` | Onboarding inquiry form (name, company, phone, email, service area, how-they-heard). Client-side validation, loading state, on-page success. Submits to `POST /api/get-started`. Includes a "Prefer email?" `mailto:` fallback. |
 
-### `(landing)` — public, one per HVAC client
+### `(landing)` — public, one per client (HVAC or plumbing)
 
 | Route | File | Description |
 |---|---|---|
-| `/{clientSlug}` | `src/app/(landing)/[clientSlug]/page.tsx` | Redirects to the default service (`ac-repair`). |
-| `/{clientSlug}/{service}` | `src/app/(landing)/[clientSlug]/[service]/page.tsx` | Per-client service landing page (`ac-repair`, `furnace-repair`, `installation`, `maintenance`). Click-to-call (`tel:`) + `LeadForm`. Client data fetched server-side; pages pre-rendered via `generateStaticParams`. |
+| `/{clientSlug}` | `src/app/(landing)/[clientSlug]/page.tsx` | Redirects to the client's default service for their trade. |
+| `/{clientSlug}/{service}` | `src/app/(landing)/[clientSlug]/[service]/page.tsx` | Per-client service landing page. Available services are driven by `src/lib/trades.ts` and the client's `trade` column (`hvac`: `ac-repair`, `furnace-repair`, `installation`, `maintenance`; `plumbing`: `drain-cleaning`, `water-heater-repair`, `leak-repair`, `emergency-plumbing`). Click-to-call (`tel:`) + `LeadForm`. Client data fetched server-side; pages pre-rendered via `generateStaticParams`. |
 
 ### `(dashboard)` — protected (any authenticated contractor)
 
@@ -245,7 +245,7 @@ Migrations live in `supabase/migrations/` (plus `supabase/seed.sql`):
 
 | Table | Purpose |
 |---|---|
-| `clients` | One row per HVAC company: business/owner/contact, `service_area_zips`, `slug`, `ghl_sub_account_id`, `callrail_tracking_number`, Stripe IDs, `plan`, `trial_ends_at`, `notifications_enabled`. |
+| `clients` | One row per client company (HVAC or plumbing): business/owner/contact, `service_area_zips`, `slug`, `trade` (`hvac` / `plumbing` — drives which service slugs apply, see `src/lib/trades.ts`), `ghl_sub_account_id`, `callrail_tracking_number`, Stripe IDs, `plan`, `trial_ends_at`, `notifications_enabled`. |
 | `leads` | Inbound leads: homeowner contact, `service_type`, `source`, `status` (`new`/`contacted`/`booked`/`completed`/`lost`), `lead_score`, `notes`, `ghl_contact_id`, `callrail_call_id`, lifecycle timestamps. |
 | `calls` | CallRail-tracked calls: caller/tracking numbers, `duration_seconds`, `recording_url`, `transcript`, `outcome`. |
 | `sms_sequences` | SMS follow-up touches: `touch_number`, `message_body`, `ghl_message_id`, `status` (`pending`/`sent`/`stopped`). |
@@ -344,4 +344,4 @@ npm run start   # serve the production build
 
 ---
 
-*HVAC client landing pages have their own contractor-owned lead form (`/api/leads/submit`) and click-to-call — those route to the **contractor**, not to Tradeflow. The marketing CTAs and `/get-started` form route to Tradeflow.*
+*Client landing pages have their own contractor-owned lead form (`/api/leads/submit`) and click-to-call — those route to the **contractor**, not to Tradeflow. The marketing CTAs and `/get-started` form route to Tradeflow.*
