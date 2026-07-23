@@ -6,12 +6,14 @@
 // background block, after the homeowner's 200 has already been returned.
 
 import Anthropic from '@anthropic-ai/sdk'
+import { getTradeConfig } from '@/lib/trades'
 
 export interface LeadScoringInput {
   service_type: string
   message?: string | null
   source: string
   created_at: string
+  trade?: string
 }
 
 export interface UrgencyResult {
@@ -19,8 +21,10 @@ export interface UrgencyResult {
   reason: string
 }
 
-const SYSTEM_PROMPT =
-  'You are triaging inbound HVAC leads by urgency. Given the lead data, respond with ONLY a strict JSON object of the exact shape {"score": <integer 1-10>, "reason": "<short string>"} and nothing else. 10 = emergency (e.g. no heat/AC in extreme weather), 1 = low intent. Do not include markdown or prose.'
+function buildSystemPrompt(trade?: string): string {
+  const cfg = getTradeConfig(trade)
+  return `You are triaging inbound ${cfg.scoringDomain} leads by urgency. Given the lead data, respond with ONLY a strict JSON object of the exact shape {"score": <integer 1-10>, "reason": "<short string>"} and nothing else. 10 = emergency (e.g. ${cfg.scoringEmergencyExamples}), 1 = low intent. Do not include markdown or prose.`
+}
 
 export async function scoreLeadUrgency(
   input: LeadScoringInput
@@ -35,7 +39,7 @@ export async function scoreLeadUrgency(
         model: 'claude-fable-5',
         max_tokens: 200,
         temperature: 0,
-        system: SYSTEM_PROMPT,
+        system: buildSystemPrompt(input.trade),
         messages: [{ role: 'user', content: JSON.stringify(input) }],
       },
       { timeout: 8000 }

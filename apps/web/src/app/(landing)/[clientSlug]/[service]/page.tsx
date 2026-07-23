@@ -11,17 +11,10 @@ function createServerClient() {
     { auth: { persistSession: false } }
   )
 }
-import { SERVICE_TYPES } from '@/lib/validations/lead'
+import { getTradeConfig, getServiceLabel, isValidServiceForTrade } from '@/lib/trades'
 import LeadForm from '@/components/lead-form'
 
 const GOLD = '#D4AF37'
-
-const SERVICE_LABELS: Record<string, string> = {
-  'ac-repair': 'AC Repair',
-  'furnace-repair': 'Furnace Repair',
-  'installation': 'HVAC Installation',
-  'maintenance': 'HVAC Maintenance',
-}
 
 function formatPhone(phone: string): string {
   const digits = phone.replace(/\D/g, '').replace(/^1/, '')
@@ -102,7 +95,7 @@ export async function generateStaticParams() {
 
   const { data: clients } = await supabase
     .from('clients')
-    .select('slug')
+    .select('slug, trade')
     .eq('is_active', true)
 
   if (!clients || clients.length === 0) {
@@ -110,9 +103,9 @@ export async function generateStaticParams() {
   }
 
   return clients.flatMap((client) =>
-    SERVICE_TYPES.map((service) => ({
+    getTradeConfig(client.trade as string).services.map((service) => ({
       clientSlug: client.slug as string,
-      service,
+      service: service.slug,
     }))
   )
 }
@@ -124,24 +117,24 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { clientSlug, service } = await params
 
-  if (!SERVICE_TYPES.includes(service as (typeof SERVICE_TYPES)[number])) {
-    return {}
-  }
-
   const supabase = createServerClient()
 
   const { data: client } = await supabase
     .from('clients')
-    .select('business_name, city')
+    .select('business_name, city, trade')
     .eq('slug', clientSlug)
     .eq('is_active', true)
     .single()
 
   if (!client) {
-    return { title: 'HVAC Services' }
+    return { title: 'Home Services' }
   }
 
-  const serviceLabel = SERVICE_LABELS[service] ?? service
+  if (!isValidServiceForTrade(client.trade as string, service)) {
+    return {}
+  }
+
+  const serviceLabel = getServiceLabel(client.trade as string, service)
   const businessName = client.business_name as string
   const city = client.city as string
   const title = `${serviceLabel} in ${city} | ${businessName}`
@@ -157,15 +150,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function LandingPage({ params }: Props) {
   const { clientSlug, service } = await params
 
-  if (!SERVICE_TYPES.includes(service as (typeof SERVICE_TYPES)[number])) {
-    notFound()
-  }
-
   const supabase = createServerClient()
 
   const { data: client } = await supabase
     .from('clients')
-    .select('id, business_name, phone, city, service_area_zips, slug, review_rating, review_count')
+    .select('id, business_name, phone, city, service_area_zips, slug, review_rating, review_count, trade')
     .eq('slug', clientSlug)
     .eq('is_active', true)
     .single()
@@ -174,7 +163,11 @@ export default async function LandingPage({ params }: Props) {
     notFound()
   }
 
-  const serviceLabel = SERVICE_LABELS[service] ?? service
+  if (!isValidServiceForTrade(client.trade as string, service)) {
+    notFound()
+  }
+
+  const serviceLabel = getServiceLabel(client.trade as string, service)
   const formattedPhone = formatPhone(client.phone as string)
   const serviceAreaText = Array.isArray(client.service_area_zips)
     ? (client.service_area_zips as string[]).join(' · ')
@@ -295,6 +288,7 @@ export default async function LandingPage({ params }: Props) {
                 clientId={client.id as string}
                 serviceType={service}
                 businessName={client.business_name as string}
+                trade={client.trade as string}
               />
             </div>
           </div>

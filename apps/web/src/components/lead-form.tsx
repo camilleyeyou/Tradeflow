@@ -3,24 +3,20 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { leadSchema, type LeadFormValues, SERVICE_TYPES } from '@/lib/validations/lead'
+import { leadSchema, type LeadFormValues } from '@/lib/validations/lead'
+import { getTradeConfig } from '@/lib/trades'
 
 const GOLD = '#D4AF37'
-
-const SERVICE_OPTION_LABELS: Record<string, string> = {
-  'ac-repair': 'AC Repair',
-  'furnace-repair': 'Furnace Repair',
-  'installation': 'HVAC Installation',
-  'maintenance': 'HVAC Maintenance',
-}
 
 interface LeadFormProps {
   clientId: string
   serviceType: string
   businessName?: string
+  trade: string
 }
 
-export default function LeadForm({ clientId, serviceType, businessName }: LeadFormProps) {
+export default function LeadForm({ clientId, serviceType, businessName, trade }: LeadFormProps) {
+  const tradeServices = getTradeConfig(trade).services
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -193,9 +189,9 @@ export default function LeadForm({ clientId, serviceType, businessName }: LeadFo
           className={fieldClass(!!errors.service_type)}
           {...register('service_type')}
         >
-          {SERVICE_TYPES.map((type) => (
-            <option key={type} value={type}>
-              {SERVICE_OPTION_LABELS[type]}
+          {tradeServices.map((s) => (
+            <option key={s.slug} value={s.slug}>
+              {s.label}
             </option>
           ))}
         </select>

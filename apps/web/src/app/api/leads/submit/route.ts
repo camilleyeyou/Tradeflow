@@ -174,10 +174,12 @@ export async function POST(request: Request) {
 
     // --- AI Urgency Scoring (AI-01 — best effort, non-blocking) ---
     try {
+      const { data: c } = await supabase.from('clients').select('trade').eq('id', client_id).single()
       const urgency = await scoreLeadUrgency({
         service_type,
         source: 'landing_page',
         created_at: new Date().toISOString(),
+        trade: c?.trade ?? undefined,
       })
       if (urgency) {
         await supabase
