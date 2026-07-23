@@ -180,10 +180,11 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260723-ih0 | Expand to HVAC + plumbing trades and add Tech Services section to marketing homepage | 2026-07-23 | ad7b0c7 | [260723-ih0-expand-to-hvac-plumbing-trades-and-add-t](./quick/260723-ih0-expand-to-hvac-plumbing-trades-and-add-t/) |
+| 260723-lfp | SEO/structured-data/OG-image/FAQ/presentation audit pass for marketing + landing surfaces | 2026-07-23 | 7a995a0 | [260723-lfp-seo-structured-data-og-image-faq-and-pre](./quick/260723-lfp-seo-structured-data-og-image-faq-and-pre/) |
 
 ## Session Continuity
 
 Last session: 2026-07-06T17:35:59.796Z
 Stopped at: Completed 09-05-PLAN.md
 Resume file: None
-Last activity: 2026-07-23 - Completed quick task 260723-ih0: Expand to HVAC + plumbing trades and add Tech Services section to marketing homepage
+Last activity: 2026-07-23 - Completed quick task 260723-lfp: SEO/structured-data/OG-image/FAQ/presentation audit pass for marketing + landing surfaces
