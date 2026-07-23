@@ -36,6 +36,7 @@ export type Database = {
           ghl_private_token_encrypted: string | null
           review_rating: number | null
           review_count: number | null
+          trade: string
         }
         Insert: {
           id?: string
@@ -59,6 +60,7 @@ export type Database = {
           ghl_private_token_encrypted?: string | null
           review_rating?: number | null
           review_count?: number | null
+          trade?: string
         }
         Update: {
           id?: string
@@ -82,6 +84,7 @@ export type Database = {
           ghl_private_token_encrypted?: string | null
           review_rating?: number | null
           review_count?: number | null
+          trade?: string
         }
         Relationships: []
       }
