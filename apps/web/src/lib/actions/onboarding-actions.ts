@@ -18,6 +18,7 @@ export async function onboardClient(formData: {
   state: string
   service_area_zips: string
   plan: string
+  trade: string
   ghl_private_token?: string
 }) {
   const authClient = await createClient()
@@ -68,6 +69,7 @@ export async function onboardClient(formData: {
         .map((z: string) => z.trim())
         .filter(Boolean),
       plan: parsed.data.plan,
+      trade: parsed.data.trade,
       slug,
       ghl_private_token_encrypted: parsed.data.ghl_private_token
         ? encryptToken(parsed.data.ghl_private_token)

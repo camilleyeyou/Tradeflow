@@ -33,6 +33,12 @@ export default function MarketingHomePage() {
             >
               Pricing
             </a>
+            <a
+              href="#tech-services"
+              className="hidden sm:inline text-[13px] text-white/70 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              Tech services
+            </a>
             <Link
               href="/login"
               className="text-[13px] text-white/70 hover:text-white transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
@@ -64,7 +70,7 @@ export default function MarketingHomePage() {
                 style={{ color: GOLD, background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.18)' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: GOLD }} />
-                Built for Chicagoland HVAC
+                Built for HVAC &amp; plumbing companies
               </div>
 
               <h1
@@ -147,7 +153,7 @@ export default function MarketingHomePage() {
               Sound familiar?
             </h2>
             <p className="text-white/35 max-w-md mx-auto text-[15px]">
-              Most HVAC companies lose 40&ndash;60% of inbound leads before they ever get called back.
+              Most home service companies lose 40&ndash;60% of inbound leads before they ever get called back.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -223,7 +229,7 @@ export default function MarketingHomePage() {
               'Google Guaranteed badge builds instant trust',
               'Pay per lead, not per click \u2014 no wasted ad spend',
               'We handle setup, optimization, and bid management',
-              'Target specific zip codes across Chicagoland',
+              'Target specific zip codes anywhere in the U.S.',
             ]} />
           </div>
         </div>
@@ -279,7 +285,7 @@ export default function MarketingHomePage() {
             <p className="text-white/45 text-[15px] leading-relaxed mb-6">
               Multi-step text sequences go out over days, keeping your business
               top of mind. Different messages for AC repair, furnace installs,
-              and maintenance &mdash; all on autopilot.
+              drain cleaning, and water-heater jobs &mdash; all on autopilot.
             </p>
             <FeatureList items={[
               'Automated sequences over days or weeks',
@@ -446,6 +452,63 @@ export default function MarketingHomePage() {
         </div>
       </section>
 
+      {/* ─── TECH SERVICES ─── */}
+      <section id="tech-services" className="px-6 py-24" style={{ background: '#050505' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <GoldBadge>Tech Services</GoldBadge>
+            <h2
+              className="text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-6"
+              style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}
+            >
+              Need more than leads? We build the tech too.
+            </h2>
+            <p className="text-white/35 max-w-lg mx-auto text-[15px]">
+              Beyond lead generation, our team builds the custom software home service
+              businesses need to run &mdash; from websites to AI automation.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+            {[
+              {
+                title: 'Custom websites & landing pages',
+                body: 'Fast, conversion-focused sites built for your brand — not a template.',
+              },
+              {
+                title: 'AI automation & chatbots',
+                body: 'Automate quoting, scheduling, and customer replies with AI built for your workflow.',
+              },
+              {
+                title: 'Custom software & apps',
+                body: 'Internal tools and customer-facing apps built to your exact spec.',
+              },
+              {
+                title: 'CRM & integrations setup',
+                body: 'We wire up and configure the systems that keep your team organized.',
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl p-6"
+                style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
+              >
+                <h3 className="font-semibold text-white text-[15px] mb-2">{item.title}</h3>
+                <p className="text-white/40 text-[13px] leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <a
+              href="mailto:hello@tradeflow-technologies.com?cc=contact@tradeflow-technologies.com&subject=Tradeflow%20%E2%80%94%20Tech%20services%20inquiry"
+              className="inline-flex items-center gap-2 font-bold text-[15px] py-3.5 px-8 rounded-xl transition-all hover:brightness-110 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              style={{ background: GOLD, color: '#000', boxShadow: '0 0 40px rgba(212,175,55,0.25)' }}
+            >
+              Contact us &mdash; book a call &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ─── FINAL CTA ─── */}
       <section className="relative px-6 py-28 text-center overflow-hidden" style={{ background: '#050505' }}>
         <div
@@ -460,7 +523,7 @@ export default function MarketingHomePage() {
             Ready to fill your schedule?
           </h2>
           <p className="text-white/40 text-[16px] leading-relaxed mb-10">
-            We&apos;re onboarding a small number of HVAC contractors in Chicagoland
+            We&apos;re onboarding HVAC &amp; plumbing companies across the United States
             right now. 2-week free trial, $200 in ad spend on us.
           </p>
           <Link
@@ -489,7 +552,7 @@ export default function MarketingHomePage() {
             <img src="/logo-icon.svg" alt="" width={40} height={40} className="shrink-0" />
             <span>Trade<span style={{ color: GOLD }}>flow</span></span>
           </span>
-          <span>AI-powered lead generation for HVAC contractors</span>
+          <span>AI-powered lead generation for HVAC &amp; plumbing companies</span>
           <span className="flex items-center gap-4">
             <Link
               href="/privacy"

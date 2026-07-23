@@ -6,7 +6,7 @@ const GOLD = '#D4AF37'
 export const metadata: Metadata = {
   title: 'Privacy Policy | Tradeflow',
   description:
-    'How Tradeflow collects, uses, and protects information from homeowners and HVAC contractor clients.',
+    'How Tradeflow collects, uses, and protects information from homeowners and home service clients.',
 }
 
 export default function PrivacyPolicyPage() {

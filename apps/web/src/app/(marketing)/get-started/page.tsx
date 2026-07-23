@@ -114,7 +114,7 @@ export default function GetStartedPage() {
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: GOLD }} />
-              Now onboarding Chicagoland HVAC
+              Now onboarding HVAC &amp; plumbing &mdash; nationwide
             </div>
             <h1
               className="text-[clamp(34px,5vw,52px)] font-semibold leading-[1.08] tracking-tight mb-4"
@@ -321,7 +321,7 @@ export default function GetStartedPage() {
               Trade<span style={{ color: GOLD }}>flow</span>
             </span>
           </Link>
-          <span>AI-powered lead generation for HVAC contractors</span>
+          <span>AI-powered lead generation for HVAC &amp; plumbing companies</span>
           <span className="flex items-center gap-4">
             <Link
               href="/privacy"

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
-  title: "Tradeflow — AI-powered lead generation for HVAC contractors",
-  description: "Tradeflow captures every call, form, and missed contact — then follows up automatically so HVAC contractors never lose a lead.",
+  title: "Tradeflow — AI-powered lead generation for HVAC & plumbing companies",
+  description: "Tradeflow captures every call, form, and missed contact — then follows up automatically so home service companies never lose a lead. We also build custom websites, AI automation, and software.",
 };
 
 export default function RootLayout({

@@ -9,6 +9,7 @@ export const onboardingSchema = z.object({
   state: z.string().min(1, 'State is required'),
   service_area_zips: z.string().min(1, 'At least one ZIP code required'),
   plan: z.enum(['starter', 'growth', 'premium']),
+  trade: z.enum(['hvac', 'plumbing']),
   ghl_private_token: z.string().trim().optional().or(z.literal('')),
 })
 

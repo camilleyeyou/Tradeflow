@@ -23,6 +23,7 @@ export default function NewClientPage() {
       state: 'IL',
       service_area_zips: '',
       plan: 'starter',
+      trade: 'hvac',
       ghl_private_token: '',
     },
   })
@@ -52,9 +53,24 @@ export default function NewClientPage() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label htmlFor="business_name" className="mb-1 block text-sm font-medium">Business Name</label>
-          <Input id="business_name" {...form.register('business_name')} placeholder="Oak Park HVAC" />
+          <Input id="business_name" {...form.register('business_name')} placeholder="Acme Home Services" />
           {form.formState.errors.business_name && (
             <p className="mt-1 text-sm text-red-600">{form.formState.errors.business_name.message}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="trade" className="mb-1 block text-sm font-medium">Trade</label>
+          <select
+            id="trade"
+            {...form.register('trade')}
+            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+          >
+            <option value="hvac">HVAC</option>
+            <option value="plumbing">Plumbing</option>
+          </select>
+          {form.formState.errors.trade && (
+            <p className="mt-1 text-sm text-red-600">{form.formState.errors.trade.message}</p>
           )}
         </div>
 
