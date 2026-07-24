@@ -183,10 +183,11 @@ None yet.
 | 260723-lfp | SEO/structured-data/OG-image/FAQ/presentation audit pass for marketing + landing surfaces | 2026-07-23 | 7a995a0 | [260723-lfp-seo-structured-data-og-image-faq-and-pre](./quick/260723-lfp-seo-structured-data-og-image-faq-and-pre/) |
 | 260723-fast | Update pricing to Starter $750 / Growth $1,250 / Premium $1,750 monthly tiers | 2026-07-23 | 8202c69 | (inline /gsd:fast) |
 | 260723-oop | Automated Google review-request SMS on lead completion + monthly ROI report emails via Vercel cron | 2026-07-24 | da3369b | [260723-oop-monthly-roi-report-emails-automated-goog](./quick/260723-oop-monthly-roi-report-emails-automated-goog/) |
+| 260723-ph8 | Migration 015 (job_value_cents + timezone) + demo client seed + real job-value tracking + per-client timezone support | 2026-07-23 | 253a309 | [260723-ph8-demo-client-seed-real-job-value-tracking](./quick/260723-ph8-demo-client-seed-real-job-value-tracking/) |
 
 ## Session Continuity
 
 Last session: 2026-07-06T17:35:59.796Z
 Stopped at: Completed 09-05-PLAN.md
 Resume file: None
-Last activity: 2026-07-24 - Completed quick task 260723-oop: automated Google review requests + monthly ROI report emails
+Last activity: 2026-07-23 - Completed quick task 260723-ph8: demo client seed + real job-value tracking + per-client timezone
