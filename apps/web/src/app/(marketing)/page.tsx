@@ -13,7 +13,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'How is pricing structured?',
-    a: 'Choose a Starter plan at $500/mo, a Growth plan at $1,500/mo, or Pay Per Lead at $75 per qualified lead.',
+    a: 'Choose a Starter plan at $750/mo, a Growth plan at $1,250/mo, or a Premium plan at $1,750/mo. No contracts on any plan.',
   },
   {
     q: 'What happens when I miss a call?',
@@ -210,7 +210,7 @@ export default function MarketingHomePage() {
           {[
             { value: '< 60s', label: 'Lead response time' },
             { value: '40\u201360%', label: 'Leads lost without follow-up' },
-            { value: '$75', label: 'Per qualified lead' },
+            { value: '$200', label: 'Ad credit with free trial' },
             { value: '100%', label: 'Exclusive leads \u2014 not shared' },
           ].map((stat) => (
             <div key={stat.label}>
@@ -452,7 +452,7 @@ export default function MarketingHomePage() {
               Choose how you want to grow
             </h2>
             <p className="text-white/35 max-w-md mx-auto text-[15px]">
-              Flat monthly retainers or pay per lead &mdash; pick the model that fits your business.
+              Simple flat monthly retainers with no contracts &mdash; pick the plan that fits your business.
             </p>
           </div>
 
@@ -460,7 +460,7 @@ export default function MarketingHomePage() {
             {[
               {
                 name: 'Starter',
-                price: '$500',
+                price: '$750',
                 priceLabel: '/mo',
                 desc: 'Get started with LSA ads and automated lead follow-up.',
                 features: ['Google LSA setup & management', '1 service landing page', 'Lead capture dashboard', 'Missed-call text-back', 'Email lead notifications'],
@@ -468,18 +468,18 @@ export default function MarketingHomePage() {
               },
               {
                 name: 'Growth',
-                price: '$1,500',
+                price: '$1,250',
                 priceLabel: '/mo',
                 desc: 'Full automation and call tracking for contractors ready to scale.',
                 features: ['Everything in Starter', 'Up to 4 service landing pages', 'CallRail call tracking', 'SMS follow-up sequences', 'Monthly performance report'],
                 highlight: true,
               },
               {
-                name: 'Pay Per Lead',
-                price: '$75',
-                priceLabel: '/lead',
-                desc: 'No monthly commitment. Pay only when we deliver a qualified lead.',
-                features: ['No retainer or setup fee', 'Exclusive leads \u2014 never shared', 'Only pay for verified contacts', 'Pause or cancel anytime', 'Dashboard access included'],
+                name: 'Premium',
+                price: '$1,750',
+                priceLabel: '/mo',
+                desc: 'Our most hands-on plan for companies ready to lead their market.',
+                features: ['Everything in Growth', 'Landing pages for every service you offer', 'AI lead urgency scoring', 'Two-way SMS inbox in your dashboard', 'Priority support'],
                 highlight: false,
               },
             ].map((plan) => (

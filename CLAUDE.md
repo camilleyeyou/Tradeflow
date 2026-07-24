@@ -3,7 +3,7 @@
 
 **Tradeflow**
 
-Tradeflow is an AI-powered lead generation platform for home service businesses — HVAC and plumbing companies across the United States. HVAC and plumbing companies pay a monthly retainer ($500–$1,500/mo) and receive managed Google LSA ads, optimized landing pages, missed-call text-back automation, SMS follow-up sequences, and a private dashboard showing all their leads and performance. The marketing site also offers a tech-services line (custom websites, AI automation, custom software, CRM setup) for home service businesses.
+Tradeflow is an AI-powered lead generation platform for home service businesses — HVAC and plumbing companies across the United States. HVAC and plumbing companies pay a monthly retainer ($750–$1,750/mo) and receive managed Google LSA ads, optimized landing pages, missed-call text-back automation, SMS follow-up sequences, and a private dashboard showing all their leads and performance. The marketing site also offers a tech-services line (custom websites, AI automation, custom software, CRM setup) for home service businesses.
 
 **Core Value:** Every inbound lead — whether from an ad click, landing page form, or missed call — is captured instantly, routed to the right HVAC contractor, and followed up automatically so no lead is ever lost.
 
