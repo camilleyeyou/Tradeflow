@@ -186,10 +186,11 @@ None yet.
 | 260723-ph8 | Migration 015 (job_value_cents + timezone) + demo client seed + real job-value tracking + per-client timezone support | 2026-07-23 | 253a309 | [260723-ph8-demo-client-seed-real-job-value-tracking](./quick/260723-ph8-demo-client-seed-real-job-value-tracking/) |
 | 260723-fast2 | Demo login provisioned + auto re-link in seed + docs/DEMO-GUIDE.md for PR lead | 2026-07-24 | e4cda61 | (inline /gsd:fast) |
 | 260723-fast3 | Fix prod 500 on dynamic routes: env boot check demoted RESEND/service-role to warn-only | 2026-07-24 | 62f5b4a | (inline /gsd:fast) |
+| 260723-fast4 | Dashboard sign-out button + sidebar contrast fixes | 2026-07-24 | 9d794f3 | (inline /gsd:fast) |
 
 ## Session Continuity
 
 Last session: 2026-07-06T17:35:59.796Z
 Stopped at: Completed 09-05-PLAN.md
 Resume file: None
-Last activity: 2026-07-24 - Fixed prod dashboard 500 (env boot validation) and verified demo dashboard end-to-end
+Last activity: 2026-07-24 - Added dashboard sign-out + sidebar contrast fixes
