@@ -2,8 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Users, Phone, Settings, Shield } from 'lucide-react'
+import { LayoutDashboard, Users, Phone, Settings, Shield, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { signOut } from '@/lib/actions/auth-actions'
 
 const GOLD = '#D4AF37'
 
@@ -38,7 +39,7 @@ export function SidebarNav({ businessName, showAdmin }: SidebarNavProps) {
               Trade<span style={{ color: GOLD }}>flow</span>
             </span>
           </div>
-          <p className="text-xs text-white/35 mt-1.5 truncate">{businessName}</p>
+          <p className="text-xs text-white/60 mt-1.5 truncate">{businessName}</p>
         </div>
 
         <nav className="flex flex-col gap-1 px-3 py-4 flex-1">
@@ -53,7 +54,7 @@ export function SidebarNav({ businessName, showAdmin }: SidebarNavProps) {
                   'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
                   isActive
                     ? 'text-white'
-                    : 'text-white/40 hover:text-white/70 hover:bg-white/[0.03]'
+                    : 'text-white/70 hover:text-white hover:bg-white/[0.03]'
                 )}
                 style={isActive ? {
                   background: 'rgba(212,175,55,0.08)',
@@ -67,8 +68,17 @@ export function SidebarNav({ businessName, showAdmin }: SidebarNavProps) {
           })}
         </nav>
 
-        <div className="px-5 py-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <p className="text-xs text-white/20">Tradeflow &middot; Lead Platform</p>
+        <div className="px-3 py-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <form action={signOut}>
+            <button
+              type="submit"
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/[0.03] transition-all cursor-pointer"
+            >
+              <LogOut className="h-4 w-4 shrink-0" />
+              Sign out
+            </button>
+          </form>
+          <p className="text-xs text-white/40 px-3 pt-3">Tradeflow &middot; Lead Platform</p>
         </div>
       </aside>
 
@@ -84,7 +94,7 @@ export function SidebarNav({ businessName, showAdmin }: SidebarNavProps) {
                 href={href}
                 className={cn(
                   'flex flex-1 flex-col items-center gap-1 py-3 text-xs font-medium transition-colors',
-                  isActive ? '' : 'text-white/30'
+                  isActive ? '' : 'text-white/60'
                 )}
                 style={isActive ? { color: GOLD } : undefined}
               >
@@ -93,6 +103,15 @@ export function SidebarNav({ businessName, showAdmin }: SidebarNavProps) {
               </Link>
             )
           })}
+          <form action={signOut} className="flex flex-1">
+            <button
+              type="submit"
+              className="flex flex-1 flex-col items-center gap-1 py-3 text-xs font-medium text-white/60 transition-colors"
+            >
+              <LogOut className="h-5 w-5" />
+              Sign out
+            </button>
+          </form>
         </div>
       </nav>
     </>
