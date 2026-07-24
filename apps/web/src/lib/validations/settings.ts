@@ -6,6 +6,8 @@ export const settingsSchema = z.object({
   email: z.string().email('Invalid email address'),
   city: z.string().min(2, 'City must be at least 2 characters').max(100),
   notifications_enabled: z.boolean(),
+  google_review_url: z.string().trim().url('Enter a valid review URL').or(z.literal('')),
+  review_requests_enabled: z.boolean(),
 })
 
 export type SettingsFormValues = z.infer<typeof settingsSchema>

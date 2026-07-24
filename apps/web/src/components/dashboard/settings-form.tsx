@@ -33,6 +33,8 @@ export function SettingsForm({ client }: SettingsFormProps) {
       email: client.email,
       city: client.city,
       notifications_enabled: client.notifications_enabled,
+      google_review_url: client.google_review_url ?? '',
+      review_requests_enabled: client.review_requests_enabled ?? true,
     },
   })
 
@@ -114,6 +116,51 @@ export function SettingsForm({ client }: SettingsFormProps) {
                 <p className="text-sm text-destructive">{errors.city.message}</p>
               )}
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Separator />
+
+      {/* Google Reviews Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Google Reviews</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-1">
+            <label className="text-sm font-medium" htmlFor="google_review_url">
+              Google review link
+            </label>
+            <Input
+              id="google_review_url"
+              type="url"
+              placeholder="https://g.page/r/your-business/review"
+              {...register('google_review_url')}
+            />
+            <p className="text-xs text-muted-foreground">
+              Paste your Google review link — homeowners will be texted this link when a job is marked completed.
+            </p>
+            {errors.google_review_url && (
+              <p className="text-sm text-destructive">{errors.google_review_url.message}</p>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <label className="text-sm font-medium" htmlFor="review_requests_enabled">
+              Automatically text customers for a review when a job is completed
+            </label>
+            <Controller
+              control={control}
+              name="review_requests_enabled"
+              render={({ field }) => (
+                <Switch
+                  id="review_requests_enabled"
+                  checked={field.value}
+                  onCheckedChange={(checked) => field.onChange(checked)}
+                />
+              )}
+            />
           </div>
         </CardContent>
       </Card>

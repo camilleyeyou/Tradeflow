@@ -56,6 +56,8 @@ export interface Client {
   trial_ends_at: string | null
   notifications_enabled: boolean
   created_at: string
+  google_review_url: string | null
+  review_requests_enabled: boolean
 }
 
 export interface StatusCounts {

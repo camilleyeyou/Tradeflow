@@ -37,6 +37,8 @@ export type Database = {
           review_rating: number | null
           review_count: number | null
           trade: string
+          google_review_url: string | null
+          review_requests_enabled: boolean
         }
         Insert: {
           id?: string
@@ -61,6 +63,8 @@ export type Database = {
           review_rating?: number | null
           review_count?: number | null
           trade?: string
+          google_review_url?: string | null
+          review_requests_enabled?: boolean
         }
         Update: {
           id?: string
@@ -85,6 +89,8 @@ export type Database = {
           review_rating?: number | null
           review_count?: number | null
           trade?: string
+          google_review_url?: string | null
+          review_requests_enabled?: boolean
         }
         Relationships: []
       }
@@ -110,6 +116,7 @@ export type Database = {
           first_contact_at: string | null
           urgency_score: number | null
           urgency_reason: string | null
+          review_requested_at: string | null
         }
         Insert: {
           id?: string
@@ -132,6 +139,7 @@ export type Database = {
           first_contact_at?: string | null
           urgency_score?: number | null
           urgency_reason?: string | null
+          review_requested_at?: string | null
         }
         Update: {
           id?: string
@@ -154,6 +162,7 @@ export type Database = {
           first_contact_at?: string | null
           urgency_score?: number | null
           urgency_reason?: string | null
+          review_requested_at?: string | null
         }
         Relationships: [
           {
