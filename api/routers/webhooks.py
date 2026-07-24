@@ -7,11 +7,15 @@ Routes by event_type field in payload (per D-28: GHL allows only one webhook URL
 import hashlib
 import json
 import logging
+import os
+from datetime import datetime, timezone
 from typing import Optional
 
 from fastapi import APIRouter, Request, Header, HTTPException, BackgroundTasks
 from fastapi.concurrency import run_in_threadpool
 
+from api.services.crypto import decrypt_token
+from api.services.ghl_api import send_sms
 from api.services.ghl_service import verify_ghl_ed25519_signature
 from api.services.supabase_client import get_supabase
 from api.services.webhook_events import record_event, run_processing
@@ -133,13 +137,83 @@ async def handle_contact_tag_added(db, payload: dict) -> None:
         tag_lower = tag.lower() if isinstance(tag, str) else ""
         if tag_lower in TAG_TO_STATUS:
             result = await run_in_threadpool(
-                lambda: db.table("leads").select("id").eq("ghl_contact_id", contact_id).execute()
+                lambda: db.table("leads")
+                .select("id, client_id, phone, review_requested_at")
+                .eq("ghl_contact_id", contact_id)
+                .execute()
             )
             if result.data:
-                lead_id = result.data[0]["id"]
+                lead = result.data[0]
+                lead_id = lead["id"]
                 new_status = TAG_TO_STATUS[tag_lower]
                 await run_in_threadpool(
                     lambda: db.table("leads").update({"status": new_status}).eq("id", lead_id).execute()
                 )
                 logger.info("[ghl-webhook] Tag '%s' -> status '%s' for lead_id=%s", tag, new_status, lead_id)
+                if new_status == "completed":
+                    await _maybe_send_review_request(db, lead, contact_id)
             break  # Only process first matching tag
+
+
+def _resolve_client_token(client_row: dict) -> Optional[str]:
+    enc = client_row.get("ghl_private_token_encrypted")
+    if enc:
+        try:
+            return decrypt_token(enc)
+        except Exception as e:
+            logger.error("[ghl-webhook] token decrypt failed: %s", e)
+    return os.environ.get("GHL_PRIVATE_TOKEN")
+
+
+async def _maybe_send_review_request(db, lead: dict, contact_id: str) -> None:
+    """Send a one-time Google review-request SMS when a lead is marked completed.
+
+    Idempotency contract: claim leads.review_requested_at FIRST via a
+    conditional update (`.is_("review_requested_at", "null")`) — only proceed
+    if a row was actually affected. This is the single guard that prevents
+    this path and the Next.js updateLeadStatus path from ever double-sending.
+
+    Wrapped entirely in try/except — never re-raises, so webhook processing
+    and the already-returned 200 response are never affected by a failure
+    here.
+    """
+    try:
+        if lead.get("review_requested_at") is not None:
+            return
+
+        client_result = await run_in_threadpool(
+            lambda: db.table("clients")
+            .select("business_name, google_review_url, review_requests_enabled, ghl_private_token_encrypted")
+            .eq("id", lead["client_id"])
+            .execute()
+        )
+        if not client_result.data:
+            return
+        client = client_result.data[0]
+        if not client.get("review_requests_enabled") or not client.get("google_review_url"):
+            return
+
+        claim = await run_in_threadpool(
+            lambda: db.table("leads")
+            .update({"review_requested_at": datetime.now(timezone.utc).isoformat()})
+            .eq("id", lead["id"])
+            .is_("review_requested_at", "null")
+            .execute()
+        )
+        if not claim.data:
+            # Another path (Next.js updateLeadStatus) already claimed this lead.
+            return
+
+        token = _resolve_client_token(client)
+        if not token:
+            logger.warning("[ghl-webhook] no GHL token available for review request, lead_id=%s", lead["id"])
+            return
+
+        message = (
+            f"Thanks for choosing {client.get('business_name') or 'us'}! "
+            f"If we did a great job, would you mind leaving us a quick review? {client['google_review_url']}"
+        )
+        await send_sms(contact_id, message, token)
+        logger.info("[ghl-webhook] review request sent for lead_id=%s", lead["id"])
+    except Exception:
+        logger.exception("[ghl-webhook] review request failed for lead_id=%s", lead.get("id"))

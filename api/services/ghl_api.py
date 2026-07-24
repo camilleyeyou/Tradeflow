@@ -107,3 +107,20 @@ async def trigger_textback(
         "[ghl_api] trigger_textback succeeded for phone=%s", _truncate_phone(phone)
     )
     return True
+
+
+async def send_sms(contact_id: str, message: str, token: str) -> bool:
+    """Send an outbound SMS to a GHL contact (used for review-request automation)."""
+    try:
+        response = await _ghl_post(
+            "/conversations/messages",
+            token,
+            {"type": "SMS", "contactId": contact_id, "message": message},
+        )
+        response.raise_for_status()
+        return True
+    except Exception as e:
+        logger.error(
+            "[ghl_api] send_sms failed for contact_id=%s: %s", contact_id, e
+        )
+        return False
