@@ -188,10 +188,11 @@ None yet.
 | 260723-fast3 | Fix prod 500 on dynamic routes: env boot check demoted RESEND/service-role to warn-only | 2026-07-24 | 62f5b4a | (inline /gsd:fast) |
 | 260723-fast4 | Dashboard sign-out button + sidebar contrast fixes | 2026-07-24 | 9d794f3 | (inline /gsd:fast) |
 | 260723-fast5 | Marketing image refresh: dual-trade mockups + new tech-services illustration | 2026-07-24 | df47b16 | (inline /gsd:fast) |
+| 260723-fast6 | Dark-theme contrast pass: text opacity floors raised to WCAG AA across marketing + dashboard | 2026-07-24 | 742b5bb | (inline /gsd:fast) |
 
 ## Session Continuity
 
 Last session: 2026-07-06T17:35:59.796Z
 Stopped at: Completed 09-05-PLAN.md
 Resume file: None
-Last activity: 2026-07-24 - Refreshed marketing SVGs for HVAC+plumbing and added tech-services illustration
+Last activity: 2026-07-24 - Contrast pass complete: body text 60-70pct white, AA-compliant links
