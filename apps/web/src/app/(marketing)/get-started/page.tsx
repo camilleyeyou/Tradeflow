@@ -122,11 +122,11 @@ export default function GetStartedPage() {
             >
               Claim your <span style={{ color: GOLD }}>free trial</span>
             </h1>
-            <p className="text-white/45 text-[15px] leading-relaxed max-w-md mx-auto">
+            <p className="text-white/65 text-[15px] leading-relaxed max-w-md mx-auto">
               Tell us about your business. We&apos;ll reach out within one business day to get
               your ads, landing page, and lead automation live.
             </p>
-            <p className="mt-4 text-white/25 text-[12px] tracking-wide">
+            <p className="mt-4 text-white/50 text-[12px] tracking-wide">
               2-week free trial &middot; $200 in ad spend on us &middot; No contracts
             </p>
           </div>
@@ -271,7 +271,7 @@ export default function GetStartedPage() {
               )}
 
               <div className="mt-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <p className="text-white/30 text-[12px]">
+                <p className="text-white/50 text-[12px]">
                   By submitting, you agree to be contacted about Tradeflow.
                 </p>
                 <button
@@ -294,7 +294,7 @@ export default function GetStartedPage() {
                 </button>
               </div>
             </form>
-            <p className="mt-5 text-center text-[13px] text-white/30">
+            <p className="mt-5 text-center text-[13px] text-white/55">
               Prefer email?{' '}
               <a
                 href={CONTACT_MAILTO}
@@ -310,7 +310,7 @@ export default function GetStartedPage() {
 
       {/* ─── FOOTER ─── */}
       <footer className="border-t border-white/4 px-6 py-10">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/20">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/50">
           <Link
             href="/"
             className="flex items-center gap-3 text-2xl font-semibold tracking-tight text-white rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"

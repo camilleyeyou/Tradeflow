@@ -161,7 +161,7 @@ export default function MarketingHomePage() {
                 <span style={{ color: GOLD }}>Start closing jobs.</span>
               </h1>
 
-              <p className="text-[clamp(15px,1.3vw,18px)] text-white/45 max-w-lg leading-relaxed mb-8">
+              <p className="text-[clamp(15px,1.3vw,18px)] text-white/65 max-w-lg leading-relaxed mb-8">
                 Tradeflow captures every call, form, and missed contact &mdash; then
                 follows up automatically so no lead is ever lost.
               </p>
@@ -182,7 +182,7 @@ export default function MarketingHomePage() {
                 </a>
               </div>
 
-              <p className="mt-6 text-white/20 text-[12px] tracking-wide">
+              <p className="mt-6 text-white/50 text-[12px] tracking-wide">
                 2-week free trial &middot; $200 in ad spend on us &middot; No contracts
               </p>
             </div>
@@ -215,7 +215,7 @@ export default function MarketingHomePage() {
           ].map((stat) => (
             <div key={stat.label}>
               <div className="text-2xl md:text-3xl font-bold" style={{ color: GOLD }}>{stat.value}</div>
-              <div className="text-[12px] text-white/30 mt-1">{stat.label}</div>
+              <div className="text-[12px] text-white/50 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -231,7 +231,7 @@ export default function MarketingHomePage() {
             >
               Sound familiar?
             </h2>
-            <p className="text-white/35 max-w-md mx-auto text-[15px]">
+            <p className="text-white/60 max-w-md mx-auto text-[15px]">
               Most home service companies lose 40&ndash;60% of inbound leads before they ever get called back.
             </p>
           </div>
@@ -276,7 +276,7 @@ export default function MarketingHomePage() {
               >
                 <div className="mb-4">{item.icon}</div>
                 <h3 className="font-semibold text-white text-[15px] mb-2">{item.title}</h3>
-                <p className="text-white/40 text-[13px] leading-relaxed">{item.body}</p>
+                <p className="text-white/60 text-[13px] leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -299,7 +299,7 @@ export default function MarketingHomePage() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}>
               Your company at the top of Google
             </h2>
-            <p className="text-white/45 text-[15px] leading-relaxed mb-6">
+            <p className="text-white/65 text-[15px] leading-relaxed mb-6">
               We set up and fully manage Google Local Services Ads in your service area.
               You appear at the very top of Google with a verified badge &mdash; above
               regular ads, above organic results. You only pay for real leads, not clicks.
@@ -322,7 +322,7 @@ export default function MarketingHomePage() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}>
               Missed call? They hear from you in 60 seconds
             </h2>
-            <p className="text-white/45 text-[15px] leading-relaxed mb-6">
+            <p className="text-white/65 text-[15px] leading-relaxed mb-6">
               When you miss a call, an automated text goes out before the customer
               has time to call your competitor. Your company name, a friendly message,
               and an easy way to reply &mdash; all automatic.
@@ -361,7 +361,7 @@ export default function MarketingHomePage() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}>
               Leads that don&apos;t book? We keep following up
             </h2>
-            <p className="text-white/45 text-[15px] leading-relaxed mb-6">
+            <p className="text-white/65 text-[15px] leading-relaxed mb-6">
               Multi-step text sequences go out over days, keeping your business
               top of mind. Different messages for AC repair, furnace installs,
               drain cleaning, and water-heater jobs &mdash; all on autopilot.
@@ -384,7 +384,7 @@ export default function MarketingHomePage() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}>
               See exactly which ads drive booked jobs
             </h2>
-            <p className="text-white/45 text-[15px] leading-relaxed mb-6">
+            <p className="text-white/65 text-[15px] leading-relaxed mb-6">
               Every call is tracked by campaign, source, and outcome. See which
               ads are actually putting money in your pocket &mdash; not just generating clicks.
             </p>
@@ -414,7 +414,7 @@ export default function MarketingHomePage() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-6" style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}>
               How it works
             </h2>
-            <p className="text-white/35 max-w-md mx-auto text-[15px]">
+            <p className="text-white/60 max-w-md mx-auto text-[15px]">
               We handle everything from ad click to booked job.
             </p>
           </div>
@@ -436,7 +436,7 @@ export default function MarketingHomePage() {
                   {item.step}
                 </div>
                 <h3 className="text-[16px] font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-white/40 text-[13px] leading-relaxed">{item.desc}</p>
+                <p className="text-white/60 text-[13px] leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -451,7 +451,7 @@ export default function MarketingHomePage() {
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 mt-6" style={{ fontFamily: "'Gambetta', Georgia, serif", letterSpacing: '-0.02em' }}>
               Choose how you want to grow
             </h2>
-            <p className="text-white/35 max-w-md mx-auto text-[15px]">
+            <p className="text-white/60 max-w-md mx-auto text-[15px]">
               Simple flat monthly retainers with no contracts &mdash; pick the plan that fits your business.
             </p>
           </div>
@@ -500,16 +500,16 @@ export default function MarketingHomePage() {
                     Most Popular
                   </div>
                 )}
-                <div className="text-[11px] text-white/30 uppercase tracking-[0.15em] mb-2">{plan.name}</div>
+                <div className="text-[11px] text-white/50 uppercase tracking-[0.15em] mb-2">{plan.name}</div>
                 <div className="text-5xl font-bold text-white mb-1">
-                  {plan.price}<span className="text-lg font-normal text-white/25">{plan.priceLabel}</span>
+                  {plan.price}<span className="text-lg font-normal text-white/45">{plan.priceLabel}</span>
                 </div>
-                <p className="text-white/35 text-[13px] mt-2 mb-6">{plan.desc}</p>
+                <p className="text-white/60 text-[13px] mt-2 mb-6">{plan.desc}</p>
                 <ul className="space-y-2.5 mb-8">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-2.5 text-[13px]">
                       <span className="font-bold mt-0.5 shrink-0" style={{ color: GOLD }}>&#10003;</span>
-                      <span className="text-white/50">{f}</span>
+                      <span className="text-white/70">{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -542,7 +542,7 @@ export default function MarketingHomePage() {
             >
               Need more than leads? We build the tech too.
             </h2>
-            <p className="text-white/35 max-w-lg mx-auto text-[15px]">
+            <p className="text-white/60 max-w-lg mx-auto text-[15px]">
               Beyond lead generation, our team builds the custom software home service
               businesses need to run &mdash; from websites to AI automation.
             </p>
@@ -580,7 +580,7 @@ export default function MarketingHomePage() {
                 style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
               >
                 <h3 className="font-semibold text-white text-[15px] mb-2">{item.title}</h3>
-                <p className="text-white/40 text-[13px] leading-relaxed">{item.body}</p>
+                <p className="text-white/60 text-[13px] leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -618,7 +618,7 @@ export default function MarketingHomePage() {
                 <summary className="font-semibold text-white text-[15px] cursor-pointer list-none">
                   {item.q}
                 </summary>
-                <p className="text-white/40 text-[13px] leading-relaxed mt-3">{item.a}</p>
+                <p className="text-white/60 text-[13px] leading-relaxed mt-3">{item.a}</p>
               </details>
             ))}
           </div>
@@ -638,7 +638,7 @@ export default function MarketingHomePage() {
           >
             Ready to fill your schedule?
           </h2>
-          <p className="text-white/40 text-[16px] leading-relaxed mb-10">
+          <p className="text-white/60 text-[16px] leading-relaxed mb-10">
             We&apos;re onboarding HVAC &amp; plumbing companies across the United States
             right now. 2-week free trial, $200 in ad spend on us.
           </p>
@@ -649,11 +649,11 @@ export default function MarketingHomePage() {
           >
             Claim your free trial &rarr;
           </Link>
-          <p className="mt-5 text-white/20 text-[12px]">
+          <p className="mt-5 text-white/45 text-[12px]">
             No credit card required &middot; Prefer email?{' '}
             <a
               href="mailto:hello@tradeflow-technologies.com?cc=contact@tradeflow-technologies.com&subject=Tradeflow%20%E2%80%94%20Free%20trial%20inquiry"
-              className="text-white/40 hover:text-white/80 underline underline-offset-2 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="text-white/55 hover:text-white/90 underline underline-offset-2 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               hello@tradeflow-technologies.com
             </a>
@@ -663,7 +663,7 @@ export default function MarketingHomePage() {
 
       {/* ─── FOOTER ─── */}
       <footer className="border-t border-white/4 px-6 py-10">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/20">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/50">
           <span className="flex items-center gap-3 text-2xl font-semibold tracking-tight text-white" style={{ fontFamily: "'Gambetta', Georgia, serif" }}>
             <img src="/logo-icon.svg" alt="" width={40} height={40} className="shrink-0" />
             <span>Trade<span style={{ color: GOLD }}>flow</span></span>
