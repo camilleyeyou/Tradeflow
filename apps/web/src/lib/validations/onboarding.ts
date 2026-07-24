@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { TIMEZONE_VALUES } from '@/lib/timezones'
 
 export const onboardingSchema = z.object({
   business_name: z.string().min(2, 'Business name must be at least 2 characters').max(100),
@@ -11,6 +12,7 @@ export const onboardingSchema = z.object({
   plan: z.enum(['starter', 'growth', 'premium']),
   trade: z.enum(['hvac', 'plumbing']),
   ghl_private_token: z.string().trim().optional().or(z.literal('')),
+  timezone: z.enum(TIMEZONE_VALUES),
 })
 
 export type OnboardingFormValues = z.infer<typeof onboardingSchema>

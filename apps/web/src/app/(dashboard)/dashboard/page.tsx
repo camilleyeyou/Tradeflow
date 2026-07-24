@@ -55,6 +55,14 @@ export default async function DashboardPage() {
       ? Math.round(speedsToLead.reduce((sum, m) => sum + m, 0) / speedsToLead.length)
       : null
 
+  // CLIENT-TZ: render every timestamp in the client's own timezone
+  const { data: cu } = await supabase
+    .from('client_users')
+    .select('clients(timezone)')
+    .eq('user_id', user.id)
+    .single()
+  const timeZone = (cu?.clients as { timezone: string } | null)?.timezone ?? 'America/Chicago'
+
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Overview</h1>
@@ -65,7 +73,7 @@ export default async function DashboardPage() {
         avgSpeedToLeadMinutes={avgSpeedToLeadMinutes}
       />
       <CountCards counts={counts} />
-      <RecentLeads leads={recentLeads} />
+      <RecentLeads leads={recentLeads} timeZone={timeZone} />
     </div>
   )
 }

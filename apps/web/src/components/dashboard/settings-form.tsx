@@ -10,6 +10,7 @@ import { Switch } from '@/components/ui/switch'
 import { Separator } from '@/components/ui/separator'
 import { settingsSchema, type SettingsFormValues } from '@/lib/validations/settings'
 import { updateClientSettings } from '@/lib/actions/settings-actions'
+import { US_TIMEZONES, DEFAULT_TIMEZONE } from '@/lib/timezones'
 import type { Client } from '@/lib/types/dashboard'
 
 interface SettingsFormProps {
@@ -35,6 +36,7 @@ export function SettingsForm({ client }: SettingsFormProps) {
       notifications_enabled: client.notifications_enabled,
       google_review_url: client.google_review_url ?? '',
       review_requests_enabled: client.review_requests_enabled ?? true,
+      timezone: (client.timezone as SettingsFormValues['timezone']) ?? DEFAULT_TIMEZONE,
     },
   })
 
@@ -114,6 +116,27 @@ export function SettingsForm({ client }: SettingsFormProps) {
               />
               {errors.city && (
                 <p className="text-sm text-destructive">{errors.city.message}</p>
+              )}
+            </div>
+
+            {/* Timezone */}
+            <div className="space-y-1">
+              <label className="text-sm font-medium" htmlFor="timezone">
+                Timezone
+              </label>
+              <select
+                id="timezone"
+                {...register('timezone')}
+                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              >
+                {US_TIMEZONES.map((tz) => (
+                  <option key={tz.value} value={tz.value}>
+                    {tz.label}
+                  </option>
+                ))}
+              </select>
+              {errors.timezone && (
+                <p className="text-sm text-destructive">{errors.timezone.message}</p>
               )}
             </div>
           </div>

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { formatChicagoTime } from '@/lib/utils/format'
+import { formatClientTime } from '@/lib/utils/format'
 
 interface SmsMessage {
   id: string
@@ -14,9 +14,10 @@ interface SmsMessage {
 
 interface SmsInboxProps {
   leadId: string
+  timeZone: string
 }
 
-export function SmsInbox({ leadId }: SmsInboxProps) {
+export function SmsInbox({ leadId, timeZone }: SmsInboxProps) {
   const [messages, setMessages] = useState<SmsMessage[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [draft, setDraft] = useState('')
@@ -95,7 +96,7 @@ export function SmsInbox({ leadId }: SmsInboxProps) {
               <p className="whitespace-pre-wrap break-words">{m.body}</p>
               {m.dateAdded ? (
                 <p className="mt-1 text-[10px] opacity-70">
-                  {formatChicagoTime(m.dateAdded)}
+                  {formatClientTime(m.dateAdded, timeZone)}
                 </p>
               ) : null}
             </div>

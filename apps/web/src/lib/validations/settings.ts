@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { TIMEZONE_VALUES } from '@/lib/timezones'
 
 export const settingsSchema = z.object({
   business_name: z.string().min(2, 'Business name must be at least 2 characters').max(100),
@@ -8,6 +9,7 @@ export const settingsSchema = z.object({
   notifications_enabled: z.boolean(),
   google_review_url: z.string().trim().url('Enter a valid review URL').or(z.literal('')),
   review_requests_enabled: z.boolean(),
+  timezone: z.enum(TIMEZONE_VALUES),
 })
 
 export type SettingsFormValues = z.infer<typeof settingsSchema>

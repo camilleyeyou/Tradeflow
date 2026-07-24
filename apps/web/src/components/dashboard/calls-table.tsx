@@ -7,11 +7,12 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
-import { formatChicagoTime, truncatePhone, formatDuration } from '@/lib/utils/format'
+import { formatClientTime, truncatePhone, formatDuration } from '@/lib/utils/format'
 import type { Call } from '@/lib/types/dashboard'
 
 interface CallsTableProps {
   calls: Call[]
+  timeZone: string
 }
 
 function getOutcomeVariant(outcome: string | null): 'default' | 'destructive' | 'secondary' | 'outline' {
@@ -27,7 +28,7 @@ function getOutcomeVariant(outcome: string | null): 'default' | 'destructive' | 
   }
 }
 
-export function CallsTable({ calls }: CallsTableProps) {
+export function CallsTable({ calls, timeZone }: CallsTableProps) {
   if (calls.length === 0) {
     return (
       <div className="rounded-xl border border-border p-8 text-center text-muted-foreground">
@@ -81,7 +82,7 @@ export function CallsTable({ calls }: CallsTableProps) {
                 )}
               </TableCell>
               <TableCell className="hidden md:table-cell">
-                {formatChicagoTime(call.called_at)}
+                {formatClientTime(call.called_at, timeZone)}
               </TableCell>
             </TableRow>
           ))}

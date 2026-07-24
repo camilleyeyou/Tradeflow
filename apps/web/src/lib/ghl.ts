@@ -183,6 +183,7 @@ interface CreateSubAccountInput {
   email: string
   city: string
   state: string
+  timezone: string
 }
 
 export async function createSubAccount(
@@ -204,7 +205,7 @@ export async function createSubAccount(
         city: input.city,
         state: input.state,
         country: 'US',
-        timezone: 'America/Chicago',
+        timezone: input.timezone,
       }),
     })
 

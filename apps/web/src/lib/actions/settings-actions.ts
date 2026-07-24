@@ -12,6 +12,7 @@ export async function updateClientSettings(formData: {
   notifications_enabled: boolean
   google_review_url: string
   review_requests_enabled: boolean
+  timezone: string
 }) {
   const parsed = settingsSchema.safeParse(formData)
   if (!parsed.success) throw new Error(parsed.error.issues[0].message)

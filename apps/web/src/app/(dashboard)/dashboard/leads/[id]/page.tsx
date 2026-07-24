@@ -3,7 +3,7 @@ import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { SmsInbox } from '@/components/dashboard/sms-inbox'
 import { JobValueEditor } from '@/components/dashboard/job-value-editor'
-import { truncatePhone, formatChicagoTime } from '@/lib/utils/format'
+import { truncatePhone, formatClientTime } from '@/lib/utils/format'
 import type { Lead } from '@/lib/types/dashboard'
 
 export const dynamic = 'force-dynamic'
@@ -31,6 +31,14 @@ export default async function LeadDetailPage({
 
   if (!lead) notFound()
   const typedLead = lead as Lead
+
+  // CLIENT-TZ: render every timestamp in the client's own timezone
+  const { data: cu } = await supabase
+    .from('client_users')
+    .select('clients(timezone)')
+    .eq('user_id', user.id)
+    .single()
+  const timeZone = (cu?.clients as { timezone: string } | null)?.timezone ?? 'America/Chicago'
 
   return (
     <div className="space-y-6">
@@ -61,7 +69,7 @@ export default async function LeadDetailPage({
         </div>
         <div>
           <p className="text-muted-foreground">Created</p>
-          <p>{formatChicagoTime(typedLead.created_at)}</p>
+          <p>{formatClientTime(typedLead.created_at, timeZone)}</p>
         </div>
         <div>
           <JobValueEditor
@@ -74,7 +82,7 @@ export default async function LeadDetailPage({
 
       <div>
         <h2 className="mb-2 text-lg font-semibold">Messages</h2>
-        <SmsInbox leadId={typedLead.id} />
+        <SmsInbox leadId={typedLead.id} timeZone={timeZone} />
       </div>
     </div>
   )

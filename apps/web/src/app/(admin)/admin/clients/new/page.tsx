@@ -6,6 +6,7 @@ import { onboardingSchema, type OnboardingFormValues } from '@/lib/validations/o
 import { onboardClient } from '@/lib/actions/onboarding-actions'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { US_TIMEZONES, DEFAULT_TIMEZONE } from '@/lib/timezones'
 import { useState } from 'react'
 
 export default function NewClientPage() {
@@ -25,6 +26,7 @@ export default function NewClientPage() {
       plan: 'starter',
       trade: 'hvac',
       ghl_private_token: '',
+      timezone: DEFAULT_TIMEZONE,
     },
   })
 

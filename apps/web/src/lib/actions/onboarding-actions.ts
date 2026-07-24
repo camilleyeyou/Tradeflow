@@ -20,6 +20,7 @@ export async function onboardClient(formData: {
   plan: string
   trade: string
   ghl_private_token?: string
+  timezone: string
 }) {
   const authClient = await createClient()
   const { data: { user } } = await authClient.auth.getUser()
@@ -71,6 +72,7 @@ export async function onboardClient(formData: {
       plan: parsed.data.plan,
       trade: parsed.data.trade,
       slug,
+      timezone: parsed.data.timezone,
       ghl_private_token_encrypted: parsed.data.ghl_private_token
         ? encryptToken(parsed.data.ghl_private_token)
         : null,
@@ -97,6 +99,7 @@ export async function onboardClient(formData: {
       email: parsed.data.email,
       city: parsed.data.city,
       state: parsed.data.state,
+      timezone: parsed.data.timezone,
     })
 
     if (locationId) {

@@ -1,14 +1,36 @@
 /**
- * Format ISO timestamp in America/Chicago timezone (per D-47)
+ * Format ISO timestamp in the given IANA timezone, falling back to
+ * America/Chicago when timeZone is missing or invalid (CLIENT-TZ).
+ */
+export function formatClientTime(isoString: string, timeZone?: string | null): string {
+  const zone = timeZone || 'America/Chicago'
+  try {
+    return new Date(isoString).toLocaleString('en-US', {
+      timeZone: zone,
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+    })
+  } catch {
+    // Invalid IANA timezone (RangeError) — fall back to Chicago.
+    return new Date(isoString).toLocaleString('en-US', {
+      timeZone: 'America/Chicago',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+    })
+  }
+}
+
+/**
+ * Format ISO timestamp in America/Chicago timezone (per D-47).
+ * @deprecated Use formatClientTime(isoString, timeZone) instead — this is a
+ * thin wrapper kept for callers not yet migrated to per-client timezones.
  */
 export function formatChicagoTime(isoString: string): string {
-  return new Date(isoString).toLocaleString('en-US', {
-    timeZone: 'America/Chicago',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  })
+  return formatClientTime(isoString, 'America/Chicago')
 }
 
 /**

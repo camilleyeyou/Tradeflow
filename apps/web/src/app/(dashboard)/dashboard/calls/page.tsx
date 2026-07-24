@@ -19,10 +19,18 @@ export default async function CallsPage() {
 
   const calls = (allCalls ?? []) as Call[]
 
+  // CLIENT-TZ: render every timestamp in the client's own timezone
+  const { data: cu } = await supabase
+    .from('client_users')
+    .select('clients(timezone)')
+    .eq('user_id', user.id)
+    .single()
+  const timeZone = (cu?.clients as { timezone: string } | null)?.timezone ?? 'America/Chicago'
+
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Call Log</h1>
-      <CallsTable calls={calls} />
+      <CallsTable calls={calls} timeZone={timeZone} />
     </div>
   )
 }

@@ -12,14 +12,15 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { StatusSelect } from './status-select'
 import { NotesEditor } from './notes-editor'
-import { formatChicagoTime, truncatePhone } from '@/lib/utils/format'
+import { formatClientTime, truncatePhone } from '@/lib/utils/format'
 import type { Lead } from '@/lib/types/dashboard'
 
 interface LeadsTableProps {
   leads: Lead[]
+  timeZone: string
 }
 
-export function LeadsTable({ leads }: LeadsTableProps) {
+export function LeadsTable({ leads, timeZone }: LeadsTableProps) {
   if (leads.length === 0) {
     return (
       <p className="text-muted-foreground text-sm py-6">
@@ -74,7 +75,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
                 />
               </TableCell>
               <TableCell className="hidden md:table-cell">
-                {formatChicagoTime(lead.created_at)}
+                {formatClientTime(lead.created_at, timeZone)}
               </TableCell>
               <TableCell className="hidden lg:table-cell">
                 {lead.status === 'completed' && lead.job_value_cents != null

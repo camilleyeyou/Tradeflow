@@ -7,12 +7,13 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
-import { formatChicagoTime } from '@/lib/utils/format'
+import { formatClientTime } from '@/lib/utils/format'
 import Link from 'next/link'
 import type { Lead, LeadStatus } from '@/lib/types/dashboard'
 
 interface RecentLeadsProps {
   leads: Lead[]
+  timeZone: string
 }
 
 function getStatusVariant(status: LeadStatus): 'default' | 'secondary' | 'outline' | 'destructive' {
@@ -32,7 +33,7 @@ function getStatusVariant(status: LeadStatus): 'default' | 'secondary' | 'outlin
   }
 }
 
-export function RecentLeads({ leads }: RecentLeadsProps) {
+export function RecentLeads({ leads, timeZone }: RecentLeadsProps) {
   return (
     <section className="space-y-3">
       <h2 className="text-lg font-semibold">Recent Leads</h2>
@@ -59,7 +60,7 @@ export function RecentLeads({ leads }: RecentLeadsProps) {
                   </Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
-                  {formatChicagoTime(lead.created_at)}
+                  {formatClientTime(lead.created_at, timeZone)}
                 </TableCell>
               </TableRow>
             ))}
