@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" fill="none">
+  <defs>
+    <linearGradient id="tbg" x1="0" y1="0" x2="560" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#111113"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </linearGradient>
+    <clipPath id="tround"><rect width="560" height="400" rx="12"/></clipPath>
+  </defs>
+  <rect width="560" height="400" rx="12" fill="url(#tbg)"/>
+  <g clip-path="url(#tround)">
+    <!-- Browser bar -->
+    <rect x="0" y="0" width="560" height="40" fill="#0f0f11"/>
+    <line x1="0" y1="40" x2="560" y2="40" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <circle cx="18" cy="20" r="5" fill="#ef4444" fill-opacity="0.5"/>
+    <circle cx="34" cy="20" r="5" fill="#eab308" fill-opacity="0.5"/>
+    <circle cx="50" cy="20" r="5" fill="#22c55e" fill-opacity="0.5"/>
+    <rect x="80" y="10" width="400" height="20" rx="4" fill="rgba(255,255,255,0.05)"/>
+    <text x="96" y="24" fill="white" font-family="sans-serif" font-size="10" opacity="0.35">summitairplumbing.com — built by Tradeflow</text>
+
+    <!-- ══ LEFT: the client website being built ══ -->
+    <rect x="24" y="56" width="300" height="320" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="40" y="78" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" opacity="0.85">CUSTOM WEBSITE</text>
+
+    <!-- mini site nav -->
+    <circle cx="46" cy="98" r="6" fill="rgba(212,175,55,0.35)"/>
+    <rect x="58" y="95" width="46" height="6" rx="3" fill="rgba(255,255,255,0.25)"/>
+    <rect x="232" y="94" width="26" height="8" rx="2" fill="rgba(255,255,255,0.10)"/>
+    <rect x="264" y="94" width="26" height="8" rx="2" fill="rgba(255,255,255,0.10)"/>
+    <line x1="24" y1="112" x2="324" y2="112" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+    <!-- mini site hero -->
+    <rect x="40" y="130" width="196" height="12" rx="6" fill="rgba(255,255,255,0.45)"/>
+    <rect x="40" y="150" width="148" height="12" rx="6" fill="rgba(255,255,255,0.45)"/>
+    <rect x="40" y="172" width="216" height="6" rx="3" fill="rgba(255,255,255,0.14)"/>
+    <rect x="40" y="184" width="176" height="6" rx="3" fill="rgba(255,255,255,0.14)"/>
+    <!-- gold CTA -->
+    <rect x="40" y="204" width="104" height="28" rx="7" fill="#D4AF37"/>
+    <text x="58" y="222" fill="#000" font-family="sans-serif" font-size="10.5" font-weight="700">Book service</text>
+    <rect x="154" y="204" width="88" height="28" rx="7" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <text x="170" y="222" fill="white" font-family="sans-serif" font-size="10.5" opacity="0.55">Call now</text>
+
+    <!-- trust chips -->
+    <rect x="40" y="246" width="86" height="16" rx="8" fill="rgba(34,197,94,0.10)"/>
+    <text x="50" y="257" fill="#22c55e" font-family="sans-serif" font-size="8" font-weight="600">✓ Licensed &amp; insured</text>
+    <rect x="134" y="246" width="64" height="16" rx="8" fill="rgba(212,175,55,0.10)"/>
+    <text x="144" y="257" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="600">★ 4.9 rating</text>
+
+    <!-- service cards: HVAC + Plumbing -->
+    <rect x="40" y="278" width="128" height="78" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <circle cx="60" cy="300" r="11" fill="rgba(212,175,55,0.12)"/>
+    <text x="60" y="304" fill="#D4AF37" font-family="sans-serif" font-size="9" font-weight="700" text-anchor="middle">AC</text>
+    <text x="52" y="330" fill="white" font-family="sans-serif" font-size="10" font-weight="600" opacity="0.7">HVAC repair</text>
+    <rect x="52" y="338" width="88" height="5" rx="2.5" fill="rgba(255,255,255,0.10)"/>
+
+    <rect x="180" y="278" width="128" height="78" rx="8" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <circle cx="200" cy="300" r="11" fill="rgba(96,165,250,0.14)"/>
+    <text x="200" y="304" fill="#60a5fa" font-family="sans-serif" font-size="9" font-weight="700" text-anchor="middle">PL</text>
+    <text x="192" y="330" fill="white" font-family="sans-serif" font-size="10" font-weight="600" opacity="0.7">Plumbing</text>
+    <rect x="192" y="338" width="88" height="5" rx="2.5" fill="rgba(255,255,255,0.10)"/>
+
+    <!-- ══ RIGHT: code editor ══ -->
+    <rect x="344" y="56" width="192" height="118" rx="10" fill="#0e0e10" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="360" y="76" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" opacity="0.85">CUSTOM SOFTWARE</text>
+    <circle cx="510" cy="72" r="3" fill="#ef4444" fill-opacity="0.4"/>
+    <circle cx="520" cy="72" r="3" fill="#eab308" fill-opacity="0.4"/>
+    <line x1="344" y1="86" x2="536" y2="86" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <rect x="360" y="96" width="52" height="6" rx="3" fill="#c084fc" fill-opacity="0.65"/>
+    <rect x="418" y="96" width="70" height="6" rx="3" fill="rgba(255,255,255,0.18)"/>
+    <rect x="372" y="110" width="44" height="6" rx="3" fill="#60a5fa" fill-opacity="0.65"/>
+    <rect x="422" y="110" width="58" height="6" rx="3" fill="#34d399" fill-opacity="0.55"/>
+    <rect x="372" y="124" width="86" height="6" rx="3" fill="rgba(255,255,255,0.18)"/>
+    <rect x="464" y="124" width="34" height="6" rx="3" fill="#D4AF37" fill-opacity="0.6"/>
+    <rect x="372" y="138" width="40" height="6" rx="3" fill="#60a5fa" fill-opacity="0.5"/>
+    <rect x="360" y="152" width="30" height="6" rx="3" fill="#c084fc" fill-opacity="0.5"/>
+    <rect x="396" y="152" width="64" height="6" rx="3" fill="rgba(255,255,255,0.14)"/>
+
+    <!-- ══ RIGHT: AI assistant chat ══ -->
+    <rect x="344" y="186" width="192" height="112" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="360" y="206" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" opacity="0.85">AI AUTOMATION</text>
+    <circle cx="522" cy="203" r="3.5" fill="#22c55e"/>
+    <line x1="344" y1="214" x2="536" y2="214" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    <!-- customer bubble -->
+    <rect x="358" y="222" width="132" height="24" rx="9" fill="rgba(255,255,255,0.06)"/>
+    <text x="368" y="238" fill="white" font-family="sans-serif" font-size="9.5" opacity="0.7">Can you come out today?</text>
+    <!-- AI reply bubble -->
+    <rect x="384" y="254" width="140" height="24" rx="9" fill="rgba(212,175,55,0.13)" stroke="rgba(212,175,55,0.18)" stroke-width="1"/>
+    <text x="394" y="270" fill="#D4AF37" font-family="sans-serif" font-size="9.5">Yes! Booked for 2:00 PM ✓</text>
+    <text x="524" y="290" fill="white" font-family="sans-serif" font-size="8" opacity="0.3" text-anchor="end">Replied in 4 seconds</text>
+
+    <!-- ══ RIGHT: integrations ══ -->
+    <rect x="344" y="310" width="192" height="66" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="360" y="330" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" opacity="0.85">CRM &amp; INTEGRATIONS</text>
+    <line x1="386" y1="354" x2="428" y2="354" stroke="rgba(212,175,55,0.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <line x1="452" y1="354" x2="494" y2="354" stroke="rgba(212,175,55,0.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="372" cy="354" r="13" fill="rgba(212,175,55,0.10)" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
+    <text x="372" y="358" fill="#D4AF37" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">CRM</text>
+    <circle cx="440" cy="354" r="13" fill="rgba(96,165,250,0.10)" stroke="rgba(96,165,250,0.3)" stroke-width="1"/>
+    <text x="440" y="358" fill="#60a5fa" font-family="sans-serif" font-size="8" font-weight="700" text-anchor="middle">SMS</text>
+    <circle cx="508" cy="354" r="13" fill="rgba(34,197,94,0.10)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+    <text x="508" y="358" fill="#22c55e" font-family="sans-serif" font-size="9" font-weight="700" text-anchor="middle">$</text>
+
+    <!-- Border -->
+    <rect x="0" y="0" width="560" height="400" rx="12" fill="none" stroke="rgba(212,175,55,0.08)" stroke-width="1"/>
+  </g>
+</svg>

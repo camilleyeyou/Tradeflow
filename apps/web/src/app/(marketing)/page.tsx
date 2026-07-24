@@ -547,6 +547,14 @@ export default function MarketingHomePage() {
               businesses need to run &mdash; from websites to AI automation.
             </p>
           </div>
+          <div className="max-w-3xl mx-auto mb-12">
+            <img
+              src="/images/marketing/tech-services.svg"
+              alt="Mockup of a contractor website, code editor, AI chat assistant, and CRM integrations built by Tradeflow"
+              className="w-full h-auto rounded-xl"
+              style={{ boxShadow: '0 8px 60px rgba(0,0,0,0.5)' }}
+            />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             {[
               {
