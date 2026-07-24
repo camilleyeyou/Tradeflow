@@ -38,6 +38,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
             <TableHead>Service Type</TableHead>
             <TableHead>Status</TableHead>
             <TableHead className="hidden md:table-cell">Created</TableHead>
+            <TableHead className="hidden lg:table-cell">Value</TableHead>
             <TableHead>Notes</TableHead>
           </TableRow>
         </TableHeader>
@@ -74,6 +75,11 @@ export function LeadsTable({ leads }: LeadsTableProps) {
               </TableCell>
               <TableCell className="hidden md:table-cell">
                 {formatChicagoTime(lead.created_at)}
+              </TableCell>
+              <TableCell className="hidden lg:table-cell">
+                {lead.status === 'completed' && lead.job_value_cents != null
+                  ? `$${(lead.job_value_cents / 100).toLocaleString()}`
+                  : '—'}
               </TableCell>
               <TableCell>
                 <NotesEditor

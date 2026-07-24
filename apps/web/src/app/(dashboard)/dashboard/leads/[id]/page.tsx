@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { SmsInbox } from '@/components/dashboard/sms-inbox'
+import { JobValueEditor } from '@/components/dashboard/job-value-editor'
 import { truncatePhone, formatChicagoTime } from '@/lib/utils/format'
 import type { Lead } from '@/lib/types/dashboard'
 
@@ -61,6 +62,13 @@ export default async function LeadDetailPage({
         <div>
           <p className="text-muted-foreground">Created</p>
           <p>{formatChicagoTime(typedLead.created_at)}</p>
+        </div>
+        <div>
+          <JobValueEditor
+            leadId={typedLead.id}
+            initialCents={typedLead.job_value_cents}
+            status={typedLead.status}
+          />
         </div>
       </div>
 

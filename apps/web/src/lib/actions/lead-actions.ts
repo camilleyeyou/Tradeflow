@@ -108,3 +108,30 @@ export async function updateLeadNotes(leadId: string, notes: string) {
   if (error) throw new Error(error.message)
   revalidatePath('/dashboard/leads')
 }
+
+const MAX_JOB_VALUE_CENTS = 100_000_000 // $1,000,000 cap
+
+export async function updateLeadJobValue(leadId: string, jobValueCents: number | null) {
+  if (jobValueCents !== null) {
+    if (!Number.isFinite(jobValueCents) || !Number.isInteger(jobValueCents)) {
+      throw new Error('Job value must be a whole number of cents')
+    }
+    if (jobValueCents < 0) throw new Error('Job value cannot be negative')
+    if (jobValueCents > MAX_JOB_VALUE_CENTS) throw new Error('Job value is too large')
+  }
+
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Not authenticated')
+
+  // RLS enforces ownership — no manual client_id check needed
+  const { error } = await supabase
+    .from('leads')
+    .update({ job_value_cents: jobValueCents })
+    .eq('id', leadId)
+
+  if (error) throw new Error(error.message)
+  revalidatePath('/dashboard/leads')
+  revalidatePath('/dashboard')
+  revalidatePath(`/dashboard/leads/${leadId}`)
+}

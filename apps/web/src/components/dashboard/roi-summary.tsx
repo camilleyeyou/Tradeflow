@@ -2,17 +2,39 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Users, DollarSign, Timer } from 'lucide-react'
 
 // Estimated value per lead (USD) — conservative booked-job estimate; clearly
-// labeled "estimated" in the UI. Not a real revenue figure — leads.notes /
-// booking status are not yet tied to actual invoice amounts (see billing table).
+// labeled "estimated" in the UI. Used only for completed leads that lack a
+// real reported job_value_cents (JOB-VALUE).
 export const ESTIMATED_LEAD_VALUE = 400
 
 interface RoiSummaryProps {
   monthLeadCount: number
-  estimatedValue: number
+  reportedValueDollars: number
+  estimatedValueDollars: number
   avgSpeedToLeadMinutes: number | null
 }
 
-export function RoiSummary({ monthLeadCount, estimatedValue, avgSpeedToLeadMinutes }: RoiSummaryProps) {
+export function RoiSummary({
+  monthLeadCount,
+  reportedValueDollars,
+  estimatedValueDollars,
+  avgSpeedToLeadMinutes,
+}: RoiSummaryProps) {
+  const total = reportedValueDollars + estimatedValueDollars
+
+  let displayValue: number
+  let subtitle: string
+
+  if (reportedValueDollars > 0 && estimatedValueDollars > 0) {
+    displayValue = total
+    subtitle = `$${reportedValueDollars.toLocaleString()} reported + $${estimatedValueDollars.toLocaleString()} estimated`
+  } else if (reportedValueDollars > 0) {
+    displayValue = reportedValueDollars
+    subtitle = 'Reported job value'
+  } else {
+    displayValue = estimatedValueDollars
+    subtitle = `Estimated at $${ESTIMATED_LEAD_VALUE}/lead — not actual revenue`
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <Card>
@@ -35,10 +57,8 @@ export function RoiSummary({ monthLeadCount, estimatedValue, avgSpeedToLeadMinut
           </div>
         </CardHeader>
         <CardContent>
-          <p className="text-3xl font-bold">${estimatedValue.toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground mt-1">
-            Estimated at ${ESTIMATED_LEAD_VALUE}/lead — not actual revenue
-          </p>
+          <p className="text-3xl font-bold">${displayValue.toLocaleString()}</p>
+          <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
         </CardContent>
       </Card>
 

@@ -16,7 +16,7 @@ export default async function DashboardPage() {
   // RLS scopes to user's client automatically
   const { data: allLeads } = await supabase
     .from('leads')
-    .select('id, homeowner_name, service_type, status, created_at, first_contact_at')
+    .select('id, homeowner_name, service_type, status, created_at, first_contact_at, job_value_cents')
     .order('created_at', { ascending: false })
 
   const leads = (allLeads ?? []) as Lead[]
@@ -30,11 +30,21 @@ export default async function DashboardPage() {
 
   const recentLeads = leads.slice(0, 5)
 
-  // ROI-02: monthly lead count, estimated value, avg speed-to-lead
+  // ROI-02: monthly lead count, reported + estimated value split, avg speed-to-lead
   const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
   const monthLeads = leads.filter(l => l.created_at >= startOfMonth)
   const monthLeadCount = monthLeads.length
-  const estimatedValue = monthLeadCount * ESTIMATED_LEAD_VALUE
+
+  // JOB-VALUE: split real reported job value from the $ESTIMATED_LEAD_VALUE
+  // placeholder — only completed leads without a reported value get estimated.
+  const monthCompletedLeads = monthLeads.filter(l => l.status === 'completed')
+  const reportedCents = monthCompletedLeads.reduce(
+    (sum, l) => sum + (l.job_value_cents ?? 0),
+    0
+  )
+  const completedWithoutValue = monthCompletedLeads.filter(l => l.job_value_cents == null).length
+  const reportedValueDollars = Math.round(reportedCents / 100)
+  const estimatedValueDollars = completedWithoutValue * ESTIMATED_LEAD_VALUE
 
   const speedsToLead = monthLeads
     .filter(l => l.first_contact_at)
@@ -50,7 +60,8 @@ export default async function DashboardPage() {
       <h1 className="text-2xl font-bold">Overview</h1>
       <RoiSummary
         monthLeadCount={monthLeadCount}
-        estimatedValue={estimatedValue}
+        reportedValueDollars={reportedValueDollars}
+        estimatedValueDollars={estimatedValueDollars}
         avgSpeedToLeadMinutes={avgSpeedToLeadMinutes}
       />
       <CountCards counts={counts} />

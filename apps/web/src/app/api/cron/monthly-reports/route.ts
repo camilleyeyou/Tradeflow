@@ -18,6 +18,7 @@ interface LeadStatsRow {
   created_at: string
   first_contact_at: string | null
   urgency_score: number | null
+  job_value_cents: number | null
 }
 
 interface CallStatsRow {
@@ -71,7 +72,7 @@ export async function GET(request: Request) {
     try {
       const { data: leadsData } = await supabase
         .from('leads')
-        .select('status, source, created_at, first_contact_at, urgency_score')
+        .select('status, source, created_at, first_contact_at, urgency_score, job_value_cents')
         .eq('client_id', client.id)
         .gte('created_at', monthStart.toISOString())
         .lt('created_at', monthEnd.toISOString())
@@ -116,7 +117,14 @@ export async function GET(request: Request) {
       const totalCalls = calls.length
       const missedCalls = calls.filter((c) => c.outcome === 'missed').length
       const avgSpeedMin = speedCount > 0 ? Math.round(speedSumMinutes / speedCount) : null
-      const estimatedValue = totalLeads * ESTIMATED_LEAD_VALUE
+
+      // JOB-VALUE: split real reported job value from the $ESTIMATED_LEAD_VALUE
+      // placeholder — only completed leads without a reported value get estimated.
+      const completedLeads = leads.filter((l) => l.status === 'completed')
+      const reportedCents = completedLeads.reduce((sum, l) => sum + (l.job_value_cents ?? 0), 0)
+      const completedWithoutValue = completedLeads.filter((l) => l.job_value_cents == null).length
+      const reportedValue = Math.round(reportedCents / 100)
+      const estimatedValue = completedWithoutValue * ESTIMATED_LEAD_VALUE
 
       const statusRows = Object.entries(statusCounts)
         .map(([status, count]) => `<tr><td style="padding:4px 12px;">${escapeHtml(status)}</td><td style="padding:4px 12px;">${count}</td></tr>`)
@@ -144,7 +152,7 @@ export async function GET(request: Request) {
               <tr><td style="padding:4px 12px;font-weight:bold;">Missed calls</td><td style="padding:4px 12px;">${missedCalls}</td></tr>
               <tr><td style="padding:4px 12px;font-weight:bold;">Avg speed-to-lead</td><td style="padding:4px 12px;">${avgSpeedMin !== null ? `${avgSpeedMin} min` : '—'}</td></tr>
               <tr><td style="padding:4px 12px;font-weight:bold;">Hot leads</td><td style="padding:4px 12px;">${hotLeads}</td></tr>
-              <tr><td style="padding:4px 12px;font-weight:bold;">Estimated pipeline value</td><td style="padding:4px 12px;">$${estimatedValue.toLocaleString()} <span style="color:#888;font-size:12px;">(estimated — not actual revenue)</span></td></tr>
+              <tr><td style="padding:4px 12px;font-weight:bold;">Estimated pipeline value</td><td style="padding:4px 12px;">$${(reportedValue + estimatedValue).toLocaleString()} <span style="color:#888;font-size:12px;">${reportedValue > 0 ? `(${reportedValue.toLocaleString()} reported + ${estimatedValue.toLocaleString()} estimated)` : '(estimated — not actual revenue)'}</span></td></tr>
             </table>
             <p style="margin-top:24px;"><a href="${process.env.NEXT_PUBLIC_APP_URL || ''}/dashboard" style="color:#0b0b0c;">View in dashboard</a></p>
           </div>
