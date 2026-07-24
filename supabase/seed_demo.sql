@@ -132,3 +132,20 @@ insert into public.sms_sequences (
   ('d0000000-0000-0000-0000-000000000012', 1, 'Hi Sarah, we marked your furnace repair request urgent — a technician will call within 15 minutes.', 'sent', now() - interval '10 hours' + interval '2 minutes', now() - interval '10 hours' + interval '2 minutes'),
   ('d0000000-0000-0000-0000-000000000013', 2, 'Just checking in — still interested in scheduling your furnace repair? Reply YES to confirm a time.', 'pending', now() + interval '1 day', null),
   ('d0000000-0000-0000-0000-000000000017', 3, 'Thanks again for choosing Summit Air & Plumbing! If we did a great job, we''d love a quick Google review: https://g.page/r/demo-example/review', 'sent', now() - interval '13 days' + interval '30 minutes', now() - interval '13 days' + interval '30 minutes');
+
+-- ----------------------------------------------------------------------------
+-- Re-link the demo dashboard login. Deleting the demo client above cascades
+-- away its client_users row, which would orphan the demo auth user on every
+-- re-run. If a demo auth user exists (created once via the admin "create
+-- login" flow or provisioning script), re-attach it here so the login keeps
+-- working after every refresh. No-op when the auth user doesn't exist yet.
+-- ----------------------------------------------------------------------------
+insert into public.client_users (user_id, client_id, role)
+select u.id, 'd0000000-0000-0000-0000-000000000001', 'owner'
+from auth.users u
+where u.email = 'demo@tradeflow-technologies.com'
+  and not exists (
+    select 1 from public.client_users cu
+    where cu.user_id = u.id
+      and cu.client_id = 'd0000000-0000-0000-0000-000000000001'
+  );
