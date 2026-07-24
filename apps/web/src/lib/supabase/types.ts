@@ -39,6 +39,7 @@ export type Database = {
           trade: string
           google_review_url: string | null
           review_requests_enabled: boolean
+          timezone: string
         }
         Insert: {
           id?: string
@@ -65,6 +66,7 @@ export type Database = {
           trade?: string
           google_review_url?: string | null
           review_requests_enabled?: boolean
+          timezone?: string
         }
         Update: {
           id?: string
@@ -91,6 +93,7 @@ export type Database = {
           trade?: string
           google_review_url?: string | null
           review_requests_enabled?: boolean
+          timezone?: string
         }
         Relationships: []
       }
@@ -117,6 +120,7 @@ export type Database = {
           urgency_score: number | null
           urgency_reason: string | null
           review_requested_at: string | null
+          job_value_cents: number | null
         }
         Insert: {
           id?: string
@@ -140,6 +144,7 @@ export type Database = {
           urgency_score?: number | null
           urgency_reason?: string | null
           review_requested_at?: string | null
+          job_value_cents?: number | null
         }
         Update: {
           id?: string
@@ -163,6 +168,7 @@ export type Database = {
           urgency_score?: number | null
           urgency_reason?: string | null
           review_requested_at?: string | null
+          job_value_cents?: number | null
         }
         Relationships: [
           {

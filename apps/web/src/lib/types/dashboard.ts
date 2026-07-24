@@ -22,6 +22,7 @@ export interface Lead {
   first_contact_at: string | null
   urgency_score: number | null
   urgency_reason: string | null
+  job_value_cents: number | null
 }
 
 export interface Call {
@@ -58,6 +59,7 @@ export interface Client {
   created_at: string
   google_review_url: string | null
   review_requests_enabled: boolean
+  timezone: string
 }
 
 export interface StatusCounts {
